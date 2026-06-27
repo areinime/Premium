@@ -6,16 +6,25 @@
 
 }
 
+html{
+
+    height:100%;
+
+    overscroll-behavior:auto;
+
+}
+
 body{
 
-    width:100vw;
-    height:100vh;
+    min-height:100vh;
 
-    overflow:hidden;
+    overflow-x:hidden;
+
+    overflow-y:auto;
 
     background:#000;
 
-    color:#fff;
+    color:white;
 
     font-family:monospace;
 
@@ -36,38 +45,27 @@ BACKGROUND
     background:
 
     radial-gradient(
-
         circle at 20% 20%,
-
-        rgba(0,255,255,.08),
-
+        rgba(0,255,255,.10),
         transparent 40%
-
     ),
 
     radial-gradient(
-
         circle at 80% 80%,
-
-        rgba(255,0,255,.08),
-
+        rgba(255,0,255,.10),
         transparent 40%
-
     ),
 
     radial-gradient(
-
         circle at 50% 50%,
-
-        rgba(255,215,0,.05),
-
+        rgba(255,215,0,.06),
         transparent 50%
-
     );
 
     animation:
-
     bgMove 15s infinite alternate;
+
+    z-index:-5;
 
 }
 
@@ -102,30 +100,23 @@ GRID
     background:
 
     linear-gradient(
-
         rgba(255,255,255,.03) 1px,
-
         transparent 1px
-
     ),
 
     linear-gradient(
-
         90deg,
-
         rgba(255,255,255,.03) 1px,
-
         transparent 1px
-
     );
 
     background-size:
-
     50px 50px;
 
     animation:
-
     moveGrid 20s linear infinite;
+
+    z-index:-4;
 
 }
 
@@ -173,6 +164,8 @@ SCANLINE
 
     );
 
+    z-index:-3;
+
 }
 
 /************************
@@ -195,13 +188,11 @@ TOP BAR
 
     align-items:center;
 
-    z-index:10;
-
 }
 
 #menuBtn{
 
-    font-size:30px;
+    font-size:35px;
 
     cursor:pointer;
 
@@ -209,7 +200,7 @@ TOP BAR
 
     text-shadow:
 
-    0 0 10px cyan;
+    0 0 15px cyan;
 
 }
 
@@ -224,29 +215,42 @@ TOP BAR
     background:
 
     linear-gradient(
-
         45deg,
-
         cyan,
-
         magenta,
-
         gold
-
     );
 
     animation:
-
     profileGlitch 3s infinite;
 
 }
 
 @keyframes profileGlitch{
 
+    48%{
+
+        transform:none;
+
+    }
+
     50%{
 
         transform:
+        translateX(-2px);
+
+    }
+
+    51%{
+
+        transform:
         translateX(2px);
+
+    }
+
+    52%{
+
+        transform:none;
 
     }
 
@@ -270,28 +274,23 @@ CENTER
 
 .centerArea{
 
-    position:absolute;
-
-    top:140px;
-
-    left:0;
-
-    right:0;
+    margin-top:150px;
 
     text-align:center;
+
+    padding:20px;
 
 }
 
 #logo{
 
-    font-size:55px;
+    font-size:60px;
 
     font-weight:100;
 
     letter-spacing:15px;
 
     animation:
-
     flicker 5s infinite;
 
 }
@@ -304,7 +303,7 @@ CENTER
 
         text-shadow:
 
-        0 0 15px white;
+        0 0 20px white;
 
     }
 
@@ -316,7 +315,7 @@ CENTER
 
     50%{
 
-        opacity:.4;
+        opacity:.5;
 
     }
 
@@ -336,7 +335,7 @@ CENTER
 
 .quote{
 
-    margin-top:35px;
+    margin-top:40px;
 
     position:relative;
 
@@ -345,7 +344,6 @@ CENTER
     letter-spacing:4px;
 
     animation:
-
     randomGlitch 8s infinite;
 
 }
@@ -353,7 +351,6 @@ CENTER
 .quote::before{
 
     content:
-
     "NOT EVERYONE BELONGS HERE.";
 
     position:absolute;
@@ -362,12 +359,13 @@ CENTER
 
     top:0;
 
+    width:100%;
+
     color:cyan;
 
     opacity:0;
 
     animation:
-
     ghost 11s infinite;
 
 }
@@ -375,7 +373,6 @@ CENTER
 .quote::after{
 
     content:
-
     "NOT EVERYONE BELONGS HERE.";
 
     position:absolute;
@@ -384,12 +381,13 @@ CENTER
 
     top:0;
 
+    width:100%;
+
     color:magenta;
 
     opacity:0;
 
     animation:
-
     ghost2 13s infinite;
 
 }
@@ -464,7 +462,7 @@ CENTER
 
 .subQuote{
 
-    margin-top:15px;
+    margin-top:20px;
 
     color:#888;
 
@@ -482,13 +480,9 @@ PLAYLIST
 
 .playlistArea{
 
-    position:absolute;
+    margin-top:60px;
 
-    left:20px;
-
-    right:20px;
-
-    top:340px;
+    padding:20px;
 
     display:flex;
 
@@ -510,24 +504,4 @@ PLAYLIST
 
     font-size:22px;
 
-    letter-spacing:5px;
-
-    border:
-
-    1px solid rgba(255,255,255,.15);
-
-    background:
-
-    rgba(255,255,255,.03);
-
-    backdrop-filter:
-
-    blur(10px);
-
-    box-shadow:
-
-    0 0 20px
-
-    rgba(255,255,255,.08);
-
-}
+   
