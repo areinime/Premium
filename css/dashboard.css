@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 
 *{
     margin:0;
@@ -7,350 +7,205 @@
 }
 
 body{
-
-    background:#000;
-    color:white;
     font-family:'Montserrat',sans-serif;
-    min-height:100vh;
+    background:#000;
     overflow-x:hidden;
-    position:relative;
-
+    color:white;
+    min-height:100vh;
 }
 
-body::before{
+/* BACKGROUND */
 
-    content:"";
+.grid{
     position:fixed;
     inset:0;
-
     background:
-    linear-gradient(rgba(255,255,255,.03) 1px,
-    transparent 1px),
-
-    linear-gradient(90deg,
-    rgba(255,255,255,.03) 1px,
-    transparent 1px);
-
+    linear-gradient(rgba(0,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,.08) 1px, transparent 1px);
     background-size:40px 40px;
-
-    opacity:.4;
-
     animation:gridMove 20s linear infinite;
+    z-index:-2;
+}
 
+.grid::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    radial-gradient(circle at top left,
+    rgba(0,255,255,.18),
+    transparent 50%),
+    radial-gradient(circle at bottom right,
+    rgba(255,0,255,.15),
+    transparent 50%);
 }
 
 @keyframes gridMove{
-
     from{
-
-        transform:
-        translateY(0);
-
+        transform:translateY(0);
     }
-
     to{
-
-        transform:
-        translateY(40px);
-
+        transform:translateY(40px);
     }
-
 }
 
-.backgroundGlow{
-
-    position:fixed;
-    width:700px;
-    height:700px;
-
-    background:
-    radial-gradient(
-    circle,
-    rgba(0,255,255,.2),
-    transparent 70%);
-
-    top:-200px;
-    left:-200px;
-
-    animation:moveGlow 12s infinite alternate;
-
-}
-
-.backgroundGlow::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:700px;
-    height:700px;
-
-    background:
-    radial-gradient(
-    circle,
-    rgba(255,0,255,.2),
-    transparent 70%);
-
-    bottom:-250px;
-    right:-250px;
-
-}
-
-@keyframes moveGlow{
-
-    from{
-
-        transform:
-        translateX(0);
-
-    }
-
-    to{
-
-        transform:
-        translateX(150px);
-
-    }
-
-}
+/* HEADER */
 
 header{
+    position:relative;
+    width:100%;
+    height:90px;
+}
 
+.menuBtn{
+    position:absolute;
+    top:25px;
+    left:25px;
+    font-size:40px;
+    color:white;
+    text-shadow:
+    0 0 10px cyan,
+    0 0 20px cyan;
+}
+
+.profileBtn{
     position:absolute;
     top:20px;
-    left:20px;
     right:20px;
-
+    width:60px;
+    height:60px;
+    border:3px solid cyan;
+    animation:borderGlow 4s infinite alternate;
 }
 
-#menuBtn{
-
-    position:absolute;
-    left:0;
-    top:0;
-
-    font-size:42px;
-    color:#fff;
-
-    text-shadow:
-    0 0 20px cyan;
-
-}
-
-#profileBtn{
-
-    position:absolute;
-    right:0;
-    top:0;
-
-    width:70px;
-    height:70px;
-
-    padding:3px;
-
-    background:
-    linear-gradient(
-    45deg,
-    cyan,
-    magenta,
-    gold);
-
-    animation:
-    profileGlow 4s infinite;
-
-}
-
-#avatar{
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    background:#000;
-
-}
-
-@keyframes profileGlow{
+@keyframes borderGlow{
 
     0%{
-
-        box-shadow:
-        0 0 10px cyan;
-
+        border-color:cyan;
+        box-shadow:0 0 10px cyan;
     }
 
     50%{
-
-        box-shadow:
-        0 0 20px magenta;
-
+        border-color:#ff00ff;
+        box-shadow:0 0 15px #ff00ff;
     }
 
     100%{
-
-        box-shadow:
-        0 0 10px gold;
-
+        border-color:gold;
+        box-shadow:0 0 10px gold;
     }
-
 }
 
-main{
+/* HERO */
 
-    padding-top:150px;
+.hero{
     text-align:center;
-
+    margin-top:70px;
 }
 
 .logo{
-
     font-size:70px;
-    font-weight:200;
-    letter-spacing:18px;
-
+    font-weight:300;
+    letter-spacing:12px;
     text-shadow:
-    0 0 25px white;
-
-    animation:
-    flicker 6s infinite;
-
+    0 0 15px white,
+    0 0 40px cyan;
+    animation:logoBlink 4s infinite;
 }
 
-@keyframes flicker{
+@keyframes logoBlink{
 
     0%,100%{
-
         opacity:1;
-
-    }
-
-    47%{
-
-        opacity:.4;
-
     }
 
     50%{
-
-        opacity:1;
-
+        opacity:.8;
     }
 
     53%{
-
-        opacity:.6;
-
+        opacity:.4;
     }
 
+    55%{
+        opacity:1;
+    }
 }
 
-.glitchText{
-
+.hero h2{
     margin-top:30px;
-
-    font-size:22px;
+    font-size:20px;
     letter-spacing:5px;
-
-    animation:
-    shake 8s infinite;
-
 }
 
-@keyframes shake{
-
-    0%,90%,100%{
-
-        transform:
-        translateX(0);
-
-    }
-
-    92%{
-
-        transform:
-        translateX(-3px);
-
-    }
-
-    94%{
-
-        transform:
-        translateX(3px);
-
-    }
-
-}
-
-.subtitle{
-
+.hero p{
     margin-top:20px;
-
-    color:#999;
-
-    font-size:17px;
-
+    color:#777;
     letter-spacing:3px;
-
 }
 
-.playlistBox{
+/* PLAYLIST */
 
+.playlistContainer{
     width:90%;
-    margin:25px auto;
+    margin:70px auto;
+}
 
-    padding:35px;
+.playlist{
+    display:flex;
+    align-items:center;
+    height:90px;
+    padding-left:40px;
+    margin-bottom:20px;
 
-    background:
-    rgba(0,0,0,.7);
-
-    border:
-    1px solid rgba(255,255,255,.15);
-
+    text-decoration:none;
     color:white;
 
-    font-size:35px;
+    font-size:24px;
+    letter-spacing:10px;
 
-    letter-spacing:12px;
+    background:rgba(0,0,0,.65);
 
-    text-align:left;
+    border:1px solid rgba(255,255,255,.1);
 
     transition:.3s;
-
-    backdrop-filter:
-    blur(8px);
-
 }
 
-.playlistBox:hover{
+.playlist:active{
+    border-color:cyan;
 
     box-shadow:
-    0 0 30px cyan;
-
-    border-color:
-    cyan;
-
-    transform:
-    translateY(-5px);
-
+    0 0 20px cyan,
+    0 0 40px cyan;
 }
 
-@media(max-width:768px){
+.playlist:hover{
+    box-shadow:
+    0 0 20px cyan;
+}
 
-    .logo{
+/* MOBILE */
 
-        font-size:48px;
-        letter-spacing:10px;
+@media(max-width:600px){
 
-    }
+.logo{
+    font-size:55px;
+    letter-spacing:8px;
+}
 
-    .playlistBox{
+.hero h2{
+    font-size:16px;
+}
 
-        font-size:18px;
-        letter-spacing:6px;
+.hero p{
+    font-size:14px;
+}
 
-        padding:28px;
-
-    }
+.playlist{
+    height:80px;
+    font-size:18px;
+    letter-spacing:6px;
+    padding-left:25px;
+}
 
 }
