@@ -19,15 +19,17 @@ body{
     position:relative;
 }
 
-/**************************
+/*************************
 BACKGROUND
-**************************/
+*************************/
 
 .background{
+
     position:fixed;
     inset:0;
 
     background:
+
     radial-gradient(
         circle at 20% 20%,
         rgba(0,255,255,.08),
@@ -42,11 +44,11 @@ BACKGROUND
 
     radial-gradient(
         circle at 50% 50%,
-        rgba(255,215,0,.04),
-        transparent 50%
+        rgba(255,215,0,.03),
+        transparent 60%
     );
 
-    animation:bgMove 12s infinite alternate;
+    animation:bgMove 15s infinite alternate;
 
     z-index:-5;
 }
@@ -63,9 +65,9 @@ BACKGROUND
 
 }
 
-/**************************
+/*************************
 GRID
-**************************/
+*************************/
 
 .grid{
 
@@ -73,6 +75,7 @@ GRID
     inset:0;
 
     background:
+
     linear-gradient(
         rgba(255,255,255,.03) 1px,
         transparent 1px
@@ -103,9 +106,9 @@ GRID
 
 }
 
-/**************************
+/*************************
 SCANLINE
-**************************/
+*************************/
 
 .scanline{
 
@@ -130,34 +133,39 @@ SCANLINE
     z-index:-3;
 }
 
-/**************************
+/*************************
 TOP BAR
-**************************/
+*************************/
 
 .topBar{
 
-    position:absolute;
+    position:fixed;
 
-    top:20px;
-    left:20px;
-    right:20px;
+    top:12px;
+    left:12px;
+    right:12px;
 
     display:flex;
 
     justify-content:space-between;
-    align-items:center;
+
+    align-items:flex-start;
+
+    z-index:999;
 }
 
 #menuBtn{
 
-    font-size:32px;
+    font-size:35px;
 
     color:white;
 
-    text-shadow:
-    0 0 10px cyan;
+    padding:5px;
 
     cursor:pointer;
+
+    text-shadow:
+    0 0 15px cyan;
 }
 
 .profileBox{
@@ -207,12 +215,12 @@ TOP BAR
 
     object-fit:cover;
 
-    background:#000;
+    background:black;
 }
 
-/**************************
+/*************************
 CENTER
-**************************/
+*************************/
 
 .centerArea{
 
@@ -227,15 +235,19 @@ CENTER
 
     font-size:42px;
 
-    letter-spacing:8px;
+    letter-spacing:10px;
 
     font-weight:200;
+
+    color:white;
 
     animation:
     flicker 5s infinite;
 
     text-shadow:
-    0 0 10px white;
+
+    0 0 10px white,
+    0 0 20px cyan;
 }
 
 @keyframes flicker{
@@ -249,7 +261,7 @@ CENTER
     }
 
     50%{
-        opacity:.4;
+        opacity:.5;
     }
 
     51%{
@@ -266,17 +278,15 @@ CENTER
 
     margin-top:30px;
 
-    font-size:14px;
+    font-size:15px;
 
-    letter-spacing:2px;
-
-    position:relative;
+    letter-spacing:3px;
 
     animation:
-    randomGlitch 8s infinite;
+    quoteGlitch 8s infinite;
 }
 
-@keyframes randomGlitch{
+@keyframes quoteGlitch{
 
     75%{
         transform:translateX(-2px);
@@ -298,20 +308,20 @@ CENTER
 
     color:#888;
 
-    font-size:11px;
-
-    line-height:20px;
+    font-size:12px;
 
     letter-spacing:2px;
+
+    line-height:22px;
 }
 
-/**************************
+/*************************
 PLAYLIST
-**************************/
+*************************/
 
 .playlistArea{
 
-    margin-top:50px;
+    margin-top:40px;
 
     padding:20px;
 
@@ -319,22 +329,24 @@ PLAYLIST
 
     flex-direction:column;
 
-    gap:15px;
+    gap:20px;
 }
 
 .playlistCard{
 
-    height:70px;
+    height:75px;
 
     display:flex;
 
     align-items:center;
 
-    padding-left:20px;
+    padding-left:30px;
 
-    font-size:18px;
+    font-size:20px;
 
-    letter-spacing:3px;
+    letter-spacing:5px;
+
+    color:white;
 
     border:
 
@@ -344,13 +356,18 @@ PLAYLIST
 
     rgba(255,255,255,.03);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:
+
+    blur(10px);
 
     transition:.3s;
+}
+
+.playlistCard:first-child{
 
     box-shadow:
 
-    0 0 15px rgba(255,255,255,.05);
+    0 0 25px cyan;
 }
 
 .playlistCard:hover{
@@ -359,12 +376,12 @@ PLAYLIST
 
     box-shadow:
 
-    0 0 20px cyan;
+    0 0 30px cyan;
 }
 
-/**************************
-TABLET
-**************************/
+/*************************
+TABLET DESKTOP
+*************************/
 
 @media(min-width:768px){
 
@@ -372,19 +389,27 @@ TABLET
 
         font-size:70px;
 
-        letter-spacing:15px;
+        letter-spacing:18px;
 
     }
 
     .quote{
 
-        font-size:18px;
+        font-size:20px;
 
     }
 
     .subQuote{
 
-        font-size:14px;
+        font-size:15px;
+
+    }
+
+    .playlistCard{
+
+        height:90px;
+
+        font-size:24px;
 
     }
 
