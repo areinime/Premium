@@ -1,104 +1,78 @@
 *{
-
     margin:0;
     padding:0;
     box-sizing:border-box;
-
 }
 
 html{
-
     height:100%;
-
     overscroll-behavior:auto;
-
 }
 
 body{
-
     min-height:100vh;
-
     overflow-x:hidden;
-
     overflow-y:auto;
-
     background:#000;
-
-    color:white;
-
-    font-family:monospace;
-
+    color:#fff;
+    font-family:Arial,sans-serif;
     position:relative;
-
 }
 
-/************************
+/**************************
 BACKGROUND
-************************/
+**************************/
 
 .background{
-
     position:fixed;
-
     inset:0;
 
     background:
-
     radial-gradient(
         circle at 20% 20%,
-        rgba(0,255,255,.10),
+        rgba(0,255,255,.08),
         transparent 40%
     ),
 
     radial-gradient(
         circle at 80% 80%,
-        rgba(255,0,255,.10),
+        rgba(255,0,255,.08),
         transparent 40%
     ),
 
     radial-gradient(
         circle at 50% 50%,
-        rgba(255,215,0,.06),
+        rgba(255,215,0,.04),
         transparent 50%
     );
 
-    animation:
-    bgMove 15s infinite alternate;
+    animation:bgMove 12s infinite alternate;
 
     z-index:-5;
-
 }
 
 @keyframes bgMove{
 
     from{
-
-        transform:
-        scale(1);
-
+        transform:scale(1);
     }
 
     to{
-
-        transform:
-        scale(1.15);
-
+        transform:scale(1.1);
     }
 
 }
 
-/************************
+/**************************
 GRID
-************************/
+**************************/
 
 .grid{
 
     position:fixed;
-
     inset:0;
 
     background:
-
     linear-gradient(
         rgba(255,255,255,.03) 1px,
         transparent 1px
@@ -110,42 +84,32 @@ GRID
         transparent 1px
     );
 
-    background-size:
-    50px 50px;
+    background-size:40px 40px;
 
-    animation:
-    moveGrid 20s linear infinite;
+    animation:gridMove 20s linear infinite;
 
     z-index:-4;
-
 }
 
-@keyframes moveGrid{
+@keyframes gridMove{
 
     from{
-
-        transform:
-        translateY(0);
-
+        transform:translateY(0);
     }
 
     to{
-
-        transform:
-        translateY(50px);
-
+        transform:translateY(40px);
     }
 
 }
 
-/************************
+/**************************
 SCANLINE
-************************/
+**************************/
 
 .scanline{
 
     position:fixed;
-
     inset:0;
 
     pointer-events:none;
@@ -157,7 +121,6 @@ SCANLINE
         0deg,
 
         transparent,
-
         transparent 3px,
 
         rgba(255,255,255,.02) 4px
@@ -165,50 +128,42 @@ SCANLINE
     );
 
     z-index:-3;
-
 }
 
-/************************
+/**************************
 TOP BAR
-************************/
+**************************/
 
 .topBar{
 
     position:absolute;
 
     top:20px;
-
     left:20px;
-
     right:20px;
 
     display:flex;
 
     justify-content:space-between;
-
     align-items:center;
-
 }
 
 #menuBtn{
 
-    font-size:35px;
-
-    cursor:pointer;
+    font-size:32px;
 
     color:white;
 
     text-shadow:
+    0 0 10px cyan;
 
-    0 0 15px cyan;
-
+    cursor:pointer;
 }
 
 .profileBox{
 
-    width:65px;
-
-    height:65px;
+    width:60px;
+    height:60px;
 
     padding:3px;
 
@@ -222,36 +177,25 @@ TOP BAR
     );
 
     animation:
-    profileGlitch 3s infinite;
-
+    profileGlitch 4s infinite;
 }
 
 @keyframes profileGlitch{
 
     48%{
-
         transform:none;
-
     }
 
     50%{
-
-        transform:
-        translateX(-2px);
-
+        transform:translateX(-2px);
     }
 
     51%{
-
-        transform:
-        translateX(2px);
-
+        transform:translateX(2px);
     }
 
     52%{
-
         transform:none;
-
     }
 
 }
@@ -259,228 +203,115 @@ TOP BAR
 #avatar{
 
     width:100%;
-
     height:100%;
 
     object-fit:cover;
 
-    background:black;
-
+    background:#000;
 }
 
-/************************
+/**************************
 CENTER
-************************/
+**************************/
 
 .centerArea{
 
-    margin-top:150px;
+    margin-top:140px;
 
     text-align:center;
 
     padding:20px;
-
 }
 
 #logo{
 
-    font-size:60px;
+    font-size:42px;
 
-    font-weight:100;
+    letter-spacing:8px;
 
-    letter-spacing:15px;
+    font-weight:200;
 
     animation:
     flicker 5s infinite;
 
+    text-shadow:
+    0 0 10px white;
 }
 
 @keyframes flicker{
 
     0%{
-
         opacity:1;
-
-        text-shadow:
-
-        0 0 20px white;
-
     }
 
-    49%{
-
+    48%{
         opacity:1;
-
     }
 
     50%{
-
-        opacity:.5;
-
+        opacity:.4;
     }
 
     51%{
-
         opacity:1;
-
     }
 
     100%{
-
         opacity:1;
-
     }
 
 }
 
 .quote{
 
-    margin-top:40px;
+    margin-top:30px;
+
+    font-size:14px;
+
+    letter-spacing:2px;
 
     position:relative;
 
-    font-size:18px;
-
-    letter-spacing:4px;
-
     animation:
     randomGlitch 8s infinite;
-
-}
-
-.quote::before{
-
-    content:
-    "NOT EVERYONE BELONGS HERE.";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    width:100%;
-
-    color:cyan;
-
-    opacity:0;
-
-    animation:
-    ghost 11s infinite;
-
-}
-
-.quote::after{
-
-    content:
-    "NOT EVERYONE BELONGS HERE.";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    width:100%;
-
-    color:magenta;
-
-    opacity:0;
-
-    animation:
-    ghost2 13s infinite;
-
 }
 
 @keyframes randomGlitch{
 
-    0%{
-
-        transform:none;
-
-    }
-
     75%{
-
-        transform:
-        translateX(-2px);
-
+        transform:translateX(-2px);
     }
 
     76%{
-
-        transform:
-        translateX(2px);
-
+        transform:translateX(2px);
     }
 
     77%{
-
         transform:none;
-
-    }
-
-}
-
-@keyframes ghost{
-
-    0%,96%,100%{
-
-        opacity:0;
-
-    }
-
-    97%{
-
-        opacity:.5;
-
-        transform:
-        translateX(-2px);
-
-    }
-
-}
-
-@keyframes ghost2{
-
-    0%,92%,100%{
-
-        opacity:0;
-
-    }
-
-    93%{
-
-        opacity:.5;
-
-        transform:
-        translateX(2px);
-
     }
 
 }
 
 .subQuote{
 
-    margin-top:20px;
+    margin-top:15px;
 
     color:#888;
 
-    letter-spacing:3px;
+    font-size:11px;
 
-    line-height:25px;
+    line-height:20px;
 
-    font-size:13px;
-
+    letter-spacing:2px;
 }
 
-/************************
+/**************************
 PLAYLIST
-************************/
+**************************/
 
 .playlistArea{
 
-    margin-top:60px;
+    margin-top:50px;
 
     padding:20px;
 
@@ -488,20 +319,73 @@ PLAYLIST
 
     flex-direction:column;
 
-    gap:20px;
-
+    gap:15px;
 }
 
 .playlistCard{
 
-    height:80px;
+    height:70px;
 
     display:flex;
 
     align-items:center;
 
-    padding-left:30px;
+    padding-left:20px;
 
-    font-size:22px;
+    font-size:18px;
 
-   
+    letter-spacing:3px;
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+    background:
+
+    rgba(255,255,255,.03);
+
+    backdrop-filter:blur(10px);
+
+    transition:.3s;
+
+    box-shadow:
+
+    0 0 15px rgba(255,255,255,.05);
+}
+
+.playlistCard:hover{
+
+    transform:scale(1.02);
+
+    box-shadow:
+
+    0 0 20px cyan;
+}
+
+/**************************
+TABLET
+**************************/
+
+@media(min-width:768px){
+
+    #logo{
+
+        font-size:70px;
+
+        letter-spacing:15px;
+
+    }
+
+    .quote{
+
+        font-size:18px;
+
+    }
+
+    .subQuote{
+
+        font-size:14px;
+
+    }
+
+}
