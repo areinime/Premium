@@ -1,58 +1,100 @@
 import {
+
     auth,
     provider,
-    signInWithPopup
+    signInWithPopup,
+
+    db,
+    ref,
+    set
+
 }
+
 from "./firebase.js";
 
 const btn =
+
 document.getElementById(
     "googleBtn"
 );
 
-btn.addEventListener(
-    "click",
-    async () => {
+btn.onclick =
+async ()=>{
 
-        try {
+    try{
 
-            const result =
-            await signInWithPopup(
-                auth,
-                provider
-            );
+        const result =
 
-            const user =
-            result.user;
+        await signInWithPopup(
+            auth,
+            provider
+        );
 
-            localStorage.setItem(
-                "premium_user",
-                JSON.stringify({
-                    uid: user.uid,
-                    name: user.displayName,
-                    email: user.email,
-                    photo: user.photoURL
-                })
-            );
+        const user =
+        result.user;
 
-            alert(
-                "Login berhasil!"
-            );
+        await set(
 
-            location.href =
-            "dashboard.html";
+            ref(
+                db,
+                "users/" +
+                user.uid
+            ),
 
-        }
+            {
 
-        catch(error){
+                uid:
+                user.uid,
 
-            alert(
-                error.message
-            );
+                name:
+                user.displayName,
 
-            console.log(error);
+                email:
+                user.email,
 
-        }
+                picture:
+                user.photoURL,
+
+                time:
+                Date.now()
+
+            }
+
+        );
+
+        localStorage.setItem(
+
+            "premium_user",
+
+            JSON.stringify({
+
+                uid:
+                user.uid,
+
+                name:
+                user.displayName,
+
+                email:
+                user.email,
+
+                picture:
+                user.photoURL
+
+            })
+
+        );
+
+        location.href =
+        "dashboard.html";
 
     }
-);
+
+    catch(error){
+
+        alert(
+            error.message
+        );
+
+    }
+
+};
