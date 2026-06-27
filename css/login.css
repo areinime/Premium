@@ -8,12 +8,12 @@
 
 body{
 
-    background:#000;
-
-    color:#fff;
-
     width:100vw;
     height:100vh;
+
+    overflow:hidden;
+
+    background:#000;
 
     display:flex;
 
@@ -23,51 +23,233 @@ body{
 
     font-family:monospace;
 
-    overflow:hidden;
+    position:relative;
 
 }
+
+/************************
+GRID
+************************/
+
+.grid{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+        rgba(255,255,255,.03) 1px,
+        transparent 1px
+    ),
+
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,.03) 1px,
+        transparent 1px
+    );
+
+    background-size:
+    50px 50px;
+
+    animation:
+    moveGrid 20s linear infinite;
+
+}
+
+@keyframes moveGrid{
+
+    from{
+
+        transform:
+        translateY(0);
+
+    }
+
+    to{
+
+        transform:
+        translateY(50px);
+
+    }
+
+}
+
+/************************
+SCANLINE
+************************/
+
+.scanline{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+    repeating-linear-gradient(
+
+        0deg,
+
+        transparent 0px,
+
+        transparent 2px,
+
+        rgba(255,255,255,.03) 3px
+
+    );
+
+    pointer-events:none;
+
+}
+
+/************************
+LOGIN
+************************/
 
 .loginBox{
 
-    width:320px;
+    width:340px;
 
     text-align:center;
 
+    z-index:10;
+
 }
 
-.loginBox h1{
+/************************
+LOGO
+************************/
 
-    font-size:50px;
+#logo{
+
+    font-size:55px;
 
     font-weight:100;
 
-    letter-spacing:12px;
+    letter-spacing:15px;
 
     color:#fff;
 
-    text-shadow:
+    animation:
 
-    0 0 10px #fff,
-
-    0 0 30px #fff;
+    flicker 4s infinite;
 
 }
 
-.loginBox p{
+@keyframes flicker{
+
+    0%{
+
+        opacity:1;
+
+        text-shadow:
+
+        0 0 10px #fff,
+
+        0 0 30px #fff;
+
+    }
+
+    48%{
+
+        opacity:1;
+
+    }
+
+    50%{
+
+        opacity:.4;
+
+    }
+
+    52%{
+
+        opacity:1;
+
+    }
+
+    80%{
+
+        opacity:.8;
+
+    }
+
+    100%{
+
+        opacity:1;
+
+    }
+
+}
+
+/************************
+SUBTITLE
+************************/
+
+.subtitle{
 
     margin-top:20px;
 
-    color:#aaa;
+    color:#fff;
 
-    letter-spacing:3px;
+    font-size:13px;
 
-    font-size:12px;
+    letter-spacing:5px;
+
+    animation:
+
+    glitch 3s infinite;
 
 }
 
+@keyframes glitch{
+
+    0%{
+
+        transform:
+        translateX(0);
+
+    }
+
+    2%{
+
+        transform:
+        translateX(-2px);
+
+    }
+
+    4%{
+
+        transform:
+        translateX(2px);
+
+    }
+
+    6%{
+
+        transform:
+        translateX(0);
+
+    }
+
+    100%{
+
+        transform:
+        translateX(0);
+
+    }
+
+}
+
+/************************
+BUTTON
+************************/
+
 #googleBtn{
 
-    margin-top:60px;
+    margin-top:70px;
 
     width:100%;
 
@@ -79,17 +261,19 @@ body{
 
     color:#fff;
 
-    font-family:monospace;
+    font-size:13px;
 
     letter-spacing:4px;
 
     cursor:pointer;
 
+    font-family:monospace;
+
     transition:.3s;
 
     box-shadow:
 
-    0 0 10px rgba(255,255,255,.2);
+    0 0 15px rgba(255,255,255,.15);
 
 }
 
@@ -102,21 +286,5 @@ body{
     box-shadow:
 
     0 0 30px #fff;
-
-}
-
-.status{
-
-    margin-top:40px;
-
-    color:#fff;
-
-    font-size:11px;
-
-    letter-spacing:5px;
-
-    text-shadow:
-
-    0 0 10px #fff;
 
 }
