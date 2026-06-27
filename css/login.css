@@ -1,1 +1,122 @@
+*{
 
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+body{
+
+    background:#000;
+
+    color:#fff;
+
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-family:monospace;
+
+    overflow:hidden;
+
+}
+
+.loginBox{
+
+    width:320px;
+
+    text-align:center;
+
+}
+
+.loginBox h1{
+
+    font-size:50px;
+
+    font-weight:100;
+
+    letter-spacing:12px;
+
+    color:#fff;
+
+    text-shadow:
+
+    0 0 10px #fff,
+
+    0 0 30px #fff;
+
+}
+
+.loginBox p{
+
+    margin-top:20px;
+
+    color:#aaa;
+
+    letter-spacing:3px;
+
+    font-size:12px;
+
+}
+
+#googleBtn{
+
+    margin-top:60px;
+
+    width:100%;
+
+    height:55px;
+
+    background:none;
+
+    border:1px solid #fff;
+
+    color:#fff;
+
+    font-family:monospace;
+
+    letter-spacing:4px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:
+
+    0 0 10px rgba(255,255,255,.2);
+
+}
+
+#googleBtn:hover{
+
+    background:#fff;
+
+    color:#000;
+
+    box-shadow:
+
+    0 0 30px #fff;
+
+}
+
+.status{
+
+    margin-top:40px;
+
+    color:#fff;
+
+    font-size:11px;
+
+    letter-spacing:5px;
+
+    text-shadow:
+
+    0 0 10px #fff;
+
+}
