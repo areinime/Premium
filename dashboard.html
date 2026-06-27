@@ -1,72 +1,211 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 
-<title>Premium</title>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-<link rel="stylesheet"
-href="css/dashboard.css">
+body{
+    font-family:'Montserrat',sans-serif;
+    background:#000;
+    overflow-x:hidden;
+    color:white;
+    min-height:100vh;
+}
 
-</head>
+/* BACKGROUND */
 
-<body>
+.grid{
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(0,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,.08) 1px, transparent 1px);
+    background-size:40px 40px;
+    animation:gridMove 20s linear infinite;
+    z-index:-2;
+}
 
-<div class="backgroundGlow"></div>
+.grid::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    radial-gradient(circle at top left,
+    rgba(0,255,255,.18),
+    transparent 50%),
+    radial-gradient(circle at bottom right,
+    rgba(255,0,255,.15),
+    transparent 50%);
+}
 
-<header>
+@keyframes gridMove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(40px);
+    }
+}
 
-    <div id="menuBtn">
-        ☰
-    </div>
+/* HEADER */
 
-    <div id="profileBtn">
-        <img id="avatar"
-        src="https://i.imgur.com/4M34hi2.png">
-    </div>
+header{
+    position:relative;
+    width:100%;
+    height:90px;
+}
 
-</header>
+.menuBtn{
+    position:absolute;
+    top:25px;
+    left:25px;
+    font-size:40px;
+    color:white;
+    text-shadow:
+    0 0 10px cyan,
+    0 0 20px cyan;
+}
 
-<main>
+.profileBtn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    border:3px solid cyan;
+    animation:borderGlow 4s infinite alternate;
+}
 
-    <div class="playlistBox"
-onclick="location.href='prime.html'">
-    PRIME ZONE
-</div>
+@keyframes borderGlow{
 
-<div class="playlistBox"
-onclick="location.href='upmood.html'">
-    UPMOOD
-</div>
+    0%{
+        border-color:cyan;
+        box-shadow:0 0 10px cyan;
+    }
 
-<div class="playlistBox"
-onclick="location.href='lgmel.html'">
-    LAGI MELLOW
-</div>
+    50%{
+        border-color:#ff00ff;
+        box-shadow:0 0 15px #ff00ff;
+    }
 
-<div class="playlistBox"
-onclick="location.href='cahin.html'">
-    CHILL & HEAL
-</div>
+    100%{
+        border-color:gold;
+        box-shadow:0 0 10px gold;
+    }
+}
 
-<div class="playlistBox"
-onclick="location.href='gimix.html'">
-    GLOBAL INDIE MIX
-</div>
+/* HERO */
 
-<div class="playlistBox"
-onclick="location.href='bbris.html'">
-    BREAKBEAT RISING
-</div>
+.hero{
+    text-align:center;
+    margin-top:70px;
+}
 
-<div class="playlistBox"
-onclick="location.href='inmix.html'">
-    INDIE NEW MIX
-</div>
+.logo{
+    font-size:70px;
+    font-weight:300;
+    letter-spacing:12px;
+    text-shadow:
+    0 0 15px white,
+    0 0 40px cyan;
+    animation:logoBlink 4s infinite;
+}
 
-</main>
+@keyframes logoBlink{
 
-</body>
-</html>
+    0%,100%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.8;
+    }
+
+    53%{
+        opacity:.4;
+    }
+
+    55%{
+        opacity:1;
+    }
+}
+
+.hero h2{
+    margin-top:30px;
+    font-size:20px;
+    letter-spacing:5px;
+}
+
+.hero p{
+    margin-top:20px;
+    color:#777;
+    letter-spacing:3px;
+}
+
+/* PLAYLIST */
+
+.playlistContainer{
+    width:90%;
+    margin:70px auto;
+}
+
+.playlist{
+    display:flex;
+    align-items:center;
+    height:90px;
+    padding-left:40px;
+    margin-bottom:20px;
+
+    text-decoration:none;
+    color:white;
+
+    font-size:24px;
+    letter-spacing:10px;
+
+    background:rgba(0,0,0,.65);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    transition:.3s;
+}
+
+.playlist:active{
+    border-color:cyan;
+
+    box-shadow:
+    0 0 20px cyan,
+    0 0 40px cyan;
+}
+
+.playlist:hover{
+    box-shadow:
+    0 0 20px cyan;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.logo{
+    font-size:55px;
+    letter-spacing:8px;
+}
+
+.hero h2{
+    font-size:16px;
+}
+
+.hero p{
+    font-size:14px;
+}
+
+.playlist{
+    height:80px;
+    font-size:18px;
+    letter-spacing:6px;
+    padding-left:25px;
+}
+
+}
