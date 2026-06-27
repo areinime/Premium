@@ -1,211 +1,105 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+<!DOCTYPE html>
+<html>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+<head>
 
-body{
-    font-family:'Montserrat',sans-serif;
-    background:#000;
-    overflow-x:hidden;
-    color:white;
-    min-height:100vh;
-}
+<meta charset="UTF-8">
 
-/* BACKGROUND */
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
 
-.grid{
-    position:fixed;
-    inset:0;
-    background:
-    linear-gradient(rgba(0,255,255,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,255,.08) 1px, transparent 1px);
-    background-size:40px 40px;
-    animation:gridMove 20s linear infinite;
-    z-index:-2;
-}
+<title>
 
-.grid::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-    radial-gradient(circle at top left,
-    rgba(0,255,255,.18),
-    transparent 50%),
-    radial-gradient(circle at bottom right,
-    rgba(255,0,255,.15),
-    transparent 50%);
-}
+PREMIUM
 
-@keyframes gridMove{
-    from{
-        transform:translateY(0);
-    }
-    to{
-        transform:translateY(40px);
-    }
-}
+</title>
 
-/* HEADER */
+<link rel="stylesheet"
+href="css/dashboard.css">
 
-header{
-    position:relative;
-    width:100%;
-    height:90px;
-}
+</head>
 
-.menuBtn{
-    position:absolute;
-    top:25px;
-    left:25px;
-    font-size:40px;
-    color:white;
-    text-shadow:
-    0 0 10px cyan,
-    0 0 20px cyan;
-}
+<body>
 
-.profileBtn{
-    position:absolute;
-    top:20px;
-    right:20px;
-    width:60px;
-    height:60px;
-    border:3px solid cyan;
-    animation:borderGlow 4s infinite alternate;
-}
+<!-- BACKGROUND -->
 
-@keyframes borderGlow{
+<div class="background"></div>
 
-    0%{
-        border-color:cyan;
-        box-shadow:0 0 10px cyan;
-    }
+<div class="grid"></div>
 
-    50%{
-        border-color:#ff00ff;
-        box-shadow:0 0 15px #ff00ff;
-    }
+<div class="scanline"></div>
 
-    100%{
-        border-color:gold;
-        box-shadow:0 0 10px gold;
-    }
-}
+<!-- TOP BAR -->
 
-/* HERO */
+<div class="topBar">
 
-.hero{
-    text-align:center;
-    margin-top:70px;
-}
+    <div id="menuBtn">
 
-.logo{
-    font-size:70px;
-    font-weight:300;
-    letter-spacing:12px;
-    text-shadow:
-    0 0 15px white,
-    0 0 40px cyan;
-    animation:logoBlink 4s infinite;
-}
+        ☰
 
-@keyframes logoBlink{
+    </div>
 
-    0%,100%{
-        opacity:1;
-    }
+    <div class="profileBox">
 
-    50%{
-        opacity:.8;
-    }
+        <img id="avatar">
 
-    53%{
-        opacity:.4;
-    }
+    </div>
 
-    55%{
-        opacity:1;
-    }
-}
+</div>
 
-.hero h2{
-    margin-top:30px;
-    font-size:20px;
-    letter-spacing:5px;
-}
+<!-- CENTER -->
 
-.hero p{
-    margin-top:20px;
-    color:#777;
-    letter-spacing:3px;
-}
+<div class="centerArea">
 
-/* PLAYLIST */
+    <h1 id="logo">
 
-.playlistContainer{
-    width:90%;
-    margin:70px auto;
-}
+        PREMIUM
 
-.playlist{
-    display:flex;
-    align-items:center;
-    height:90px;
-    padding-left:40px;
-    margin-bottom:20px;
+    </h1>
 
-    text-decoration:none;
-    color:white;
+    <div class="quote">
 
-    font-size:24px;
-    letter-spacing:10px;
+        NOT EVERYONE BELONGS HERE.
 
-    background:rgba(0,0,0,.65);
+    </div>
 
-    border:1px solid rgba(255,255,255,.1);
+    <div class="subQuote">
 
-    transition:.3s;
-}
+        Only those who truly listen
+        will understand.
 
-.playlist:active{
-    border-color:cyan;
+    </div>
 
-    box-shadow:
-    0 0 20px cyan,
-    0 0 40px cyan;
-}
+</div>
 
-.playlist:hover{
-    box-shadow:
-    0 0 20px cyan;
-}
+<!-- PLAYLIST -->
 
-/* MOBILE */
+<div class="playlistArea">
 
-@media(max-width:600px){
+    <div class="playlistCard">
 
-.logo{
-    font-size:55px;
-    letter-spacing:8px;
-}
+        PRIME
 
-.hero h2{
-    font-size:16px;
-}
+    </div>
 
-.hero p{
-    font-size:14px;
-}
+    <div class="playlistCard">
 
-.playlist{
-    height:80px;
-    font-size:18px;
-    letter-spacing:6px;
-    padding-left:25px;
-}
+        DREAMY
 
-}
+    </div>
+
+    <div class="playlistCard">
+
+        LONELY
+
+    </div>
+
+</div>
+
+<script src="js/dashboard.js">
+
+</script>
+
+</body>
+
+</html>
