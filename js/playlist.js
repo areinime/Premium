@@ -256,6 +256,23 @@ JOIN CHECK
 
 function checkJoinStatus(){
 
+    /************************
+    ADMIN BYPASS
+    ************************/
+
+    if(IS_ADMIN){
+
+        joinPopup.classList.remove(
+        "show"
+        );
+
+        return;
+    }
+
+    /************************
+    MEMBER CHECK
+    ************************/
+
     if(userSpotify.length === 0){
 
         joinPopup.classList.add(
@@ -285,6 +302,12 @@ function checkJoinStatus(){
 
         return;
     }
+
+    joinPopup.classList.remove(
+    "show"
+    );
+
+}
 
     joinPopup.classList.remove(
     "show"
