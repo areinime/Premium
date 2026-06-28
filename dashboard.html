@@ -20,7 +20,7 @@ href="css/dashboard.css">
 <body>
 
 <!-- ===================================== -->
-<!-- BACKGROUND EFFECT -->
+<!-- BACKGROUND -->
 <!-- ===================================== -->
 
 <div class="background"></div>
@@ -28,13 +28,7 @@ href="css/dashboard.css">
 <div class="scanline"></div>
 
 <!-- ===================================== -->
-<!-- GLOBAL OVERLAY -->
-<!-- ===================================== -->
-
-<div id="overlay"></div>
-
-<!-- ===================================== -->
-<!-- TOP ALERT -->
+<!-- ALERT -->
 <!-- ===================================== -->
 
 <div id="cyberAlert">
@@ -44,7 +38,7 @@ href="css/dashboard.css">
 </div>
 
 <!-- ===================================== -->
-<!-- PREMIUM REQUIRED -->
+<!-- PREMIUM ALERT -->
 <!-- ===================================== -->
 
 <div id="premiumAlert">
@@ -64,22 +58,22 @@ href="css/dashboard.css">
 </div>
 
 <!-- ===================================== -->
+<!-- OVERLAY -->
+<!-- ===================================== -->
+
+<div id="overlay"></div>
+
+<!-- ===================================== -->
 <!-- SIDEBAR -->
 <!-- ===================================== -->
 
 <div id="sidebar">
-
-    <!-- TITLE -->
 
     <div class="sideTitle">
 
         PREMIUM
 
     </div>
-
-    <!-- ===================== -->
-    <!-- USER MENU -->
-    <!-- ===================== -->
 
     <div class="sideItem"
     onclick="myArtist()">
@@ -104,15 +98,13 @@ href="css/dashboard.css">
 
     <div class="sideLine"></div>
 
-    <!-- ===================== -->
-    <!-- PLAYLIST JOIN -->
-    <!-- ===================== -->
-
     <div class="sideSubTitle">
 
         MY PLAYLIST
 
     </div>
+
+    <!-- SCROLL PLAYLIST -->
 
     <div class="playlistScroll">
 
@@ -124,9 +116,7 @@ href="css/dashboard.css">
 
     </div>
 
-    <!-- ===================== -->
-    <!-- LOGOUT -->
-    <!-- ===================== -->
+    <!-- FIX BOTTOM -->
 
     <div class="sidebarBottom">
 
@@ -149,157 +139,106 @@ href="css/dashboard.css">
 
 <div id="profilePanel">
 
-    <h2>
+    <!-- FIX TOP -->
 
-        PROFILE
+    <div class="profileTop">
 
-    </h2>
+        <h2>
 
-    <!-- ===================== -->
-    <!-- PHOTO -->
-    <!-- ===================== -->
+            PROFILE
 
-    <div class="profilePhotoBox">
+        </h2>
 
-        <img id="profilePhoto">
+        <div class="profilePhotoBox">
 
-    </div>
-
-    <button id="uploadPhoto">
-
-        CHANGE PHOTO
-
-    </button>
-
-    <!-- ===================== -->
-    <!-- NAME -->
-    <!-- ===================== -->
-
-    <div class="profileLabel">
-
-        DISPLAY NAME
-
-    </div>
-
-    <input
-    id="displayName"
-    placeholder="Your name">
-
-    <!-- ===================== -->
-    <!-- WHATSAPP -->
-    <!-- ===================== -->
-
-    <div class="profileLabel">
-
-        WHATSAPP
-
-    </div>
-
-    <input
-    id="whatsapp"
-    placeholder="08xxxxxxxx">
-
-    <!-- ===================== -->
-    <!-- UID -->
-    <!-- ===================== -->
-
-    <div class="profileDivider"></div>
-
-    <div class="profileLabel">
-
-        UID
-
-    </div>
-
-    <input
-    id="userUID"
-    readonly>
-
-    <!-- ===================== -->
-    <!-- ROLE -->
-    <!-- ===================== -->
-
-    <div class="profileLabel">
-
-        STATUS
-
-    </div>
-
-    <input
-    id="userRole"
-    readonly>
-
-    <!-- ===================== -->
-    <!-- SPOTIFY -->
-    <!-- ===================== -->
-
-    <div class="profileDivider"></div>
-
-    <div class="spotifyTitle">
-
-        SPOTIFY ACCOUNT
-
-    </div>
-
-    <div id="spotifyList">
-
-        <div class="spotifyAccount primary">
-
-            🟢 ACCOUNT A
-
-            <span>
-
-                PRIMARY
-
-            </span>
+            <img id="profilePhoto">
 
         </div>
 
-        <div class="spotifyAccount">
+        <button id="uploadPhoto">
 
-            ACCOUNT B
+            CHANGE PHOTO
 
-            <span>
-
-                PREMIUM
-
-            </span>
-
-        </div>
+        </button>
 
     </div>
 
-    <!-- ===================== -->
-    <!-- SPOTIFY LOGIN -->
-    <!-- ===================== -->
+    <!-- SCROLL AREA -->
 
-    <button id="spotifyLogin">
+    <div class="profileScroll">
 
-        CONNECT SPOTIFY
+        <!-- DISPLAY NAME -->
 
-    </button>
+        <div class="profileLabel">
 
-    <!-- ===================== -->
-    <!-- ADD ACCOUNT -->
-    <!-- ===================== -->
+            DISPLAY NAME
 
-    <button id="addSpotify">
+        </div>
 
-        + ADD ACCOUNT
+        <input
+        id="displayName"
+        placeholder="Your name">
 
-    </button>
+        <!-- WHATSAPP -->
 
-    <!-- ===================== -->
-    <!-- SAVE -->
-    <!-- ===================== -->
+        <div class="profileLabel">
 
-    <div class="profileDivider"></div>
+            WHATSAPP
 
-    <button id="saveProfile">
+        </div>
 
-        SAVE PROFILE
+        <input
+        id="whatsapp"
+        placeholder="08xxxxxxxx">
 
-    </button>
+        <div class="profileDivider"></div>
+
+        <!-- SPOTIFY -->
+
+        <div class="spotifyTitle">
+
+            SPOTIFY ACCOUNT
+
+        </div>
+
+        <!-- CONNECT BUTTON -->
+
+        <button id="spotifyLogin"
+        class="spotifyConnectBtn">
+
+            CONNECT SPOTIFY
+
+        </button>
+
+        <!-- ACCOUNT LIST -->
+
+        <div id="spotifyList">
+
+            <!-- AUTO JS -->
+
+        </div>
+
+        <!-- ADD ACCOUNT -->
+
+        <button id="addSpotify">
+
+            ADD ANOTHER SPOTIFY ACCOUNT
+
+        </button>
+
+    </div>
+
+    <!-- FIX BOTTOM -->
+
+    <div class="profileBottom">
+
+        <button id="saveProfile">
+
+            SAVE PROFILE
+
+        </button>
+
+    </div>
 
 </div>
 
@@ -417,4 +356,4 @@ src="js/dashboard.js">
 </script>
 
 </body>
-        </html>
+</html>
