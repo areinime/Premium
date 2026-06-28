@@ -1,73 +1,34 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<meta charset="UTF-8">
+<!DOCTYPE html><html lang="en"><!-- ===================================================== --><!-- HEAD --><!-- ===================================================== --><head><meta charset="UTF-8">
 
 <meta name="viewport"
 content="width=device-width,initial-scale=1.0">
 
-<title>
-PREMIUM
-</title>
+<title>PREMIUM</title>
 
 <link rel="stylesheet"
 href="css/dashboard.css">
 
-</head>
-
-<body>
-
-<!-- ===================================== -->
-<!-- BACKGROUND -->
-<!-- ===================================== -->
-
-<div class="background"></div>
+</head><body><!-- ===================================================== --><!-- BACKGROUND EFFECT --><!-- ===================================================== --><div class="background"></div>
 <div class="grid"></div>
-<div class="scanline"></div>
+<div class="scanline"></div><!-- ===================================================== --><!-- OVERLAY --><!-- ===================================================== --><div id="overlay"></div><!-- ===================================================== --><!-- CYBER ALERT --><!-- ===================================================== --><div id="cyberAlert">PROFILE SAVED
 
-<!-- ===================================== -->
-<!-- ALERT -->
-<!-- ===================================== -->
+</div><!-- ===================================================== --><!-- PREMIUM ALERT --><!-- ===================================================== --><div id="premiumAlert"><h1>
 
-<div id="cyberAlert">
+    PREMIUM REQUIRED
 
-    PROFILE SAVED
+</h1>
 
-</div>
+<p>
 
-<!-- ===================================== -->
-<!-- PREMIUM ALERT -->
-<!-- ===================================== -->
+    YOU ARE NOT ALLOWED TO ACCESS THIS AREA
 
-<div id="premiumAlert">
+</p>
 
-    <h1>
+</div><!-- ===================================================== --><!-- SIDEBAR --><!-- ===================================================== --><div id="sidebar"><!-- ===================== -->
+<!-- FIX TOP -->
+<!-- ===================== -->
 
-        PREMIUM REQUIRED
-
-    </h1>
-
-    <p>
-
-        ANDA TIDAK PANTAS BERADA DISINI
-
-    </p>
-
-</div>
-
-<!-- ===================================== -->
-<!-- OVERLAY -->
-<!-- ===================================== -->
-
-<div id="overlay"></div>
-
-<!-- ===================================== -->
-<!-- SIDEBAR -->
-<!-- ===================================== -->
-
-<div id="sidebar">
+<div class="sidebarTop">
 
     <div class="sideTitle">
 
@@ -98,34 +59,29 @@ href="css/dashboard.css">
 
     <div class="sideLine"></div>
 
+</div>
+
+<!-- ===================== -->
+<!-- SCROLL PLAYLIST -->
+<!-- ===================== -->
+
+<div class="sidebarPlaylist">
+
     <div class="sideSubTitle">
 
         MY PLAYLIST
 
     </div>
 
-    <!-- SCROLL PLAYLIST -->
-
     <div class="playlistScroll">
 
         <div id="joinedPlaylist">
 
-            <!-- AUTO JS -->
+            <div class="joinedItem">
 
-        </div>
+                NO PLAYLIST JOINED
 
-    </div>
-
-    <!-- FIX BOTTOM -->
-
-    <div class="sidebarBottom">
-
-        <div class="sideLine"></div>
-
-        <div class="sideItem logoutBtn"
-        onclick="logout()">
-
-            LOGOUT
+            </div>
 
         </div>
 
@@ -133,227 +89,244 @@ href="css/dashboard.css">
 
 </div>
 
-<!-- ===================================== -->
-<!-- PROFILE PANEL -->
-<!-- ===================================== -->
+<!-- ===================== -->
+<!-- FIX BOTTOM -->
+<!-- ===================== -->
 
-<div id="profilePanel">
+<div class="sidebarBottom">
 
-    <!-- FIX TOP -->
+    <div class="sideLine"></div>
 
-    <div class="profileTop">
+    <div class="sideItem logoutBtn"
+    onclick="logout()">
 
-        <h2>
-
-            PROFILE
-
-        </h2>
-
-        <div class="profilePhotoBox">
-
-            <img id="profilePhoto">
-
-        </div>
-
-        <button id="uploadPhoto">
-
-            CHANGE PHOTO
-
-        </button>
-
-    </div>
-
-    <!-- SCROLL AREA -->
-
-    <div class="profileScroll">
-
-        <!-- DISPLAY NAME -->
-
-        <div class="profileLabel">
-
-            DISPLAY NAME
-
-        </div>
-
-        <input
-        id="displayName"
-        placeholder="Your name">
-
-        <!-- WHATSAPP -->
-
-        <div class="profileLabel">
-
-            WHATSAPP
-
-        </div>
-
-        <input
-        id="whatsapp"
-        placeholder="08xxxxxxxx">
-
-        <div class="profileDivider"></div>
-
-        <!-- SPOTIFY -->
-
-        <div class="spotifyTitle">
-
-            SPOTIFY ACCOUNT
-
-        </div>
-
-        <!-- CONNECT BUTTON -->
-
-        <button id="spotifyLogin"
-        class="spotifyConnectBtn">
-
-            CONNECT SPOTIFY
-
-        </button>
-
-        <!-- ACCOUNT LIST -->
-
-        <div id="spotifyList">
-
-            <!-- AUTO JS -->
-
-        </div>
-
-        <!-- ADD ACCOUNT -->
-
-        <button id="addSpotify">
-
-            ADD ANOTHER SPOTIFY ACCOUNT
-
-        </button>
-
-    </div>
-
-    <!-- FIX BOTTOM -->
-
-    <div class="profileBottom">
-
-        <button id="saveProfile">
-
-            SAVE PROFILE
-
-        </button>
+        LOGOUT
 
     </div>
 
 </div>
 
-<!-- ===================================== -->
-<!-- TOP BAR -->
-<!-- ===================================== -->
+</div><!-- ===================================================== --><!-- PROFILE PANEL --><!-- ===================================================== --><div id="profilePanel"><!-- ===================== -->
+<!-- FIX TOP -->
+<!-- ===================== -->
 
-<div class="topBar">
+<div class="profileTop">
 
-    <div id="menuBtn">
+    <h2>
 
-        ☰
+        PROFILE
+
+    </h2>
+
+    <div class="profilePhotoBox">
+
+        <img id="profilePhoto"
+        src="">
 
     </div>
 
-    <div class="profileBox">
+    <button id="uploadPhoto">
 
-        <img id="avatar">
+        CHANGE PHOTO
 
-    </div>
+    </button>
 
 </div>
 
-<!-- ===================================== -->
-<!-- CENTER -->
-<!-- ===================================== -->
+<!-- ===================== -->
+<!-- SCROLL AREA -->
+<!-- ===================== -->
 
-<div class="centerArea">
+<div class="profileScroll">
 
-    <h1 id="logo">
+    <!-- DISPLAY NAME -->
 
-        PREMIUM
+    <div class="profileLabel">
 
-    </h1>
-
-    <div class="quote">
-
-        NOT EVERYONE BELONGS HERE.
+        DISPLAY NAME
 
     </div>
 
-    <div class="subQuote">
+    <input
+    id="displayName"
+    placeholder="Your name">
 
-        Only those who truly listen
-        will understand.
+    <!-- WHATSAPP -->
+
+    <div class="profileLabel">
+
+        WHATSAPP
 
     </div>
+
+    <input
+    id="whatsapp"
+    placeholder="08xxxxxxxxxx">
+
+    <div class="profileDivider"></div>
+
+    <!-- SPOTIFY -->
+
+    <div class="spotifyTitle">
+
+        SPOTIFY ACCOUNT
+
+    </div>
+
+    <!-- CONNECT -->
+
+    <button id="spotifyLogin"
+    class="spotifyConnectBtn">
+
+        CONNECT SPOTIFY
+
+    </button>
+
+    <!-- ACCOUNT LIST -->
+
+    <div id="spotifyList">
+
+        <!--
+        AUTO GENERATED
+
+        Example:
+
+        <div class="spotifyAccount primary">
+
+            <img class="spotifyAvatar">
+
+            <div class="spotifyInfo">
+
+                <div class="spotifyName">
+
+                    Ashvath
+
+                </div>
+
+                <span>
+
+                    PREMIUM
+
+                </span>
+
+            </div>
+
+            <div class="spotifyLogo">
+
+                ♪
+
+            </div>
+
+        </div>
+        -->
+
+    </div>
+
+    <!-- ADD ACCOUNT -->
+
+    <button id="addSpotify">
+
+        + SPOTIFY ACCOUNT
+
+    </button>
 
 </div>
 
-<!-- ===================================== -->
-<!-- PLAYLIST -->
-<!-- ===================================== -->
+<!-- ===================== -->
+<!-- FIX BOTTOM -->
+<!-- ===================== -->
 
-<div class="playlistArea">
+<div class="profileBottom">
 
-    <div class="playlistCard"
-    onclick="location.href='prime.html'">
+    <button id="saveProfile">
 
-        PRIME ZONE
+        SAVE PROFILE
 
-    </div>
-
-    <div class="playlistCard"
-    onclick="location.href='upmood.html'">
-
-        UPMOOD
-
-    </div>
-
-    <div class="playlistCard"
-    onclick="location.href='lgmel.html'">
-
-        LAGI MELLOW
-
-    </div>
-
-    <div class="playlistCard"
-    onclick="location.href='cahin.html'">
-
-        CHILL & HEAL INSTRUMENTAL
-
-    </div>
-
-    <div class="playlistCard"
-    onclick="location.href='gimix.html'">
-
-        GLOBAL INDIE MIX
-
-    </div>
-
-    <div class="playlistCard"
-    onclick="location.href='bbris.html'">
-
-        BREAKBEAT RISING
-
-    </div>
-
-    <div class="playlistCard"
-    onclick="location.href='inmix.html'">
-
-        INDIE NEW MIX
-
-    </div>
+    </button>
 
 </div>
 
-<!-- ===================================== -->
-<!-- JAVASCRIPT -->
-<!-- ===================================== -->
+</div><!-- ===================================================== --><!-- TOP BAR --><!-- ===================================================== --><div class="topBar"><div id="menuBtn">
 
-<script type="module"
+    ☰
+
+</div>
+
+<div class="profileBox">
+
+    <img id="avatar"
+    src="">
+
+</div>
+
+</div><!-- ===================================================== --><!-- CENTER LOGO --><!-- ===================================================== --><div class="centerArea"><h1 id="logo">
+
+    PREMIUM
+
+</h1>
+
+<div class="quote">
+
+    NOT EVERYONE BELONGS HERE.
+
+</div>
+
+<div class="subQuote">
+
+    ONLY THOSE WHO TRULY LISTEN WILL UNDERSTAND.
+
+</div>
+
+</div><!-- ===================================================== --><!-- PLAYLIST AREA --><!-- ===================================================== --><div class="playlistArea"><div class="playlistCard"
+onclick="location.href='prime.html'">
+
+    PRIME ZONE
+
+</div>
+
+<div class="playlistCard"
+onclick="location.href='upmood.html'">
+
+    UPMOOD
+
+</div>
+
+<div class="playlistCard"
+onclick="location.href='lgmel.html'">
+
+    LAGI MELLOW
+
+</div>
+
+<div class="playlistCard"
+onclick="location.href='cahin.html'">
+
+    CHILL & HEAL INSTRUMENTAL
+
+</div>
+
+<div class="playlistCard"
+onclick="location.href='gimix.html'">
+
+    GLOBAL INDIE MIX
+
+</div>
+
+<div class="playlistCard"
+onclick="location.href='bbris.html'">
+
+    BREAKBEAT RISING
+
+</div>
+
+<div class="playlistCard"
+onclick="location.href='inmix.html'">
+
+    INDIE NEW MIX
+
+</div>
+
+</div><!-- ===================================================== --><!-- JAVASCRIPT --><!-- ===================================================== --><script type="module"
 src="js/dashboard.js">
 
-</script>
-
-</body>
-</html>
+</script></body></html>
