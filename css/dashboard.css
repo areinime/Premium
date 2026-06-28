@@ -836,13 +836,15 @@ PROFILE SCROLL AREA
 ********************************/
 
 .profileScroll{
-
     flex:1;
 
     overflow-y:auto;
 
-    padding:25px 30px;
+    padding:0 20px;
 
+    padding-bottom:120px;
+
+    min-height:0;
 }
 
 .profileScroll::-webkit-scrollbar{
