@@ -1,148 +1,136 @@
 /********************************
+CONFIG
+********************************/
+
+/*
+
+==================================
+SPOTIFY CLIENT ID
+ISI DISINI
+
+const CLIENT_ID = "";
+
+==================================
+REDIRECT URI
+
+const REDIRECT_URI = "";
+
+==================================
+SPOTIFY LOGIN
+
+spotifyLogin();
+
+==================================
+
+*/
+
+const CLIENT_ID = "";
+const REDIRECT_URI = "";
+
+/********************************
 ELEMENT
 ********************************/
 
 const menuBtn =
 document.getElementById(
-    "menuBtn"
+"menuBtn"
 );
 
 const sidebar =
 document.getElementById(
-    "sidebar"
+"sidebar"
 );
 
 const profilePanel =
 document.getElementById(
-    "profilePanel"
+"profilePanel"
 );
 
 const overlay =
 document.getElementById(
-    "overlay"
+"overlay"
 );
 
 const profileBox =
 document.querySelector(
-    ".profileBox"
+".profileBox"
 );
 
 const cyberAlert =
 document.getElementById(
-    "cyberAlert"
+"cyberAlert"
 );
 
 const premiumAlert =
 document.getElementById(
-    "premiumAlert"
+"premiumAlert"
 );
 
 const saveProfile =
 document.getElementById(
-    "saveProfile"
+"saveProfile"
 );
 
 const displayName =
 document.getElementById(
-    "displayName"
+"displayName"
 );
 
 const whatsapp =
 document.getElementById(
-    "whatsapp"
+"whatsapp"
 );
 
 const avatar =
 document.getElementById(
-    "avatar"
+"avatar"
 );
 
 const profilePhoto =
 document.getElementById(
-    "profilePhoto"
+"profilePhoto"
 );
 
 const uploadPhoto =
 document.getElementById(
-    "uploadPhoto"
+"uploadPhoto"
 );
 
 const addSpotify =
 document.getElementById(
-    "addSpotify"
+"addSpotify"
 );
-/********************************
-SIDEBAR OPEN
-********************************/
 
-menuBtn.onclick = ()=>{
+const logoutBtn =
+document.getElementById(
+"logoutBtn"
+);
 
-    sidebar.classList.add(
-        "show"
-    );
-
-    overlay.classList.add(
-        "show"
-    );
-
-};
+const spotifyAccount =
+document.querySelectorAll(
+".spotifyAccount"
+);
 
 /********************************
-PROFILE OPEN
-********************************/
-
-profileBox.onclick = ()=>{
-
-    profilePanel.classList.add(
-        "show"
-    );
-
-    overlay.classList.add(
-        "show"
-    );
-
-};
-
-/********************************
-CLOSE PANEL
-********************************/
-
-overlay.onclick = ()=>{
-
-    sidebar.classList.remove(
-        "show"
-    );
-
-    profilePanel.classList.remove(
-        "show"
-    );
-
-    overlay.classList.remove(
-        "show"
-    );
-
-};
-
-/********************************
-TOP ALERT
+ALERT
 ********************************/
 
 function showAlert(text){
 
-    cyberAlert.innerText =
-    text;
+cyberAlert.innerText =
+text;
 
-    cyberAlert.classList.add(
-        "show"
+cyberAlert.classList.add(
+"show"
+);
+
+setTimeout(()=>{
+
+    cyberAlert.classList.remove(
+    "show"
     );
 
-    setTimeout(()=>{
-
-        cyberAlert.classList.remove(
-            "show"
-        );
-
-    },2500);
+},2500);
 
 }
 
@@ -152,19 +140,79 @@ PREMIUM ALERT
 
 function showPremium(){
 
-    premiumAlert.classList.add(
-        "show"
+premiumAlert.classList.add(
+"show"
+);
+
+setTimeout(()=>{
+
+    premiumAlert.classList.remove(
+    "show"
     );
 
-    setTimeout(()=>{
-
-        premiumAlert.classList.remove(
-            "show"
-        );
-
-    },3000);
+},3000);
 
 }
+
+/********************************
+OPEN SIDEBAR
+********************************/
+
+menuBtn.onclick = ()=>{
+
+sidebar.classList.add(
+"show"
+);
+
+overlay.classList.add(
+"show"
+);
+
+profilePanel.classList.remove(
+"show"
+);
+
+};
+
+/********************************
+OPEN PROFILE
+********************************/
+
+profileBox.onclick = ()=>{
+
+profilePanel.classList.add(
+"show"
+);
+
+overlay.classList.add(
+"show"
+);
+
+sidebar.classList.remove(
+"show"
+);
+
+};
+
+/********************************
+CLOSE PANEL
+********************************/
+
+overlay.onclick = ()=>{
+
+sidebar.classList.remove(
+"show"
+);
+
+profilePanel.classList.remove(
+"show"
+);
+
+overlay.classList.remove(
+"show"
+);
+
+};
 
 /********************************
 SAVE PROFILE
@@ -172,27 +220,19 @@ SAVE PROFILE
 
 saveProfile.onclick = ()=>{
 
-    localStorage.setItem(
+localStorage.setItem(
+"premium_name",
+displayName.value
+);
 
-        "premium_name",
+localStorage.setItem(
+"premium_wa",
+whatsapp.value
+);
 
-        displayName.value
-
-    );
-
-    localStorage.setItem(
-
-        "premium_wa",
-
-        whatsapp.value
-
-    );
-
-    showAlert(
-
-        "PROFILE SAVED"
-
-    );
+showAlert(
+"PROFILE SAVED"
+);
 
 };
 
@@ -201,28 +241,26 @@ LOAD PROFILE
 ********************************/
 
 const savedName =
-
 localStorage.getItem(
-    "premium_name"
+"premium_name"
 );
 
 const savedWA =
-
 localStorage.getItem(
-    "premium_wa"
+"premium_wa"
 );
 
 if(savedName){
 
-    displayName.value =
-    savedName;
+displayName.value =
+savedName;
 
 }
 
 if(savedWA){
 
-    whatsapp.value =
-    savedWA;
+whatsapp.value =
+savedWA;
 
 }
 
@@ -231,9 +269,8 @@ UPLOAD PHOTO
 ********************************/
 
 const photoInput =
-
 document.createElement(
-    "input"
+"input"
 );
 
 photoInput.type =
@@ -244,63 +281,57 @@ photoInput.accept =
 
 uploadPhoto.onclick = ()=>{
 
-    photoInput.click();
+photoInput.click();
 
 };
 
 photoInput.onchange = ()=>{
 
-    const file =
+const file =
+photoInput.files[0];
 
-    photoInput.files[0];
+if(!file) return;
 
-    const reader =
+const reader =
+new FileReader();
 
-    new FileReader();
+reader.onload = ()=>{
 
-    reader.onload = function(){
+    avatar.src =
+    reader.result;
 
-        avatar.src =
-        reader.result;
+    profilePhoto.src =
+    reader.result;
 
-        profilePhoto.src =
-        reader.result;
+    localStorage.setItem(
+    "premium_photo",
+    reader.result
+    );
 
-        localStorage.setItem(
-
-            "premium_photo",
-
-            reader.result
-
-        );
-
-        showAlert(
-
-            "PHOTO UPDATED"
-
-        );
-
-    };
-
-    reader.readAsDataURL(
-        file
+    showAlert(
+    "PHOTO UPDATED"
     );
 
 };
 
-const savedPhoto =
+reader.readAsDataURL(
+file
+);
 
+};
+
+const savedPhoto =
 localStorage.getItem(
-    "premium_photo"
+"premium_photo"
 );
 
 if(savedPhoto){
 
-    avatar.src =
-    savedPhoto;
+avatar.src =
+savedPhoto;
 
-    profilePhoto.src =
-    savedPhoto;
+profilePhoto.src =
+savedPhoto;
 
 }
 
@@ -308,96 +339,91 @@ if(savedPhoto){
 PRIMARY ACCOUNT
 ********************************/
 
-const spotifyAccount =
-
-document.querySelectorAll(
-    ".spotifyAccount"
-);
-
 spotifyAccount.forEach(
+account=>{
 
-    account=>{
+account.onclick = ()=>{
 
-        account.onclick = ()=>{
+    spotifyAccount.forEach(
+    a=>{
+        a.classList.remove(
+        "primary"
+        );
+    });
 
-            spotifyAccount.forEach(
+    account.classList.add(
+    "primary"
+    );
 
-                a=>{
+    localStorage.setItem(
+    "primary_account",
+    account.innerText
+    );
 
-                    a.classList.remove(
-                        "primary"
-                    );
+    showAlert(
+    "PRIMARY CHANGED"
+    );
 
-                }
+};
 
-            );
-
-            account.classList.add(
-                "primary"
-            );
-
-            localStorage.setItem(
-
-                "primary_account",
-
-                account.innerText
-
-            );
-
-            showAlert(
-
-                "PRIMARY CHANGED"
-
-            );
-
-        };
-
-    }
-
-);
+});
 
 const primaryAccount =
-
 localStorage.getItem(
-    "primary_account"
+"primary_account"
 );
 
 if(primaryAccount){
 
-    spotifyAccount.forEach(
+spotifyAccount.forEach(
+account=>{
 
-        account=>{
+    if(
+    account.innerText ===
+    primaryAccount
+    ){
 
-            if(
+        account.classList.add(
+        "primary"
+        );
 
-                account.innerText
-                === primaryAccount
+    }
 
-            ){
-
-                account.classList.add(
-                    "primary"
-                );
-
-            }
-
-        }
-
-    );
+});
 
 }
 
 /********************************
-ADD SPOTIFY
+SPOTIFY LOGIN
+********************************/
+
+/*
+
+==================================
+SPOTIFY LOGIN
+
+window.location.href =
+"https://accounts.spotify.com/authorize"
+
+==================================
+
+*/
+
+function spotifyLogin(){
+
+showAlert(
+"SPOTIFY LOGIN"
+);
+
+}
+
+/********************************
+ADD ACCOUNT
 ********************************/
 
 addSpotify.onclick = ()=>{
 
-    showAlert(
-
-        "COMING SOON"
-
-    );
+spotifyLogin();
 
 };
 
@@ -407,11 +433,9 @@ MY ARTIST
 
 function myArtist(){
 
-    showAlert(
-
-        "COMING SOON"
-
-    );
+showAlert(
+"MY ARTIST COMING SOON"
+);
 
 }
 
@@ -421,11 +445,9 @@ MY POPULARITY
 
 function myPopularity(){
 
-    showAlert(
-
-        "COMING SOON"
-
-    );
+showAlert(
+"MY POPULARITY COMING SOON"
+);
 
 }
 
@@ -435,58 +457,78 @@ MY SONG
 
 function mySong(){
 
-    showAlert(
-
-        "COMING SOON"
-
-    );
+showAlert(
+"MY SONG COMING SOON"
+);
 
 }
 
-/*************************
+/********************************
+COMING SOON
+********************************/
+
+function comingSoon(name){
+
+showAlert(
+name + " COMING SOON"
+);
+
+}
+
+/********************************
 JOINED PLAYLIST
-*************************/
+********************************/
+
+/*
+
+localStorage:
+
+joined_playlist
+
+contoh:
+
+[
+"PRIME ZONE",
+"UPMOOD"
+]
+
+*/
 
 const joinedBox =
-
 document.getElementById(
-    "joinedPlaylist"
+"joinedPlaylist"
 );
 
 const joinedPlaylist =
-
 JSON.parse(
-
-    localStorage.getItem(
-        "joined_playlist"
-    )
-
+localStorage.getItem(
+"joined_playlist"
+)
 ) || [];
 
+if(joinedBox){
+
 joinedPlaylist.forEach(
+playlist=>{
 
-    playlist=>{
+    const item =
+    document.createElement(
+    "div"
+    );
 
-        const item =
+    item.className =
+    "joinedItem";
 
-        document.createElement(
-            "div"
-        );
+    item.innerText =
+    playlist;
 
-        item.className =
-        "joinedItem";
+    joinedBox.appendChild(
+    item
+    );
 
-        item.innerText =
-        playlist;
+});
 
-        joinedBox.appendChild(
-            item
-        );
-
-    }
-
-);
-
+}
 
 /********************************
 LOGOUT
@@ -494,18 +536,23 @@ LOGOUT
 
 function logout(){
 
+if(confirm(
+"Logout?"
+)){
+
     localStorage.clear();
 
     showAlert(
-
-        "LOGOUT"
-
+    "LOGOUT"
     );
 
     setTimeout(()=>{
 
-        location.reload();
+        location.href =
+        "index.html";
 
     },1000);
+
+}
 
 }
