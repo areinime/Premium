@@ -6,19 +6,18 @@ CONFIG
 
 ==================================
 SPOTIFY CLIENT ID
-ISI DISINI
 
 const CLIENT_ID = "";
 
 ==================================
-REDIRECT URI
+SPOTIFY REDIRECT
 
 const REDIRECT_URI = "";
 
 ==================================
-SPOTIFY LOGIN
+FIREBASE UPDATE PROFILE
 
-spotifyLogin();
+NANTI DISINI
 
 ==================================
 
@@ -101,9 +100,9 @@ document.getElementById(
 "addSpotify"
 );
 
-const logoutBtn =
+const joinedBox =
 document.getElementById(
-"logoutBtn"
+"joinedPlaylist"
 );
 
 const spotifyAccount =
@@ -117,20 +116,20 @@ ALERT
 
 function showAlert(text){
 
-cyberAlert.innerText =
-text;
+    cyberAlert.innerText =
+    text;
 
-cyberAlert.classList.add(
-"show"
-);
-
-setTimeout(()=>{
-
-    cyberAlert.classList.remove(
+    cyberAlert.classList.add(
     "show"
     );
 
-},2500);
+    setTimeout(()=>{
+
+        cyberAlert.classList.remove(
+        "show"
+        );
+
+    },2500);
 
 }
 
@@ -140,17 +139,17 @@ PREMIUM ALERT
 
 function showPremium(){
 
-premiumAlert.classList.add(
-"show"
-);
-
-setTimeout(()=>{
-
-    premiumAlert.classList.remove(
+    premiumAlert.classList.add(
     "show"
     );
 
-},3000);
+    setTimeout(()=>{
+
+        premiumAlert.classList.remove(
+        "show"
+        );
+
+    },3000);
 
 }
 
@@ -160,17 +159,17 @@ OPEN SIDEBAR
 
 menuBtn.onclick = ()=>{
 
-sidebar.classList.add(
-"show"
-);
+    sidebar.classList.add(
+    "show"
+    );
 
-overlay.classList.add(
-"show"
-);
+    overlay.classList.add(
+    "show"
+    );
 
-profilePanel.classList.remove(
-"show"
-);
+    profilePanel.classList.remove(
+    "show"
+    );
 
 };
 
@@ -180,17 +179,17 @@ OPEN PROFILE
 
 profileBox.onclick = ()=>{
 
-profilePanel.classList.add(
-"show"
-);
+    profilePanel.classList.add(
+    "show"
+    );
 
-overlay.classList.add(
-"show"
-);
+    overlay.classList.add(
+    "show"
+    );
 
-sidebar.classList.remove(
-"show"
-);
+    sidebar.classList.remove(
+    "show"
+    );
 
 };
 
@@ -198,43 +197,25 @@ sidebar.classList.remove(
 CLOSE PANEL
 ********************************/
 
-overlay.onclick = ()=>{
+if(overlay){
 
-sidebar.classList.remove(
-"show"
-);
+    overlay.onclick = ()=>{
 
-profilePanel.classList.remove(
-"show"
-);
+        sidebar.classList.remove(
+        "show"
+        );
 
-overlay.classList.remove(
-"show"
-);
+        profilePanel.classList.remove(
+        "show"
+        );
 
-};
+        overlay.classList.remove(
+        "show"
+        );
 
-/********************************
-SAVE PROFILE
-********************************/
+    };
 
-saveProfile.onclick = ()=>{
-
-localStorage.setItem(
-"premium_name",
-displayName.value
-);
-
-localStorage.setItem(
-"premium_wa",
-whatsapp.value
-);
-
-showAlert(
-"PROFILE SAVED"
-);
-
-};
+}
 
 /********************************
 LOAD PROFILE
@@ -250,19 +231,75 @@ localStorage.getItem(
 "premium_wa"
 );
 
+const savedPhoto =
+localStorage.getItem(
+"premium_photo"
+);
+
 if(savedName){
 
-displayName.value =
-savedName;
+    displayName.value =
+    savedName;
 
 }
 
 if(savedWA){
 
-whatsapp.value =
-savedWA;
+    whatsapp.value =
+    savedWA;
 
 }
+
+if(savedPhoto){
+
+    avatar.src =
+    savedPhoto;
+
+    profilePhoto.src =
+    savedPhoto;
+
+}
+
+/********************************
+SAVE PROFILE
+********************************/
+
+saveProfile.onclick = ()=>{
+
+    localStorage.setItem(
+    "premium_name",
+    displayName.value
+    );
+
+    localStorage.setItem(
+    "premium_wa",
+    whatsapp.value
+    );
+
+    /****************************
+    FIREBASE UPDATE DISINI
+    ****************************/
+
+    /*
+    update(
+    ref(
+    db,
+    "users/"+uid
+    ),
+    {
+        name:
+        displayName.value,
+
+        whatsapp:
+        whatsapp.value
+    });
+    */
+
+    showAlert(
+    "PROFILE SAVED"
+    );
+
+};
 
 /********************************
 UPLOAD PHOTO
@@ -281,90 +318,77 @@ photoInput.accept =
 
 uploadPhoto.onclick = ()=>{
 
-photoInput.click();
+    photoInput.click();
 
 };
 
 photoInput.onchange = ()=>{
 
-const file =
-photoInput.files[0];
+    const file =
+    photoInput.files[0];
 
-if(!file) return;
+    if(!file) return;
 
-const reader =
-new FileReader();
+    const reader =
+    new FileReader();
 
-reader.onload = ()=>{
+    reader.onload = ()=>{
 
-    avatar.src =
-    reader.result;
+        avatar.src =
+        reader.result;
 
-    profilePhoto.src =
-    reader.result;
+        profilePhoto.src =
+        reader.result;
 
-    localStorage.setItem(
-    "premium_photo",
-    reader.result
-    );
+        localStorage.setItem(
+        "premium_photo",
+        reader.result
+        );
 
-    showAlert(
-    "PHOTO UPDATED"
+        showAlert(
+        "PHOTO UPDATED"
+        );
+
+    };
+
+    reader.readAsDataURL(
+    file
     );
 
 };
-
-reader.readAsDataURL(
-file
-);
-
-};
-
-const savedPhoto =
-localStorage.getItem(
-"premium_photo"
-);
-
-if(savedPhoto){
-
-avatar.src =
-savedPhoto;
-
-profilePhoto.src =
-savedPhoto;
-
-}
 
 /********************************
-PRIMARY ACCOUNT
+PRIMARY SPOTIFY
 ********************************/
 
 spotifyAccount.forEach(
 account=>{
 
-account.onclick = ()=>{
+    account.onclick = ()=>{
 
-    spotifyAccount.forEach(
-    a=>{
-        a.classList.remove(
+        spotifyAccount.forEach(
+        a=>{
+
+            a.classList.remove(
+            "primary"
+            );
+
+        });
+
+        account.classList.add(
         "primary"
         );
-    });
 
-    account.classList.add(
-    "primary"
-    );
+        localStorage.setItem(
+        "primary_account",
+        account.innerText
+        );
 
-    localStorage.setItem(
-    "primary_account",
-    account.innerText
-    );
+        showAlert(
+        "PRIMARY CHANGED"
+        );
 
-    showAlert(
-    "PRIMARY CHANGED"
-    );
-
-};
+    };
 
 });
 
@@ -375,91 +399,66 @@ localStorage.getItem(
 
 if(primaryAccount){
 
-spotifyAccount.forEach(
-account=>{
+    spotifyAccount.forEach(
+    account=>{
 
-    if(
-    account.innerText ===
-    primaryAccount
-    ){
+        if(
 
-        account.classList.add(
-        "primary"
-        );
+            account.innerText ===
+            primaryAccount
 
-    }
+        ){
 
-});
+            account.classList.add(
+            "primary"
+            );
+
+        }
+
+    });
 
 }
 
 /********************************
 SPOTIFY LOGIN
 ********************************/
-
-/*
-
-==================================
-SPOTIFY LOGIN
-
-window.location.href =
-"https://accounts.spotify.com/authorize"
-
-==================================
-
-*/
 
 function spotifyLogin(){
 
-showAlert(
-"SPOTIFY LOGIN"
-);
+    if(
+    CLIENT_ID === ""
+    ){
+
+        showAlert(
+        "SPOTIFY API EMPTY"
+        );
+
+        return;
+
+    }
+
+    /*
+    window.location.href =
+    "https://accounts.spotify.com/authorize";
+    */
+
+    showAlert(
+    "SPOTIFY LOGIN"
+    );
 
 }
 
 /********************************
-ADD ACCOUNT
+ADD SPOTIFY
 ********************************/
 
-addSpotify.onclick = ()=>{
+if(addSpotify){
 
-spotifyLogin();
+    addSpotify.onclick = ()=>{
 
-};
+        spotifyLogin();
 
-/********************************
-MY ARTIST
-********************************/
-
-function myArtist(){
-
-showAlert(
-"MY ARTIST COMING SOON"
-);
-
-}
-
-/********************************
-MY POPULARITY
-********************************/
-
-function myPopularity(){
-
-showAlert(
-"MY POPULARITY COMING SOON"
-);
-
-}
-
-/********************************
-MY SONG
-********************************/
-
-function mySong(){
-
-showAlert(
-"MY SONG COMING SOON"
-);
+    };
 
 }
 
@@ -469,9 +468,45 @@ COMING SOON
 
 function comingSoon(name){
 
-showAlert(
-name + " COMING SOON"
-);
+    showAlert(
+    name + " COMING SOON"
+    );
+
+}
+
+/********************************
+MY ARTIST
+********************************/
+
+function myArtist(){
+
+    showAlert(
+    "MY ARTIST COMING SOON"
+    );
+
+}
+
+/********************************
+MY POPULARITY
+********************************/
+
+function myPopularity(){
+
+    showAlert(
+    "MY POPULARITY COMING SOON"
+    );
+
+}
+
+/********************************
+MY SONG
+********************************/
+
+function mySong(){
+
+    showAlert(
+    "MY SONG COMING SOON"
+    );
 
 }
 
@@ -494,39 +529,84 @@ contoh:
 
 */
 
-const joinedBox =
-document.getElementById(
-"joinedPlaylist"
-);
-
 const joinedPlaylist =
 JSON.parse(
-localStorage.getItem(
-"joined_playlist"
-)
+
+    localStorage.getItem(
+    "joined_playlist"
+    )
+
 ) || [];
 
 if(joinedBox){
 
-joinedPlaylist.forEach(
-playlist=>{
+    if(
+    joinedPlaylist.length === 0
+    ){
 
-    const item =
-    document.createElement(
-    "div"
+        joinedBox.innerHTML =
+
+        `
+        <div class="joinedEmpty">
+
+        BELUM JOIN PLAYLIST
+
+        </div>
+        `;
+
+    }
+
+    else{
+
+        joinedPlaylist.forEach(
+        playlist=>{
+
+            const item =
+            document.createElement(
+            "div"
+            );
+
+            item.className =
+            "joinedItem";
+
+            item.innerText =
+            playlist;
+
+            item.onclick = ()=>{
+
+                showAlert(
+                playlist
+                );
+
+            };
+
+            joinedBox.appendChild(
+            item
+            );
+
+        });
+
+    }
+
+}
+
+/********************************
+ADMIN CHECK
+********************************/
+
+const isAdmin =
+
+localStorage.getItem(
+"premium_admin"
+);
+
+if(
+isAdmin === "true"
+){
+
+    console.log(
+    "ADMIN LOGIN"
     );
-
-    item.className =
-    "joinedItem";
-
-    item.innerText =
-    playlist;
-
-    joinedBox.appendChild(
-    item
-    );
-
-});
 
 }
 
@@ -537,31 +617,48 @@ LOGOUT
 function logout(){
 
     sidebar.classList.remove(
-        "show"
+    "show"
     );
 
     profilePanel.classList.remove(
-        "show"
+    "show"
     );
 
     overlay.classList.remove(
-        "show"
+    "show"
     );
 
-    cyberAlert.innerText =
-    "LOGOUT";
+    localStorage.clear();
 
-    cyberAlert.classList.add(
-        "show"
-    );
-
-    setTimeout(()=>{
-
-        localStorage.clear();
-
-        location.href =
-        "index.html";
-
-    },500);
+    location.href =
+    "index.html";
 
 }
+
+/********************************
+ESC CLOSE
+********************************/
+
+document.addEventListener(
+"keydown",
+e=>{
+
+    if(
+    e.key === "Escape"
+    ){
+
+        sidebar.classList.remove(
+        "show"
+        );
+
+        profilePanel.classList.remove(
+        "show"
+        );
+
+        overlay.classList.remove(
+        "show"
+        );
+
+    }
+
+});
