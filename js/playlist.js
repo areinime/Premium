@@ -1024,6 +1024,14 @@ START SYSTEM
 
 window.onload = ()=>{
 
+    if(IS_ADMIN){
+
+        joinPopup?.classList.remove(
+        "show"
+        );
+
+    }
+
     updateMyStatus();
 
     loadMySongs();
@@ -1033,5 +1041,17 @@ window.onload = ()=>{
     loadPlayingNow();
 
     loadRecentTrack();
+
+    const loading =
+    document.getElementById(
+    "loadingScreen"
+    );
+
+    if(loading){
+
+        loading.style.display =
+        "none";
+
+    }
 
 };
