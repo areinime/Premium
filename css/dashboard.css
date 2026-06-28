@@ -1183,15 +1183,21 @@ PROFILE BOTTOM FIX
 
 .profileBottom{
 
-    flex-shrink:0;
+    position:sticky;
 
-    padding:25px 30px;
+    bottom:0;
+
+    padding:20px;
 
     background:
-    rgba(0,0,0,.95);
+    rgba(0,0,0,.98);
 
     border-top:
     1px solid rgba(255,255,255,.08);
+
+    flex-shrink:0;
+
+    z-index:20;
 
 }
 
