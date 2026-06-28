@@ -3,16 +3,27 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+    <!-- ===================================== -->
+    <!-- META -->
+    <!-- ===================================== -->
 
-<title>
-PRIME ZONE
-</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet"
-href="css/playlist.css">
+    <meta name="viewport"
+    content="width=device-width,initial-scale=1.0">
+
+    <title>
+
+        PRIME ZONE
+
+    </title>
+
+    <!-- ===================================== -->
+    <!-- CSS -->
+    <!-- ===================================== -->
+
+    <link rel="stylesheet"
+    href="css/playlist.css">
 
 </head>
 
@@ -27,28 +38,45 @@ href="css/playlist.css">
 <div class="scanline"></div>
 
 <!-- ===================================== -->
-<!-- OVERLAY LOCK -->
+<!-- CYBER ALERT -->
 <!-- ===================================== -->
 
-<div id="listenerLock">
+<div id="cyberAlert">
 
-    <div class="listenerBox">
+    CHECKIN SUCCESS
 
-        <h2>
+</div>
 
-            JOIN AS LISTENER
+<!-- ===================================== -->
+<!-- GLOBAL OVERLAY -->
+<!-- ===================================== -->
 
-        </h2>
+<div id="overlay"></div>
+
+<!-- ===================================== -->
+<!-- SPOTIFY REQUIRED -->
+<!-- ===================================== -->
+
+<div id="spotifyRequired">
+
+    <div class="popupBox">
+
+        <h1>
+
+            CONNECT SPOTIFY
+
+        </h1>
 
         <p>
 
-            Join this playlist to unlock songs.
+            Please connect your Spotify
+            account first.
 
         </p>
 
-        <button id="joinListener">
+        <button id="connectSpotifyBtn">
 
-            JOIN AS LISTENER
+            CONNECT SPOTIFY
 
         </button>
 
@@ -57,16 +85,74 @@ href="css/playlist.css">
 </div>
 
 <!-- ===================================== -->
-<!-- TOP PLAYER -->
+<!-- JOIN LISTENER -->
 <!-- ===================================== -->
 
-<div class="playerTop">
+<div id="joinListenerPopup">
+
+    <div class="popupBox">
+
+        <h1>
+
+            JOIN AS LISTENER
+
+        </h1>
+
+        <p>
+
+            Join this playlist to unlock
+            activity, rewards and songs.
+
+        </p>
+
+        <button id="joinListenerBtn">
+
+            JOIN NOW
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- TOP BAR -->
+<!-- ===================================== -->
+
+<div class="topBar">
+
+    <div class="backBtn">
+
+        ←
+
+    </div>
+
+    <div class="playlistTag">
+
+        PRIME
+
+    </div>
+
+    <div class="memberCount">
+
+        0 LISTENER
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- FIX TOP PLAYER -->
+<!-- ===================================== -->
+
+<div class="playerHeader">
 
     <!-- COVER -->
 
     <div class="playlistCover">
 
-        <img id="playlistImage">
+        <img id="playlistCover"
+        src="">
 
     </div>
 
@@ -82,261 +168,312 @@ href="css/playlist.css">
 
         <p id="playlistDescription">
 
-            Exclusive songs for premium listeners.
+            Premium exclusive playlist.
 
         </p>
 
     </div>
 
-    <!-- PROGRESS -->
+</div>
 
-    <div class="playlistProgress">
+<!-- ===================================== -->
+<!-- NOW PLAYING -->
+<!-- ===================================== -->
 
-        <div class="progressBar">
+<div class="playerArea">
 
-            <div class="progressFill"></div>
+    <div class="playingLabel">
+
+        NOW PLAYING
+
+    </div>
+
+    <div class="playingTrack">
+
+        Waiting for Spotify...
+
+    </div>
+
+    <div class="progressBar">
+
+        <div class="progressFill">
 
         </div>
 
     </div>
 
-    <!-- CHECKIN -->
-
     <button id="checkinBtn">
 
-        CHECK IN
+        CHECKIN
 
     </button>
 
 </div>
 
 <!-- ===================================== -->
-<!-- FIX TAB -->
+<!-- FIX TAB AREA -->
 <!-- ===================================== -->
 
 <div class="playlistTabs">
 
-    <div class="playlistTab active"
-    data-tab="song">
+    <!-- MEMBER -->
 
-        SONG
+    <div class="tab active memberTab"
+    data-tab="songs">
+
+        SONGS
 
     </div>
 
-    <div class="playlistTab"
+    <div class="tab memberTab"
     data-tab="yoursong">
 
         YOUR SONG
 
     </div>
 
-    <div class="playlistTab"
-    data-tab="member">
+    <div class="tab memberTab"
+    data-tab="activity">
 
-        MEMBER ACTIVITY
+        ACTIVITY
+
+    </div>
+
+    <!-- ADMIN -->
+
+    <div class="tab adminTab"
+    data-tab="request">
+
+        REQUEST
 
     </div>
 
 </div>
 
 <!-- ===================================== -->
-<!-- SCROLL AREA -->
+<!-- SCROLL CONTENT -->
 <!-- ===================================== -->
 
 <div class="playlistContent">
 
-    <!-- ================================ -->
+    <!-- ===================================== -->
     <!-- SONG TAB -->
-    <!-- ================================ -->
+    <!-- ===================================== -->
 
-    <div id="songTab"
-    class="tabContent active">
+    <div class="tabContent active"
+    id="songsTab">
 
-        <div class="songCard">
+        <!-- SONG ITEM -->
 
-            <div class="songCover">
+        <div id="playlistSongs">
 
-                <img>
+            <!-- AUTO SONG -->
 
-            </div>
+            <!--
+            <div class="songCard">
 
-            <div class="songInfo">
+                <img class="songCover">
 
-                <div class="songTitle">
+                <div class="songInfo">
 
-                    SONG TITLE
+                    <div class="songTitle">
+
+                        Understand
+
+                    </div>
+
+                    <div class="songArtist">
+
+                        Keshi
+
+                    </div>
 
                 </div>
 
-                <div class="songArtist">
-
-                    ARTIST
-
-                </div>
-
             </div>
+            -->
 
         </div>
 
-        <div class="songCard">
+        <!-- ADMIN ADD SONG -->
 
-            <div class="songCover">
+        <button id="adminAddSong">
 
-                <img>
+            +
 
-            </div>
-
-            <div class="songInfo">
-
-                <div class="songTitle">
-
-                    SONG TITLE
-
-                </div>
-
-                <div class="songArtist">
-
-                    ARTIST
-
-                </div>
-
-            </div>
-
-        </div>
+        </button>
 
     </div>
 
-    <!-- ================================ -->
+    <!-- ===================================== -->
     <!-- YOUR SONG TAB -->
-    <!-- ================================ -->
+    <!-- ===================================== -->
 
-    <div id="yourSongTab"
-    class="tabContent">
+    <div class="tabContent"
+    id="yourSongTab">
 
-        <div class="yourSongCard">
+        <!-- ADD SONG -->
 
-            <div class="playStatus">
+        <button id="addMemberSong">
 
-                ●
+            + ADD SONG
 
-            </div>
+        </button>
 
-            <div class="yourSongInfo">
+        <!-- SONG LIMIT -->
 
-                <div class="yourSongTitle">
+        <div class="songLimit">
 
-                    SONG TITLE
-
-                </div>
-
-                <div class="yourSongState">
-
-                    TRUE ×3
-
-                </div>
-
-            </div>
+            MAXIMUM 8 SONGS
 
         </div>
 
-        <div class="yourSongCard">
+        <!-- MEMBER SONG LIST -->
 
-            <div class="playStatus">
+        <div id="memberSongs">
 
-                ●
+            <!-- AUTO SONG -->
 
-            </div>
+            <!--
+            <div class="memberSongCard">
 
-            <div class="yourSongInfo">
+                <img class="songCover">
 
-                <div class="yourSongTitle">
+                <div class="songInfo">
 
-                    SONG TITLE
+                    <div class="songTitle">
+
+                        Glimpse Of Us
+
+                    </div>
+
+                    <div class="songArtist">
+
+                        Joji
+
+                    </div>
 
                 </div>
 
-                <div class="yourSongState">
+                <button class="replaceSong">
 
-                    FALSE
+                    REPLACE
 
-                </div>
+                </button>
 
             </div>
+            -->
 
         </div>
 
     </div>
 
-    <!-- ================================ -->
-    <!-- MEMBER TAB -->
-    <!-- ================================ -->
+    <!-- ===================================== -->
+    <!-- REQUEST TAB -->
+    <!-- ADMIN ONLY -->
+    <!-- ===================================== -->
 
-    <div id="memberTab"
-    class="tabContent">
+    <div class="tabContent"
+    id="requestTab">
 
-        <div class="memberCard">
+        <div id="requestList">
 
-            <div class="memberName">
+            <!-- AUTO REQUEST -->
 
-                ASIH
+            <!--
+            <div class="requestCard">
+
+                <img class="songCover">
+
+                <div class="requestInfo">
+
+                    <div class="requestTitle">
+
+                        Slow Dancing
+
+                    </div>
+
+                    <div class="requestArtist">
+
+                        V
+
+                    </div>
+
+                    <div class="requestUser">
+
+                        REQUESTED BY ASIH
+
+                    </div>
+
+                </div>
+
+                <div class="requestButton">
+
+                    <button>
+
+                        APPROVE
+
+                    </button>
+
+                    <button>
+
+                        REJECT
+
+                    </button>
+
+                </div>
 
             </div>
-
-            <div class="memberSpotify">
-
-                ACCOUNT A ✓
-
-            </div>
-
-            <div class="memberSaving">
-
-                100%
-
-            </div>
+            -->
 
         </div>
 
-        <div class="memberCard">
+    </div>
 
-            <div class="memberName">
+    <!-- ===================================== -->
+    <!-- ACTIVITY TAB -->
+    <!-- ===================================== -->
 
-                DENI
+    <div class="tabContent"
+    id="activityTab">
+
+        <!-- MEMBER ACTIVITY -->
+
+        <div id="memberActivity">
+
+            <!-- AUTO -->
+
+            <!--
+
+            <div class="activityCard">
+
+                <div class="activityName">
+
+                    ASIH
+
+                </div>
+
+                <div class="activityAccount">
+
+                    Account A
+
+                </div>
+
+                <div class="weeklyProgress">
+
+                    ◆ ◆ ◆ ◇ ◇
+
+                </div>
+
+                <div class="dataProgress">
+
+                    █ █
+
+                </div>
 
             </div>
 
-            <div class="memberSpotify">
-
-                ACCOUNT C ✓✓
-
-            </div>
-
-            <div class="memberSaving">
-
-                2x
-
-            </div>
-
-        </div>
-
-        <div class="memberCard">
-
-            <div class="memberName">
-
-                ANDI
-
-            </div>
-
-            <div class="memberSpotify">
-
-                ACCOUNT B ✓
-
-            </div>
-
-            <div class="memberSaving">
-
-                100%
-
-            </div>
+            -->
 
         </div>
 
@@ -345,14 +482,190 @@ href="css/playlist.css">
 </div>
 
 <!-- ===================================== -->
-<!-- FLOAT BUTTON -->
+<!-- ADD SONG POPUP -->
+<!-- MEMBER -->
 <!-- ===================================== -->
 
-<button id="requestBtn">
+<div id="addSongPopup">
 
-    +
+    <div class="popupBox">
 
-</button>
+        <h2>
+
+            ADD SONG
+
+        </h2>
+
+        <input
+        id="songLink"
+        placeholder="Spotify Track Link">
+
+        <button id="submitSong">
+
+            SEND
+
+        </button>
+
+        <button class="closePopup">
+
+            CLOSE
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- REPLACE SONG POPUP -->
+<!-- MEMBER -->
+<!-- ===================================== -->
+
+<div id="replaceSongPopup">
+
+    <div class="popupBox">
+
+        <h2>
+
+            REPLACE SONG
+
+        </h2>
+
+        <input
+        id="replaceLink"
+        placeholder="New Spotify Track">
+
+        <button id="sendReplace">
+
+            SEND REQUEST
+
+        </button>
+
+        <button class="closePopup">
+
+            CLOSE
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- ADMIN ADD SONG -->
+<!-- ===================================== -->
+
+<div id="adminSongPopup">
+
+    <div class="popupBox">
+
+        <h2>
+
+            ADD PLAYLIST SONG
+
+        </h2>
+
+        <input
+        id="adminTrackLink"
+        placeholder="Spotify Track Link">
+
+        <button id="adminAddTrack">
+
+            ADD SONG
+
+        </button>
+
+        <button class="closePopup">
+
+            CLOSE
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- ADMIN EDIT SONG -->
+<!-- ===================================== -->
+
+<div id="editSongPopup">
+
+    <div class="popupBox">
+
+        <h2>
+
+            EDIT SONG
+
+        </h2>
+
+        <input
+        id="editTrackLink"
+        placeholder="Spotify Track Link">
+
+        <button id="saveEditSong">
+
+            SAVE
+
+        </button>
+
+        <button id="deleteSong">
+
+            DELETE
+
+        </button>
+
+        <button class="closePopup">
+
+            CLOSE
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- WEEK FAILED -->
+<!-- ===================================== -->
+
+<div id="weekAlert">
+
+    <div class="alertBox">
+
+        ⚠ WEEK MISSED
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- WEEK COMPLETE -->
+<!-- ===================================== -->
+
+<div id="weekSuccess">
+
+    <div class="alertBox success">
+
+        MISSION COMPLETE
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- LOADING -->
+<!-- ===================================== -->
+
+<div id="loadingScreen">
+
+    <div class="loadingText">
+
+        LOADING PRIME...
+
+    </div>
+
+</div>
 
 <!-- ===================================== -->
 <!-- JAVASCRIPT -->
