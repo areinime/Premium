@@ -9,9 +9,7 @@
 content="width=device-width,initial-scale=1.0">
 
 <title>
-
 PREMIUM
-
 </title>
 
 <link rel="stylesheet"
@@ -21,15 +19,23 @@ href="css/dashboard.css">
 
 <body>
 
-<!-- BACKGROUND -->
+<!-- ===================================== -->
+<!-- BACKGROUND EFFECT -->
+<!-- ===================================== -->
 
 <div class="background"></div>
-
 <div class="grid"></div>
-
 <div class="scanline"></div>
 
-<!-- ALERT -->
+<!-- ===================================== -->
+<!-- GLOBAL OVERLAY -->
+<!-- ===================================== -->
+
+<div id="overlay"></div>
+
+<!-- ===================================== -->
+<!-- TOP ALERT -->
+<!-- ===================================== -->
 
 <div id="cyberAlert">
 
@@ -37,7 +43,9 @@ href="css/dashboard.css">
 
 </div>
 
-<!-- PREMIUM ALERT -->
+<!-- ===================================== -->
+<!-- PREMIUM REQUIRED -->
+<!-- ===================================== -->
 
 <div id="premiumAlert">
 
@@ -55,9 +63,13 @@ href="css/dashboard.css">
 
 </div>
 
+<!-- ===================================== -->
 <!-- SIDEBAR -->
+<!-- ===================================== -->
 
 <div id="sidebar">
+
+    <!-- TITLE -->
 
     <div class="sideTitle">
 
@@ -65,22 +77,26 @@ href="css/dashboard.css">
 
     </div>
 
+    <!-- ===================== -->
+    <!-- USER MENU -->
+    <!-- ===================== -->
+
     <div class="sideItem"
-    onclick="comingSoon('MY ARTIST')">
+    onclick="myArtist()">
 
         MY ARTIST
 
     </div>
 
     <div class="sideItem"
-    onclick="comingSoon('MY POPULARITY')">
+    onclick="myPopularity()">
 
         MY POPULARITY
 
     </div>
 
     <div class="sideItem"
-    onclick="comingSoon('MY SONG')">
+    onclick="mySong()">
 
         MY SONG
 
@@ -88,30 +104,48 @@ href="css/dashboard.css">
 
     <div class="sideLine"></div>
 
+    <!-- ===================== -->
+    <!-- PLAYLIST JOIN -->
+    <!-- ===================== -->
+
     <div class="sideSubTitle">
 
         MY PLAYLIST
 
     </div>
 
-    <div id="joinedPlaylist">
+    <div class="playlistScroll">
 
-        <!-- OTOMATIS DARI JS -->
+        <div id="joinedPlaylist">
+
+            <!-- AUTO JS -->
+
+        </div>
 
     </div>
 
-    <div class="sideLine"></div>
+    <!-- ===================== -->
+    <!-- LOGOUT -->
+    <!-- ===================== -->
 
-    <div class="sideItem"
-    onclick="logout()">
+    <div class="sidebarBottom">
 
-        LOGOUT
+        <div class="sideLine"></div>
+
+        <div class="sideItem logoutBtn"
+        onclick="logout()">
+
+            LOGOUT
+
+        </div>
 
     </div>
 
 </div>
 
-<!-- PROFILE -->
+<!-- ===================================== -->
+<!-- PROFILE PANEL -->
+<!-- ===================================== -->
 
 <div id="profilePanel">
 
@@ -120,6 +154,10 @@ href="css/dashboard.css">
         PROFILE
 
     </h2>
+
+    <!-- ===================== -->
+    <!-- PHOTO -->
+    <!-- ===================== -->
 
     <div class="profilePhotoBox">
 
@@ -133,6 +171,10 @@ href="css/dashboard.css">
 
     </button>
 
+    <!-- ===================== -->
+    <!-- NAME -->
+    <!-- ===================== -->
+
     <div class="profileLabel">
 
         DISPLAY NAME
@@ -142,6 +184,10 @@ href="css/dashboard.css">
     <input
     id="displayName"
     placeholder="Your name">
+
+    <!-- ===================== -->
+    <!-- WHATSAPP -->
+    <!-- ===================== -->
 
     <div class="profileLabel">
 
@@ -153,9 +199,41 @@ href="css/dashboard.css">
     id="whatsapp"
     placeholder="08xxxxxxxx">
 
-    <div class="profileDivider">
+    <!-- ===================== -->
+    <!-- UID -->
+    <!-- ===================== -->
+
+    <div class="profileDivider"></div>
+
+    <div class="profileLabel">
+
+        UID
 
     </div>
+
+    <input
+    id="userUID"
+    readonly>
+
+    <!-- ===================== -->
+    <!-- ROLE -->
+    <!-- ===================== -->
+
+    <div class="profileLabel">
+
+        STATUS
+
+    </div>
+
+    <input
+    id="userRole"
+    readonly>
+
+    <!-- ===================== -->
+    <!-- SPOTIFY -->
+    <!-- ===================== -->
+
+    <div class="profileDivider"></div>
 
     <div class="spotifyTitle">
 
@@ -163,29 +241,47 @@ href="css/dashboard.css">
 
     </div>
 
-    <div class="spotifyAccount primary">
+    <div id="spotifyList">
 
-        🟢 ACCOUNT A
+        <div class="spotifyAccount primary">
 
-        <span>
+            🟢 ACCOUNT A
 
-            PREMIUM
+            <span>
 
-        </span>
+                PRIMARY
+
+            </span>
+
+        </div>
+
+        <div class="spotifyAccount">
+
+            ACCOUNT B
+
+            <span>
+
+                PREMIUM
+
+            </span>
+
+        </div>
 
     </div>
 
-    <div class="spotifyAccount">
+    <!-- ===================== -->
+    <!-- SPOTIFY LOGIN -->
+    <!-- ===================== -->
 
-        ACCOUNT B
+    <button id="spotifyLogin">
 
-        <span>
+        CONNECT SPOTIFY
 
-            PREMIUM
+    </button>
 
-        </span>
-
-    </div>
+    <!-- ===================== -->
+    <!-- ADD ACCOUNT -->
+    <!-- ===================== -->
 
     <button id="addSpotify">
 
@@ -193,9 +289,11 @@ href="css/dashboard.css">
 
     </button>
 
-    <div class="profileDivider">
+    <!-- ===================== -->
+    <!-- SAVE -->
+    <!-- ===================== -->
 
-    </div>
+    <div class="profileDivider"></div>
 
     <button id="saveProfile">
 
@@ -205,13 +303,9 @@ href="css/dashboard.css">
 
 </div>
 
-<!-- OVERLAY -->
-
-<div id="overlay">
-
-</div>
-
+<!-- ===================================== -->
 <!-- TOP BAR -->
+<!-- ===================================== -->
 
 <div class="topBar">
 
@@ -229,7 +323,9 @@ href="css/dashboard.css">
 
 </div>
 
+<!-- ===================================== -->
 <!-- CENTER -->
+<!-- ===================================== -->
 
 <div class="centerArea">
 
@@ -254,7 +350,9 @@ href="css/dashboard.css">
 
 </div>
 
+<!-- ===================================== -->
 <!-- PLAYLIST -->
+<!-- ===================================== -->
 
 <div class="playlistArea">
 
@@ -309,10 +407,14 @@ href="css/dashboard.css">
 
 </div>
 
-<script src="js/dashboard.js">
+<!-- ===================================== -->
+<!-- JAVASCRIPT -->
+<!-- ===================================== -->
+
+<script type="module"
+src="js/dashboard.js">
 
 </script>
 
 </body>
-
-</html>
+        </html>
