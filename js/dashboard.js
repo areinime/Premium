@@ -536,23 +536,32 @@ LOGOUT
 
 function logout(){
 
-if(confirm(
-"Logout?"
-)){
+    sidebar.classList.remove(
+        "show"
+    );
 
-    localStorage.clear();
+    profilePanel.classList.remove(
+        "show"
+    );
 
-    showAlert(
-    "LOGOUT"
+    overlay.classList.remove(
+        "show"
+    );
+
+    cyberAlert.innerText =
+    "LOGOUT";
+
+    cyberAlert.classList.add(
+        "show"
     );
 
     setTimeout(()=>{
 
+        localStorage.clear();
+
         location.href =
         "index.html";
 
-    },1000);
-
-}
+    },500);
 
 }
