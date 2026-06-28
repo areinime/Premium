@@ -3,28 +3,29 @@ CONFIG
 ********************************/
 
 /*
-
 ==================================
 SPOTIFY CLIENT ID
-
-const CLIENT_ID = "";
-
 ==================================
-SPOTIFY REDIRECT
-
-const REDIRECT_URI = "";
-
-==================================
-FIREBASE UPDATE PROFILE
-
-NANTI DISINI
-
-==================================
-
 */
 
 const CLIENT_ID = "";
 const REDIRECT_URI = "";
+
+/*
+==================================
+FIREBASE AREA
+==================================
+
+NANTI DISINI
+
+uid
+premium
+spotify
+profile
+
+==================================
+*/
+
 
 /********************************
 ELEMENT
@@ -95,9 +96,19 @@ document.getElementById(
 "uploadPhoto"
 );
 
+const spotifyLogin =
+document.getElementById(
+"spotifyLogin"
+);
+
 const addSpotify =
 document.getElementById(
 "addSpotify"
+);
+
+const spotifyList =
+document.getElementById(
+"spotifyList"
 );
 
 const joinedBox =
@@ -105,13 +116,9 @@ document.getElementById(
 "joinedPlaylist"
 );
 
-const spotifyAccount =
-document.querySelectorAll(
-".spotifyAccount"
-);
 
 /********************************
-ALERT
+CYBER ALERT
 ********************************/
 
 function showAlert(text){
@@ -133,6 +140,7 @@ function showAlert(text){
 
 }
 
+
 /********************************
 PREMIUM ALERT
 ********************************/
@@ -152,6 +160,7 @@ function showPremium(){
     },3000);
 
 }
+
 
 /********************************
 OPEN SIDEBAR
@@ -173,6 +182,7 @@ menuBtn.onclick = ()=>{
 
 };
 
+
 /********************************
 OPEN PROFILE
 ********************************/
@@ -193,29 +203,27 @@ profileBox.onclick = ()=>{
 
 };
 
+
 /********************************
 CLOSE PANEL
 ********************************/
 
-if(overlay){
+overlay.onclick = ()=>{
 
-    overlay.onclick = ()=>{
+    sidebar.classList.remove(
+    "show"
+    );
 
-        sidebar.classList.remove(
-        "show"
-        );
+    profilePanel.classList.remove(
+    "show"
+    );
 
-        profilePanel.classList.remove(
-        "show"
-        );
+    overlay.classList.remove(
+    "show"
+    );
 
-        overlay.classList.remove(
-        "show"
-        );
+};
 
-    };
-
-}
 
 /********************************
 LOAD PROFILE
@@ -260,49 +268,24 @@ if(savedPhoto){
 
 }
 
+
 /********************************
-SAVE PROFILE
+DEFAULT AVATAR
 ********************************/
 
-saveProfile.onclick = ()=>{
+if(!savedPhoto){
 
-    localStorage.setItem(
-    "premium_name",
-    displayName.value
-    );
+    avatar.src =
+    "img/default.png";
 
-    localStorage.setItem(
-    "premium_wa",
-    whatsapp.value
-    );
+    profilePhoto.src =
+    "img/default.png";
 
-    /****************************
-    FIREBASE UPDATE DISINI
-    ****************************/
+}
 
-    /*
-    update(
-    ref(
-    db,
-    "users/"+uid
-    ),
-    {
-        name:
-        displayName.value,
-
-        whatsapp:
-        whatsapp.value
-    });
-    */
-
-    showAlert(
-    "PROFILE SAVED"
-    );
-
-};
 
 /********************************
-UPLOAD PHOTO
+PHOTO INPUT
 ********************************/
 
 const photoInput =
@@ -316,11 +299,24 @@ photoInput.type =
 photoInput.accept =
 "image/*";
 
+photoInput.style.display =
+"none";
+
+document.body.appendChild(
+photoInput
+);
+
+
+/********************************
+CHANGE PHOTO
+********************************/
+
 uploadPhoto.onclick = ()=>{
 
     photoInput.click();
 
 };
+
 
 photoInput.onchange = ()=>{
 
@@ -357,80 +353,285 @@ photoInput.onchange = ()=>{
 
 };
 
+
 /********************************
-PRIMARY SPOTIFY
+SAVE PROFILE
 ********************************/
 
-spotifyAccount.forEach(
-account=>{
+saveProfile.onclick = ()=>{
 
-    account.onclick = ()=>{
+    localStorage.setItem(
+    "premium_name",
+    displayName.value
+    );
 
-        spotifyAccount.forEach(
-        a=>{
+    localStorage.setItem(
+    "premium_wa",
+    whatsapp.value
+    );
 
-            a.classList.remove(
-            "primary"
-            );
+    /*
+    ==================================
+    FIREBASE UPDATE
+    ==================================
 
-        });
+    update(
+    ref(db,"users/"+uid),
+    {
+        name:
+        displayName.value,
 
-        account.classList.add(
-        "primary"
-        );
+        whatsapp:
+        whatsapp.value
+    });
 
-        localStorage.setItem(
-        "primary_account",
-        account.innerText
-        );
+    ==================================
+    */
 
-        showAlert(
-        "PRIMARY CHANGED"
-        );
+    showAlert(
+    "PROFILE SAVED"
+    );
 
-    };
+};
+
+
+/********************************
+PROFILE AUTO UPDATE
+********************************/
+
+displayName.addEventListener(
+"input",
+()=>{
+
+    localStorage.setItem(
+    "premium_name",
+    displayName.value
+    );
 
 });
 
-const primaryAccount =
-localStorage.getItem(
-"primary_account"
-);
+whatsapp.addEventListener(
+"input",
+()=>{
 
-if(primaryAccount){
+    localStorage.setItem(
+    "premium_wa",
+    whatsapp.value
+    );
 
-    spotifyAccount.forEach(
-    account=>{
+});
+
+
+/********************************
+PROFILE PLACEHOLDER
+********************************/
+
+if(
+displayName.value === ""
+){
+
+    displayName.placeholder =
+    "YOUR NAME";
+
+}
+
+if(
+whatsapp.value === ""
+){
+
+    whatsapp.placeholder =
+    "08XXXXXXXXXX";
+
+}
+
+
+/********************************
+SPOTIFY SYSTEM
+********************************/
+
+/********************************
+SPOTIFY STORAGE
+********************************/
+
+let spotifyAccounts =
+JSON.parse(
+
+    localStorage.getItem(
+    "spotify_accounts"
+    )
+
+) || [];
+
+
+/********************************
+RENDER SPOTIFY ACCOUNT
+********************************/
+
+function renderSpotifyAccounts(){
+
+    spotifyList.innerHTML = "";
+
+    /*
+    HIDE CONNECT BUTTON
+    */
+
+    if(
+    spotifyAccounts.length > 0
+    ){
+
+        spotifyLogin.style.display =
+        "none";
+
+        addSpotify.style.display =
+        "block";
+
+    }
+
+    else{
+
+        spotifyLogin.style.display =
+        "block";
+
+        addSpotify.style.display =
+        "none";
+
+    }
+
+    /*
+    MAX 5 ACCOUNT
+    */
+
+    if(
+    spotifyAccounts.length >= 5
+    ){
+
+        addSpotify.style.display =
+        "none";
+
+    }
+
+    spotifyAccounts.forEach(
+    (account,index)=>{
+
+        const card =
+        document.createElement(
+        "div"
+        );
+
+        card.className =
+        "spotifyAccount";
 
         if(
-
-            account.innerText ===
-            primaryAccount
-
+        account.primary
         ){
 
-            account.classList.add(
+            card.classList.add(
             "primary"
             );
 
         }
 
+        card.innerHTML =
+
+        `
+        <img
+        class="spotifyAvatar"
+        src="${account.photo}">
+
+        <div class="spotifyInfo">
+
+            <div class="spotifyName">
+
+                ${account.name}
+
+            </div>
+
+            <div class="spotifyPlan">
+
+                ${account.plan}
+
+            </div>
+
+        </div>
+
+        <img
+        class="primaryLogo"
+        src="img/spotify.png">
+        `;
+
+        /*
+        CHANGE PRIMARY
+        */
+
+        card.onclick = ()=>{
+
+            setPrimarySpotify(
+            index
+            );
+
+        };
+
+        spotifyList.appendChild(
+        card
+        );
+
     });
 
 }
 
+
 /********************************
-SPOTIFY LOGIN
+SET PRIMARY ACCOUNT
 ********************************/
 
-function spotifyLogin(){
+function setPrimarySpotify(index){
+
+    spotifyAccounts.forEach(
+    account=>{
+
+        account.primary =
+        false;
+
+    });
+
+    spotifyAccounts[index]
+    .primary = true;
+
+    localStorage.setItem(
+
+        "spotify_accounts",
+
+        JSON.stringify(
+        spotifyAccounts
+        )
+
+    );
+
+    renderSpotifyAccounts();
+
+    showAlert(
+    "PRIMARY ACCOUNT UPDATED"
+    );
+
+}
+
+
+/********************************
+ADD SPOTIFY ACCOUNT
+********************************/
+
+function addSpotifyAccount(data){
+
+    /*
+    MAX 5
+    */
 
     if(
-    CLIENT_ID === ""
+    spotifyAccounts.length >= 5
     ){
 
         showAlert(
-        "SPOTIFY API EMPTY"
+        "MAXIMUM ACCOUNT REACHED"
         );
 
         return;
@@ -438,41 +639,185 @@ function spotifyLogin(){
     }
 
     /*
-    window.location.href =
-    "https://accounts.spotify.com/authorize";
+    FIRST ACCOUNT
     */
 
+    const primary =
+
+    spotifyAccounts.length === 0;
+
+    spotifyAccounts.push({
+
+        name:
+        data.name,
+
+        photo:
+        data.photo,
+
+        plan:
+        data.plan,
+
+        primary:
+        primary
+
+    });
+
+    localStorage.setItem(
+
+        "spotify_accounts",
+
+        JSON.stringify(
+        spotifyAccounts
+        )
+
+    );
+
+    renderSpotifyAccounts();
+
     showAlert(
-    "SPOTIFY LOGIN"
+    "SPOTIFY CONNECTED"
     );
 
 }
 
+
 /********************************
-ADD SPOTIFY
+SPOTIFY LOGIN
 ********************************/
 
-if(addSpotify){
+function spotifyLoginSystem(){
 
-    addSpotify.onclick = ()=>{
+    if(
+    CLIENT_ID === ""
+    ){
 
-        spotifyLogin();
+        /*
+        DEMO MODE
+        */
 
-    };
+        addSpotifyAccount({
+
+            name:
+            "ASHVATH",
+
+            photo:
+            "img/default.png",
+
+            plan:
+            "SPOTIFY PREMIUM"
+
+        });
+
+        return;
+
+    }
+
+    /*
+    REAL SPOTIFY LOGIN
+
+    window.location.href =
+    "https://accounts.spotify.com/authorize";
+
+    */
+}
+
+
+/********************************
+CONNECT BUTTON
+********************************/
+
+spotifyLogin.onclick = ()=>{
+
+    spotifyLoginSystem();
+
+};
+
+
+/********************************
+ADD ACCOUNT BUTTON
+********************************/
+
+addSpotify.onclick = ()=>{
+
+    spotifyLoginSystem();
+
+};
+
+
+/********************************
+REMOVE ACCOUNT
+********************************/
+
+function removeSpotify(index){
+
+    spotifyAccounts.splice(
+    index,
+    1
+    );
+
+    /*
+    REPAIR PRIMARY
+    */
+
+    if(
+    spotifyAccounts.length > 0
+    ){
+
+        const hasPrimary =
+
+        spotifyAccounts.some(
+        account=>
+        account.primary
+        );
+
+        if(!hasPrimary){
+
+            spotifyAccounts[0]
+            .primary = true;
+
+        }
+
+    }
+
+    localStorage.setItem(
+
+        "spotify_accounts",
+
+        JSON.stringify(
+        spotifyAccounts
+        )
+
+    );
+
+    renderSpotifyAccounts();
 
 }
 
+
 /********************************
-COMING SOON
+SPOTIFY AUTO LOAD
 ********************************/
 
-function comingSoon(name){
+renderSpotifyAccounts();
+
+
+/********************************
+PLAYLIST / LOGOUT
+********************************/
+
+
+/********************************
+COMING SOON FUNCTION
+********************************/
+
+function comingSoon(text){
 
     showAlert(
-    name + " COMING SOON"
+    text + " COMING SOON"
     );
 
 }
+
 
 /********************************
 MY ARTIST
@@ -486,6 +831,7 @@ function myArtist(){
 
 }
 
+
 /********************************
 MY POPULARITY
 ********************************/
@@ -497,6 +843,7 @@ function myPopularity(){
     );
 
 }
+
 
 /********************************
 MY SONG
@@ -510,26 +857,24 @@ function mySong(){
 
 }
 
+
 /********************************
-JOINED PLAYLIST
+JOINED PLAYLIST STORAGE
 ********************************/
 
 /*
-
 localStorage:
 
 joined_playlist
-
-contoh:
 
 [
 "PRIME ZONE",
 "UPMOOD"
 ]
-
 */
 
 const joinedPlaylist =
+
 JSON.parse(
 
     localStorage.getItem(
@@ -538,7 +883,16 @@ JSON.parse(
 
 ) || [];
 
-if(joinedBox){
+
+/********************************
+RENDER PLAYLIST
+********************************/
+
+function renderJoinedPlaylist(){
+
+    if(!joinedBox) return;
+
+    joinedBox.innerHTML = "";
 
     if(
     joinedPlaylist.length === 0
@@ -547,48 +901,88 @@ if(joinedBox){
         joinedBox.innerHTML =
 
         `
-        <div class="joinedEmpty">
+        <div class="joinedItem">
 
-        BELUM JOIN PLAYLIST
+            NO PLAYLIST YET
 
         </div>
         `;
 
-    }
-
-    else{
-
-        joinedPlaylist.forEach(
-        playlist=>{
-
-            const item =
-            document.createElement(
-            "div"
-            );
-
-            item.className =
-            "joinedItem";
-
-            item.innerText =
-            playlist;
-
-            item.onclick = ()=>{
-
-                showAlert(
-                playlist
-                );
-
-            };
-
-            joinedBox.appendChild(
-            item
-            );
-
-        });
+        return;
 
     }
+
+    joinedPlaylist.forEach(
+    playlist=>{
+
+        const item =
+        document.createElement(
+        "div"
+        );
+
+        item.className =
+        "joinedItem";
+
+        item.innerText =
+        playlist;
+
+        item.onclick = ()=>{
+
+            showAlert(
+            playlist
+            );
+
+        };
+
+        joinedBox.appendChild(
+        item
+        );
+
+    });
 
 }
+
+renderJoinedPlaylist();
+
+
+/********************************
+PLAYLIST JOIN FUNCTION
+********************************/
+
+function joinPlaylist(name){
+
+    if(
+    joinedPlaylist.includes(
+    name
+    )
+    ){
+
+        return;
+
+    }
+
+    joinedPlaylist.push(
+    name
+    );
+
+    localStorage.setItem(
+
+        "joined_playlist",
+
+        JSON.stringify(
+        joinedPlaylist
+        )
+
+    );
+
+    renderJoinedPlaylist();
+
+    showAlert(
+    "PLAYLIST ADDED"
+    );
+
+}
+
 
 /********************************
 ADMIN CHECK
@@ -605,10 +999,11 @@ isAdmin === "true"
 ){
 
     console.log(
-    "ADMIN LOGIN"
+    "ADMIN MODE ENABLED"
     );
 
 }
+
 
 /********************************
 LOGOUT
@@ -630,35 +1025,125 @@ function logout(){
 
     localStorage.clear();
 
-    location.href =
-    "index.html";
+    showAlert(
+    "LOGGING OUT"
+    );
+
+    setTimeout(()=>{
+
+        location.href =
+        "index.html";
+
+    },1000);
 
 }
 
+
 /********************************
-ESC CLOSE
+ESC CLOSE PANEL
 ********************************/
 
 document.addEventListener(
-"keydown",
-e=>{
 
-    if(
-    e.key === "Escape"
-    ){
+    "keydown",
 
-        sidebar.classList.remove(
-        "show"
-        );
+    e=>{
 
-        profilePanel.classList.remove(
-        "show"
-        );
+        if(
+        e.key === "Escape"
+        ){
 
-        overlay.classList.remove(
-        "show"
-        );
+            sidebar.classList.remove(
+            "show"
+            );
+
+            profilePanel.classList.remove(
+            "show"
+            );
+
+            overlay.classList.remove(
+            "show"
+            );
+
+        }
 
     }
 
-});
+);
+
+
+/********************************
+WINDOW CLICK CLOSE
+********************************/
+
+window.addEventListener(
+
+    "resize",
+
+    ()=>{
+
+        /*
+        FUTURE RESPONSIVE SYSTEM
+        */
+
+    }
+
+);
+
+
+/********************************
+AUTO LOAD
+********************************/
+
+renderSpotifyAccounts();
+
+renderJoinedPlaylist();
+
+
+/********************************
+FUTURE FIREBASE
+********************************/
+
+/*
+
+==================================
+USER PROFILE
+
+uid
+name
+whatsapp
+photo
+
+==================================
+
+SPOTIFY
+
+account 1
+account 2
+account 3
+account 4
+account 5
+
+primary
+
+==================================
+
+PLAYLIST
+
+joined playlist
+
+==================================
+
+PREMIUM
+
+role
+subscription
+
+==================================
+
+*/
+
+
+/********************************
+END OF FILE
+********************************/
