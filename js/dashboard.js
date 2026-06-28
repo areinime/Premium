@@ -12,6 +12,11 @@ document.getElementById(
     "sidebar"
 );
 
+const profilePanel =
+document.getElementById(
+    "profilePanel"
+);
+
 const overlay =
 document.getElementById(
     "overlay"
@@ -20,11 +25,6 @@ document.getElementById(
 const profileBox =
 document.querySelector(
     ".profileBox"
-);
-
-const profilePanel =
-document.getElementById(
-    "profilePanel"
 );
 
 const cyberAlert =
@@ -71,14 +71,8 @@ const addSpotify =
 document.getElementById(
     "addSpotify"
 );
-
-const spotifyAccount =
-document.querySelectorAll(
-    ".spotifyAccount"
-);
-
 /********************************
-SIDEBAR
+SIDEBAR OPEN
 ********************************/
 
 menuBtn.onclick = ()=>{
@@ -94,7 +88,7 @@ menuBtn.onclick = ()=>{
 };
 
 /********************************
-PROFILE PANEL
+PROFILE OPEN
 ********************************/
 
 profileBox.onclick = ()=>{
@@ -130,7 +124,7 @@ overlay.onclick = ()=>{
 };
 
 /********************************
-ALERT
+TOP ALERT
 ********************************/
 
 function showAlert(text){
@@ -266,10 +260,10 @@ photoInput.onchange = ()=>{
 
     reader.onload = function(){
 
-        profilePhoto.src =
+        avatar.src =
         reader.result;
 
-        avatar.src =
+        profilePhoto.src =
         reader.result;
 
         localStorage.setItem(
@@ -302,17 +296,23 @@ localStorage.getItem(
 
 if(savedPhoto){
 
-    profilePhoto.src =
+    avatar.src =
     savedPhoto;
 
-    avatar.src =
+    profilePhoto.src =
     savedPhoto;
 
 }
 
 /********************************
-SPOTIFY PRIMARY
+PRIMARY ACCOUNT
 ********************************/
+
+const spotifyAccount =
+
+document.querySelectorAll(
+    ".spotifyAccount"
+);
 
 spotifyAccount.forEach(
 
@@ -402,58 +402,110 @@ addSpotify.onclick = ()=>{
 };
 
 /********************************
-COMING SOON
+MY ARTIST
 ********************************/
 
-function comingSoon(text){
+function myArtist(){
 
     showAlert(
 
-        text +
-        " COMING SOON"
+        "COMING SOON"
 
     );
 
 }
 
 /********************************
-MY ARTIST
-********************************/
-
-// ----- MY ARTIST -----
-
-/********************************
 MY POPULARITY
 ********************************/
 
-// ----- MY POPULARITY -----
+function myPopularity(){
+
+    showAlert(
+
+        "COMING SOON"
+
+    );
+
+}
 
 /********************************
 MY SONG
 ********************************/
 
-// ----- MY SONG -----
+function mySong(){
+
+    showAlert(
+
+        "COMING SOON"
+
+    );
+
+}
+
+/*************************
+JOINED PLAYLIST
+*************************/
+
+const joinedBox =
+
+document.getElementById(
+    "joinedPlaylist"
+);
+
+const joinedPlaylist =
+
+JSON.parse(
+
+    localStorage.getItem(
+        "joined_playlist"
+    )
+
+) || [];
+
+joinedPlaylist.forEach(
+
+    playlist=>{
+
+        const item =
+
+        document.createElement(
+            "div"
+        );
+
+        item.className =
+        "joinedItem";
+
+        item.innerText =
+        playlist;
+
+        joinedBox.appendChild(
+            item
+        );
+
+    }
+
+);
+
 
 /********************************
-SPOTIFY CONNECT
+LOGOUT
 ********************************/
 
-// ----- CONNECT SPOTIFY -----
+function logout(){
 
-/********************************
-MULTI ACCOUNT
-********************************/
+    localStorage.clear();
 
-// ----- ADD ACCOUNT -----
+    showAlert(
 
-/********************************
-PREMIUM SYSTEM
-********************************/
+        "LOGOUT"
 
-// ----- PREMIUM REQUIRED -----
+    );
 
-/********************************
-CHECKIN SYSTEM
-********************************/
+    setTimeout(()=>{
 
-// ----- CHECKIN -----
+        location.reload();
+
+    },1000);
+
+}
