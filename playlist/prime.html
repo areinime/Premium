@@ -1,1 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+PRIME ZONE
+</title>
+
+<link rel="stylesheet"
+href="css/playlist.css">
+
+</head>
+
+<body>
+
+<!-- ===================================== -->
+<!-- BACKGROUND -->
+<!-- ===================================== -->
+
+<div class="background"></div>
+<div class="grid"></div>
+<div class="scanline"></div>
+
+<!-- ===================================== -->
+<!-- OVERLAY LOCK -->
+<!-- ===================================== -->
+
+<div id="listenerLock">
+
+    <div class="listenerBox">
+
+        <h2>
+
+            JOIN AS LISTENER
+
+        </h2>
+
+        <p>
+
+            Join this playlist to unlock songs.
+
+        </p>
+
+        <button id="joinListener">
+
+            JOIN AS LISTENER
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- TOP PLAYER -->
+<!-- ===================================== -->
+
+<div class="playerTop">
+
+    <!-- COVER -->
+
+    <div class="playlistCover">
+
+        <img id="playlistImage">
+
+    </div>
+
+    <!-- INFO -->
+
+    <div class="playlistInfo">
+
+        <h1 id="playlistName">
+
+            PRIME ZONE
+
+        </h1>
+
+        <p id="playlistDescription">
+
+            Exclusive songs for premium listeners.
+
+        </p>
+
+    </div>
+
+    <!-- PROGRESS -->
+
+    <div class="playlistProgress">
+
+        <div class="progressBar">
+
+            <div class="progressFill"></div>
+
+        </div>
+
+    </div>
+
+    <!-- CHECKIN -->
+
+    <button id="checkinBtn">
+
+        CHECK IN
+
+    </button>
+
+</div>
+
+<!-- ===================================== -->
+<!-- FIX TAB -->
+<!-- ===================================== -->
+
+<div class="playlistTabs">
+
+    <div class="playlistTab active"
+    data-tab="song">
+
+        SONG
+
+    </div>
+
+    <div class="playlistTab"
+    data-tab="yoursong">
+
+        YOUR SONG
+
+    </div>
+
+    <div class="playlistTab"
+    data-tab="member">
+
+        MEMBER ACTIVITY
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- SCROLL AREA -->
+<!-- ===================================== -->
+
+<div class="playlistContent">
+
+    <!-- ================================ -->
+    <!-- SONG TAB -->
+    <!-- ================================ -->
+
+    <div id="songTab"
+    class="tabContent active">
+
+        <div class="songCard">
+
+            <div class="songCover">
+
+                <img>
+
+            </div>
+
+            <div class="songInfo">
+
+                <div class="songTitle">
+
+                    SONG TITLE
+
+                </div>
+
+                <div class="songArtist">
+
+                    ARTIST
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="songCard">
+
+            <div class="songCover">
+
+                <img>
+
+            </div>
+
+            <div class="songInfo">
+
+                <div class="songTitle">
+
+                    SONG TITLE
+
+                </div>
+
+                <div class="songArtist">
+
+                    ARTIST
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================================ -->
+    <!-- YOUR SONG TAB -->
+    <!-- ================================ -->
+
+    <div id="yourSongTab"
+    class="tabContent">
+
+        <div class="yourSongCard">
+
+            <div class="playStatus">
+
+                ●
+
+            </div>
+
+            <div class="yourSongInfo">
+
+                <div class="yourSongTitle">
+
+                    SONG TITLE
+
+                </div>
+
+                <div class="yourSongState">
+
+                    TRUE ×3
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="yourSongCard">
+
+            <div class="playStatus">
+
+                ●
+
+            </div>
+
+            <div class="yourSongInfo">
+
+                <div class="yourSongTitle">
+
+                    SONG TITLE
+
+                </div>
+
+                <div class="yourSongState">
+
+                    FALSE
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================================ -->
+    <!-- MEMBER TAB -->
+    <!-- ================================ -->
+
+    <div id="memberTab"
+    class="tabContent">
+
+        <div class="memberCard">
+
+            <div class="memberName">
+
+                ASIH
+
+            </div>
+
+            <div class="memberSpotify">
+
+                ACCOUNT A ✓
+
+            </div>
+
+            <div class="memberSaving">
+
+                100%
+
+            </div>
+
+        </div>
+
+        <div class="memberCard">
+
+            <div class="memberName">
+
+                DENI
+
+            </div>
+
+            <div class="memberSpotify">
+
+                ACCOUNT C ✓✓
+
+            </div>
+
+            <div class="memberSaving">
+
+                2x
+
+            </div>
+
+        </div>
+
+        <div class="memberCard">
+
+            <div class="memberName">
+
+                ANDI
+
+            </div>
+
+            <div class="memberSpotify">
+
+                ACCOUNT B ✓
+
+            </div>
+
+            <div class="memberSaving">
+
+                100%
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- FLOAT BUTTON -->
+<!-- ===================================== -->
+
+<button id="requestBtn">
+
+    +
+
+</button>
+
+<!-- ===================================== -->
+<!-- JAVASCRIPT -->
+<!-- ===================================== -->
+
+<script type="module"
+src="js/playlist.js">
+
+</script>
+
+</body>
+</html>
