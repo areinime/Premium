@@ -1,6 +1,6 @@
-/****************************************
+/********************************
 RESET
-****************************************/
+********************************/
 
 *{
     margin:0;
@@ -20,9 +20,9 @@ html,body{
     -webkit-overflow-scrolling:touch;
 }
 
-/****************************************
+/********************************
 BACKGROUND
-****************************************/
+********************************/
 
 .background{
     position:fixed;
@@ -34,17 +34,20 @@ BACKGROUND
     radial-gradient(
     circle at 20% 20%,
     rgba(0,255,255,.08),
-    transparent 40%),
+    transparent 40%
+    ),
 
     radial-gradient(
     circle at 80% 80%,
     rgba(255,0,255,.08),
-    transparent 40%),
+    transparent 40%
+    ),
 
     radial-gradient(
     circle at 50% 50%,
     rgba(255,215,0,.04),
-    transparent 50%);
+    transparent 50%
+    );
 
     animation:bgMove 15s infinite alternate;
 }
@@ -65,7 +68,9 @@ BACKGROUND
 
     position:fixed;
     inset:0;
+
     z-index:-2;
+
     pointer-events:none;
 
     background:
@@ -81,21 +86,18 @@ BACKGROUND
 
     background-size:50px 50px;
 
-    animation:
-    moveGrid 20s linear infinite;
+    animation:moveGrid 20s linear infinite;
 
 }
 
 @keyframes moveGrid{
 
     from{
-        transform:
-        translateY(0);
+        transform:translateY(0);
     }
 
     to{
-        transform:
-        translateY(50px);
+        transform:translateY(50px);
     }
 
 }
@@ -104,27 +106,25 @@ BACKGROUND
 
     position:fixed;
     inset:0;
+
     z-index:-1;
+
     pointer-events:none;
 
     background:
+
     repeating-linear-gradient(
-
     0deg,
-
     transparent,
-
     transparent 3px,
-
     rgba(255,255,255,.02) 4px
-
     );
 
 }
 
-/****************************************
+/********************************
 TOP BAR
-****************************************/
+********************************/
 
 .topBar{
 
@@ -135,10 +135,7 @@ TOP BAR
     right:20px;
 
     display:flex;
-
-    justify-content:
-    space-between;
-
+    justify-content:space-between;
     align-items:center;
 
     z-index:100;
@@ -166,16 +163,12 @@ TOP BAR
     padding:3px;
 
     background:
+
     linear-gradient(
-
     45deg,
-
     cyan,
-
     magenta,
-
     gold
-
     );
 
     animation:
@@ -188,13 +181,11 @@ TOP BAR
 @keyframes profileGlitch{
 
     45%{
-        transform:
-        translateX(2px);
+        transform:translateX(2px);
     }
 
     47%{
-        transform:
-        translateX(-2px);
+        transform:translateX(-2px);
     }
 
     50%{
@@ -214,9 +205,9 @@ TOP BAR
 
 }
 
-/****************************************
+/********************************
 CENTER
-****************************************/
+********************************/
 
 .centerArea{
 
@@ -236,8 +227,7 @@ CENTER
 
     letter-spacing:15px;
 
-    animation:
-    flicker 5s infinite;
+    animation:flicker 5s infinite;
 
 }
 
@@ -295,17 +285,15 @@ CENTER
 
 }
 
-/****************************************
-PLAYLIST AREA
-****************************************/
+/********************************
+PLAYLIST
+********************************/
 
 .playlistArea{
 
     width:100%;
 
-    padding:
-
-    50px 20px 40px;
+    padding:50px 20px 40px;
 
     display:flex;
 
@@ -335,13 +323,9 @@ PLAYLIST AREA
     background:
 
     linear-gradient(
-
     90deg,
-
     rgba(0,0,0,.8),
-
     rgba(30,0,40,.3)
-
     );
 
     backdrop-filter:blur(8px);
@@ -349,7 +333,6 @@ PLAYLIST AREA
     transition:.3s;
 
     box-shadow:
-
     0 0 15px rgba(255,255,255,.05);
 
     cursor:pointer;
@@ -382,9 +365,9 @@ PLAYLIST AREA
 
 }
 
-/****************************************
+/********************************
 CYBER ALERT
-****************************************/
+********************************/
 
 #cyberAlert{
 
@@ -394,11 +377,9 @@ CYBER ALERT
 
     left:50%;
 
-    transform:
-    translateX(-50%);
+    transform:translateX(-50%);
 
-    padding:
-    18px 40px;
+    padding:18px 40px;
 
     background:
     rgba(0,0,0,.95);
@@ -411,12 +392,11 @@ CYBER ALERT
 
     letter-spacing:4px;
 
-    backdrop-filter:
-    blur(10px);
-
     z-index:9999;
 
     transition:.4s;
+
+    backdrop-filter:blur(10px);
 
 }
 
@@ -426,9 +406,9 @@ CYBER ALERT
 
 }
 
-/****************************************
-PREMIUM REQUIRED
-****************************************/
+/********************************
+PREMIUM ALERT
+********************************/
 
 #premiumAlert{
 
@@ -465,16 +445,14 @@ PREMIUM REQUIRED
 
     letter-spacing:10px;
 
+    animation:
+    premiumGlitch .3s infinite;
+
     text-shadow:
 
     0 0 20px red,
 
-    0 0 50px red,
-
-    0 0 100px red;
-
-    animation:
-    premiumGlitch .25s infinite;
+    0 0 50px red;
 
 }
 
@@ -493,40 +471,30 @@ PREMIUM REQUIRED
 @keyframes premiumGlitch{
 
     0%{
-        transform:
-        translateX(0);
+        transform:translateX(0);
     }
 
-    20%{
-        transform:
-        translateX(-5px);
+    25%{
+        transform:translateX(-5px);
     }
 
-    40%{
-        transform:
-        translateX(5px);
+    50%{
+        transform:translateX(5px);
     }
 
-    60%{
-        transform:
-        translateX(-3px);
-    }
-
-    80%{
-        transform:
-        translateX(4px);
+    75%{
+        transform:translateX(-3px);
     }
 
     100%{
-        transform:
-        translateX(0);
+        transform:translateX(0);
     }
 
 }
 
-/****************************************
+/********************************
 OVERLAY
-****************************************/
+********************************/
 
 #overlay{
 
@@ -537,8 +505,7 @@ OVERLAY
     background:
     rgba(0,0,0,.55);
 
-    backdrop-filter:
-    blur(4px);
+    backdrop-filter:blur(4px);
 
     opacity:0;
 
@@ -558,27 +525,24 @@ OVERLAY
 
 }
 
-/****************************************
+/********************************
 SIDEBAR
-****************************************/
+********************************/
 
 #sidebar{
 
     position:fixed;
 
     top:0;
-
     left:-55%;
 
     width:50%;
-
     height:100vh;
 
     background:
     rgba(0,0,0,.95);
 
-    backdrop-filter:
-    blur(15px);
+    backdrop-filter:blur(15px);
 
     border-right:
     1px solid cyan;
@@ -590,8 +554,9 @@ SIDEBAR
 
     transition:.4s;
 
-    display:flex;
+    padding:30px;
 
+    display:flex;
     flex-direction:column;
 
 }
@@ -599,18 +564,6 @@ SIDEBAR
 #sidebar.show{
 
     left:0;
-
-}
-
-/****************************************
-SIDEBAR HEADER
-****************************************/
-
-.sidebarTop{
-
-    padding:30px;
-
-    flex-shrink:0;
 
 }
 
@@ -624,6 +577,18 @@ SIDEBAR HEADER
 
     text-shadow:
     0 0 10px cyan;
+
+}
+
+.sideSubTitle{
+
+    color:cyan;
+
+    letter-spacing:4px;
+
+    font-size:13px;
+
+    margin-bottom:15px;
 
 }
 
@@ -660,21 +625,9 @@ SIDEBAR HEADER
 
 }
 
-/****************************************
-MY PLAYLIST
-****************************************/
-
-.sideSubTitle{
-
-    color:cyan;
-
-    font-size:13px;
-
-    letter-spacing:4px;
-
-    margin-bottom:15px;
-
-}
+/********************************
+PLAYLIST SCROLL
+********************************/
 
 #joinedPlaylist{
 
@@ -684,18 +637,19 @@ MY PLAYLIST
 
     padding-right:5px;
 
+    margin-bottom:20px;
+
 }
 
 #joinedPlaylist::-webkit-scrollbar{
 
-    width:5px;
+    width:4px;
 
 }
 
 #joinedPlaylist::-webkit-scrollbar-thumb{
 
-    background:
-    rgba(0,255,255,.4);
+    background:cyan;
 
 }
 
@@ -714,62 +668,36 @@ MY PLAYLIST
 
 }
 
-/****************************************
-SIDEBAR FOOTER
-****************************************/
+/********************************
+LOGOUT FIX BOTTOM
+********************************/
 
-.sidebarBottom{
+.logoutArea{
 
-    flex-shrink:0;
+    margin-top:auto;
 
-    padding:20px 30px;
-
-    border-top:
-    1px solid rgba(255,255,255,.1);
-
-    background:
-    rgba(0,0,0,.95);
+    padding-top:20px;
 
 }
 
-.logoutBtn{
-
-    color:#ff4444;
-
-    letter-spacing:4px;
-
-}
-
-.logoutBtn:hover{
-
-    color:red;
-
-    text-shadow:
-    0 0 10px red;
-
-}
-
-/****************************************
+/********************************
 PROFILE PANEL
-****************************************/
+********************************/
 
 #profilePanel{
 
     position:fixed;
 
     top:0;
-
     right:-55%;
 
     width:50%;
-
     height:100vh;
 
     background:
     rgba(0,0,0,.95);
 
-    backdrop-filter:
-    blur(15px);
+    backdrop-filter:blur(15px);
 
     border-left:
     1px solid magenta;
@@ -793,15 +721,15 @@ PROFILE PANEL
 
 }
 
-/****************************************
+/********************************
 PROFILE HEADER
-****************************************/
+********************************/
 
 .profileTop{
 
-    flex-shrink:0;
-
     padding:30px;
+
+    flex-shrink:0;
 
 }
 
@@ -809,14 +737,13 @@ PROFILE HEADER
 
     letter-spacing:8px;
 
-    margin-bottom:25px;
+    margin-bottom:30px;
 
 }
 
 .profilePhotoBox{
 
     width:120px;
-
     height:120px;
 
     margin:auto;
@@ -824,25 +751,17 @@ PROFILE HEADER
     padding:3px;
 
     background:
-
     linear-gradient(
-
     45deg,
-
     cyan,
-
     magenta,
-
-    gold
-
-    );
+    gold);
 
 }
 
 #profilePhoto{
 
     width:100%;
-
     height:100%;
 
     object-fit:cover;
@@ -866,9 +785,9 @@ PROFILE HEADER
     border:
     1px solid cyan;
 
-    letter-spacing:3px;
-
     cursor:pointer;
+
+    transition:.3s;
 
 }
 
@@ -879,11 +798,11 @@ PROFILE HEADER
 
 }
 
-/****************************************
+/********************************
 PROFILE SCROLL
-****************************************/
+********************************/
 
-.profileScroll{
+.profileContent{
 
     flex:1;
 
@@ -893,18 +812,21 @@ PROFILE SCROLL
 
 }
 
-.profileScroll::-webkit-scrollbar{
+.profileContent::-webkit-scrollbar{
 
     width:5px;
 
 }
 
-.profileScroll::-webkit-scrollbar-thumb{
+.profileContent::-webkit-scrollbar-thumb{
 
-    background:
-    rgba(255,0,255,.4);
+    background:cyan;
 
 }
+
+/********************************
+INPUT
+********************************/
 
 .profileLabel{
 
@@ -912,11 +834,11 @@ PROFILE SCROLL
 
     margin-bottom:10px;
 
-    color:#888;
+    letter-spacing:3px;
 
     font-size:12px;
 
-    letter-spacing:3px;
+    color:#888;
 
 }
 
@@ -929,10 +851,10 @@ PROFILE SCROLL
 
     background:black;
 
-    color:white;
-
     border:
     1px solid rgba(255,255,255,.15);
+
+    color:white;
 
     outline:none;
 
@@ -943,54 +865,51 @@ PROFILE SCROLL
 
     border-color:cyan;
 
-    box-shadow:
-    0 0 15px cyan;
-
 }
 
 .profileDivider{
+
+    margin:25px 0;
 
     height:1px;
 
     background:
     rgba(255,255,255,.1);
 
-    margin:25px 0;
-
 }
 
-/****************************************
-SPOTIFY TITLE
-****************************************/
+/********************************
+SPOTIFY SECTION
+********************************/
 
 .spotifyTitle{
 
-    letter-spacing:4px;
-
     margin-bottom:20px;
 
-    color:cyan;
+    letter-spacing:4px;
+
+    color:#aaa;
 
 }
 
-/****************************************
-CONNECT SPOTIFY
-****************************************/
+/********************************
+CONNECT BUTTON
+********************************/
 
-.spotifyConnect{
+#connectSpotify{
 
     width:100%;
 
-    padding:15px;
+    padding:16px;
 
     background:black;
 
     color:white;
 
     border:
-    1px solid #1DB954;
+    1px solid cyan;
 
-    letter-spacing:3px;
+    letter-spacing:4px;
 
     cursor:pointer;
 
@@ -998,16 +917,16 @@ CONNECT SPOTIFY
 
 }
 
-.spotifyConnect:hover{
+#connectSpotify:hover{
 
     box-shadow:
-    0 0 20px #1DB954;
+    0 0 20px cyan;
 
 }
 
-/****************************************
+/********************************
 SPOTIFY ACCOUNT
-****************************************/
+********************************/
 
 .spotifyAccount{
 
@@ -1015,14 +934,17 @@ SPOTIFY ACCOUNT
 
     align-items:center;
 
-    justify-content:space-between;
+    gap:15px;
 
     padding:15px;
+
+    margin-bottom:12px;
 
     border:
     1px solid rgba(255,255,255,.15);
 
-    margin-bottom:10px;
+    background:
+    rgba(0,0,0,.6);
 
     cursor:pointer;
 
@@ -1032,18 +954,41 @@ SPOTIFY ACCOUNT
 
 .spotifyAccount:hover{
 
-    border-color:#1DB954;
+    border-color:cyan;
 
 }
 
-.spotifyAccount.active{
+.spotifyAccount.primary{
 
-    border-color:#1DB954;
+    border-color:cyan;
 
     box-shadow:
-    0 0 15px #1DB954;
+    0 0 20px cyan;
 
 }
+
+/********************************
+SPOTIFY AVATAR
+********************************/
+
+.spotifyAvatar{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+    1px solid rgba(255,255,255,.15);
+
+}
+
+/********************************
+ACCOUNT INFO
+********************************/
 
 .spotifyInfo{
 
@@ -1051,23 +996,37 @@ SPOTIFY ACCOUNT
 
 }
 
-.spotifyInfo span{
+.spotifyName{
 
-    display:block;
+    font-size:15px;
 
-    color:#888;
-
-    margin-top:5px;
-
-    font-size:12px;
+    letter-spacing:2px;
 
 }
 
-.spotifyPrimary{
+.spotifyPlan{
+
+    margin-top:5px;
+
+    color:#888;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+}
+
+/********************************
+PRIMARY SPOTIFY LOGO
+********************************/
+
+.primaryLogo{
 
     width:30px;
 
     height:30px;
+
+    object-fit:contain;
 
     opacity:0;
 
@@ -1075,21 +1034,15 @@ SPOTIFY ACCOUNT
 
 }
 
-.spotifyAccount.active .spotifyPrimary{
+.spotifyAccount.primary .primaryLogo{
 
     opacity:1;
 
-    filter:
-
-    drop-shadow(
-        0 0 10px #1DB954
-    );
-
 }
 
-/****************************************
-ADD ACCOUNT
-****************************************/
+/********************************
+ADD ACCOUNT BUTTON
+********************************/
 
 #addSpotify{
 
@@ -1110,6 +1063,8 @@ ADD ACCOUNT
 
     cursor:pointer;
 
+    transition:.3s;
+
 }
 
 #addSpotify:hover{
@@ -1119,21 +1074,21 @@ ADD ACCOUNT
 
 }
 
-/****************************************
-PROFILE FOOTER
-****************************************/
+/********************************
+SAVE PROFILE FIX BOTTOM
+********************************/
 
 .profileBottom{
 
+    padding:25px 30px;
+
     flex-shrink:0;
-
-    padding:20px 30px 30px;
-
-    border-top:
-    1px solid rgba(255,255,255,.1);
 
     background:
     rgba(0,0,0,.95);
+
+    border-top:
+    1px solid rgba(255,255,255,.08);
 
 }
 
@@ -1154,6 +1109,8 @@ PROFILE FOOTER
 
     cursor:pointer;
 
+    transition:.3s;
+
 }
 
 #saveProfile:hover{
@@ -1162,3 +1119,124 @@ PROFILE FOOTER
     0 0 20px cyan;
 
 }
+
+/********************************
+CUSTOM SCROLL
+********************************/
+
+.profileContent::-webkit-scrollbar{
+
+    width:4px;
+
+}
+
+.profileContent::-webkit-scrollbar-thumb{
+
+    background:cyan;
+
+}
+
+#joinedPlaylist::-webkit-scrollbar{
+
+    width:4px;
+
+}
+
+#joinedPlaylist::-webkit-scrollbar-thumb{
+
+    background:cyan;
+
+}
+
+/********************************
+MOBILE
+********************************/
+
+@media(max-width:600px){
+
+    #sidebar{
+
+        width:55%;
+
+        left:-60%;
+
+    }
+
+    #profilePanel{
+
+        width:55%;
+
+        right:-60%;
+
+    }
+
+    #logo{
+
+        font-size:55px;
+
+        letter-spacing:10px;
+
+    }
+
+    .playlistCard{
+
+        font-size:20px;
+
+        letter-spacing:5px;
+
+        height:80px;
+
+    }
+
+    .quote{
+
+        font-size:16px;
+
+    }
+
+    #premiumAlert h1{
+
+        font-size:32px;
+
+        text-align:center;
+
+    }
+
+    #premiumAlert p{
+
+        font-size:14px;
+
+        text-align:center;
+
+        padding:20px;
+
+    }
+
+    .spotifyAvatar{
+
+        width:45px;
+        height:45px;
+
+    }
+
+    .primaryLogo{
+
+        width:24px;
+        height:24px;
+
+    }
+
+    .spotifyName{
+
+        font-size:13px;
+
+    }
+
+    .spotifyPlan{
+
+        font-size:11px;
+
+    }
+
+}
+
