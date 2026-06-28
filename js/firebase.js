@@ -62,6 +62,8 @@ export {
 
     db,
     ref,
-    set
+    set,
+    update,
+    get
 
 };
