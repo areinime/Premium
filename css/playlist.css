@@ -1,1 +1,1519 @@
+/********************************
+RESET
+********************************/
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+    overflow-x:hidden;
+    overflow-y:auto;
+    background:#000;
+    color:#fff;
+    font-family:monospace;
+    position:relative;
+    -webkit-overflow-scrolling:touch;
+}
+
+/********************************
+BACKGROUND
+********************************/
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    pointer-events:none;
+
+    background:
+    radial-gradient(
+    circle at 20% 20%,
+    rgba(0,255,255,.08),
+    transparent 40%),
+
+    radial-gradient(
+    circle at 80% 80%,
+    rgba(255,0,255,.08),
+    transparent 40%),
+
+    radial-gradient(
+    circle at 50% 50%,
+    rgba(255,215,0,.04),
+    transparent 50%);
+
+    animation:bgMove 15s infinite alternate;
+}
+
+@keyframes bgMove{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.1);
+    }
+
+}
+
+.grid{
+
+    position:fixed;
+    inset:0;
+
+    z-index:-2;
+
+    pointer-events:none;
+
+    background:
+
+    linear-gradient(
+    rgba(255,255,255,.03) 1px,
+    transparent 1px),
+
+    linear-gradient(
+    90deg,
+    rgba(255,255,255,.03) 1px,
+    transparent 1px);
+
+    background-size:50px 50px;
+
+    animation:gridMove 20s linear infinite;
+
+}
+
+@keyframes gridMove{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(50px);
+    }
+
+}
+
+.scanline{
+
+    position:fixed;
+    inset:0;
+
+    z-index:-1;
+
+    pointer-events:none;
+
+    background:
+
+    repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(255,255,255,.02) 4px);
+
+}
+
+/********************************
+CYBER ALERT
+********************************/
+
+#cyberAlert{
+
+    position:fixed;
+
+    top:-100px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    padding:18px 40px;
+
+    background:
+    rgba(0,0,0,.95);
+
+    border:
+    1px solid cyan;
+
+    box-shadow:
+    0 0 20px cyan;
+
+    letter-spacing:4px;
+
+    z-index:9999;
+
+    transition:.4s;
+
+    backdrop-filter:blur(10px);
+
+}
+
+#cyberAlert.show{
+
+    top:20px;
+
+}
+
+/********************************
+OVERLAY
+********************************/
+
+#overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.75);
+
+    backdrop-filter:blur(5px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:1000;
+
+}
+
+#overlay.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+/********************************
+POPUP
+********************************/
+
+#spotifyRequired,
+#joinListenerPopup,
+#addSongPopup,
+#replaceSongPopup,
+#adminSongPopup,
+#editSongPopup{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+    rgba(0,0,0,.9);
+
+    z-index:3000;
+
+}
+
+#spotifyRequired.show,
+#joinListenerPopup.show,
+#addSongPopup.show,
+#replaceSongPopup.show,
+#adminSongPopup.show,
+#editSongPopup.show{
+
+    display:flex;
+
+}
+
+.popupBox{
+
+    width:420px;
+
+    max-width:90%;
+
+    padding:35px;
+
+    background:
+    rgba(0,0,0,.95);
+
+    border:
+    1px solid cyan;
+
+    box-shadow:
+    0 0 40px cyan;
+
+    backdrop-filter:blur(15px);
+
+}
+
+.popupBox h1,
+.popupBox h2{
+
+    text-align:center;
+
+    letter-spacing:8px;
+
+    margin-bottom:30px;
+
+}
+
+.popupBox p{
+
+    color:#aaa;
+
+    text-align:center;
+
+    line-height:28px;
+
+    margin-bottom:30px;
+
+}
+
+.popupBox input{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    background:#000;
+
+    border:
+    1px solid rgba(255,255,255,.15);
+
+    color:#fff;
+
+    outline:none;
+
+}
+
+.popupBox input:focus{
+
+    border-color:cyan;
+
+}
+
+.popupBox button{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-top:10px;
+
+    background:#000;
+
+    color:#fff;
+
+    border:
+    1px solid cyan;
+
+    letter-spacing:4px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.popupBox button:hover{
+
+    box-shadow:
+    0 0 20px cyan;
+
+}
+
+/********************************
+TOP BAR
+********************************/
+
+.topBar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    right:0;
+
+    height:70px;
+
+    padding:0 25px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:
+    rgba(0,0,0,.95);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.08);
+
+    z-index:500;
+
+}
+
+.backBtn{
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    text-shadow:
+    0 0 10px cyan;
+
+}
+
+.playlistTag{
+
+    letter-spacing:6px;
+
+    color:cyan;
+
+}
+
+.memberCount{
+
+    color:#888;
+
+    font-size:13px;
+
+    letter-spacing:3px;
+
+}
+
+/********************************
+PLAYER HEADER
+********************************/
+
+.playerHeader{
+
+    margin-top:90px;
+
+    padding:30px;
+
+    display:flex;
+
+    gap:30px;
+
+    align-items:center;
+
+}
+
+.playlistCover{
+
+    width:170px;
+
+    height:170px;
+
+    padding:4px;
+
+    background:
+
+    linear-gradient(
+    45deg,
+    cyan,
+    magenta,
+    gold);
+
+}
+
+.playlistCover img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    background:#000;
+
+}
+
+.playlistInfo{
+
+    flex:1;
+
+}
+
+#playlistName{
+
+    font-size:42px;
+
+    letter-spacing:10px;
+
+    margin-bottom:20px;
+
+    text-shadow:
+    0 0 20px cyan;
+
+}
+
+#playlistDescription{
+
+    color:#888;
+
+    line-height:30px;
+
+    letter-spacing:2px;
+
+}
+
+/********************************
+PLAYER AREA
+********************************/
+
+.playerArea{
+
+    padding:0 30px 30px;
+
+}
+
+.playingLabel{
+
+    color:cyan;
+
+    letter-spacing:4px;
+
+    margin-bottom:15px;
+
+}
+
+.playingTrack{
+
+    font-size:22px;
+
+    letter-spacing:3px;
+
+    margin-bottom:25px;
+
+}
+
+.progressBar{
+
+    width:100%;
+
+    height:10px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+    margin-bottom:25px;
+
+}
+
+.progressFill{
+
+    width:0%;
+
+    height:100%;
+
+    background:cyan;
+
+    box-shadow:
+    0 0 20px cyan;
+
+}
+
+#checkinBtn{
+
+    width:100%;
+
+    padding:16px;
+
+    background:#000;
+
+    color:#fff;
+
+    border:
+    1px solid cyan;
+
+    letter-spacing:5px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#checkinBtn:hover{
+
+    box-shadow:
+    0 0 25px cyan;
+
+}
+
+/********************************
+FIX TABS
+********************************/
+
+.playlistTabs{
+
+    position:sticky;
+
+    top:70px;
+
+    z-index:400;
+
+    display:flex;
+
+    background:
+    rgba(0,0,0,.95);
+
+    backdrop-filter:blur(15px);
+
+    border-top:
+    1px solid rgba(255,255,255,.05);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.08);
+
+}
+
+.tab{
+
+    flex:1;
+
+    text-align:center;
+
+    padding:18px;
+
+    letter-spacing:4px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    color:#777;
+
+}
+
+.tab.active{
+
+    color:cyan;
+
+    box-shadow:
+    inset 0 -2px 0 cyan;
+
+}
+
+/********************************
+SCROLL CONTENT
+********************************/
+
+.playlistContent{
+
+    width:100%;
+
+    padding:25px 25px 140px;
+
+}
+
+/********************************
+TAB CONTENT
+********************************/
+
+.tabContent{
+
+    display:none;
+
+}
+
+.tabContent.active{
+
+    display:block;
+
+}
+
+/********************************
+SONG CARD
+********************************/
+
+.songCard{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    background:
+    linear-gradient(
+    90deg,
+    rgba(0,0,0,.9),
+    rgba(20,20,20,.7));
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+.songCard:hover{
+
+    border-color:cyan;
+
+    box-shadow:
+    0 0 20px rgba(0,255,255,.3);
+
+}
+
+.songCover{
+
+    width:70px;
+
+    height:70px;
+
+    object-fit:cover;
+
+    background:#111;
+
+}
+
+.songInfo{
+
+    flex:1;
+
+}
+
+.songTitle{
+
+    font-size:17px;
+
+    letter-spacing:2px;
+
+    margin-bottom:8px;
+
+}
+
+.songArtist{
+
+    color:#888;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+}
+
+.songPlaying{
+
+    color:cyan;
+
+    text-shadow:
+    0 0 10px cyan;
+
+    font-size:12px;
+
+    letter-spacing:3px;
+
+}
+
+/********************************
+ADMIN SONG EDIT
+********************************/
+
+.songEdit{
+
+    width:70px;
+
+    height:40px;
+
+    border:
+    1px solid cyan;
+
+    background:#000;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    letter-spacing:2px;
+
+}
+
+.songEdit:hover{
+
+    box-shadow:
+    0 0 15px cyan;
+
+}
+
+/********************************
+YOUR SONG
+********************************/
+
+.songLimit{
+
+    color:#666;
+
+    letter-spacing:3px;
+
+    margin-bottom:20px;
+
+    font-size:12px;
+
+}
+
+.memberSongCard{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    background:
+    rgba(0,0,0,.8);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+}
+
+.memberSongCard:hover{
+
+    border-color:cyan;
+
+}
+
+.memberSongInfo{
+
+    flex:1;
+
+}
+
+.memberSongTitle{
+
+    letter-spacing:2px;
+
+    margin-bottom:8px;
+
+}
+
+.memberSongArtist{
+
+    color:#888;
+
+    font-size:13px;
+
+}
+
+.replaceSong{
+
+    width:110px;
+
+    height:40px;
+
+    background:#000;
+
+    color:#fff;
+
+    border:
+    1px solid magenta;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+}
+
+.replaceSong:hover{
+
+    box-shadow:
+    0 0 15px magenta;
+
+}
+
+/********************************
+ADD SONG BUTTON
+********************************/
+
+#addMemberSong{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:25px;
+
+    background:#000;
+
+    color:#fff;
+
+    border:
+    1px solid cyan;
+
+    letter-spacing:4px;
+
+    cursor:pointer;
+
+}
+
+#addMemberSong:hover{
+
+    box-shadow:
+    0 0 20px cyan;
+
+}
+
+/********************************
+REQUEST
+********************************/
+
+.requestCard{
+
+    display:flex;
+
+    gap:20px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    background:
+    rgba(0,0,0,.8);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+}
+
+.requestCard:hover{
+
+    border-color:magenta;
+
+}
+
+.requestInfo{
+
+    flex:1;
+
+}
+
+.requestTitle{
+
+    font-size:16px;
+
+    margin-bottom:8px;
+
+    letter-spacing:2px;
+
+}
+
+.requestArtist{
+
+    color:#888;
+
+    margin-bottom:10px;
+
+    font-size:13px;
+
+}
+
+.requestUser{
+
+    color:cyan;
+
+    letter-spacing:2px;
+
+    font-size:12px;
+
+}
+
+.requestButton{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.requestButton button{
+
+    width:100px;
+
+    height:40px;
+
+    background:#000;
+
+    color:#fff;
+
+    border:
+    1px solid cyan;
+
+    cursor:pointer;
+
+}
+
+.requestButton button:hover{
+
+    box-shadow:
+    0 0 15px cyan;
+
+}
+
+/********************************
+ACTIVITY
+********************************/
+
+.activityCard{
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    background:
+    rgba(0,0,0,.8);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+}
+
+.activityCard:hover{
+
+    border-color:cyan;
+
+}
+
+.activityName{
+
+    font-size:20px;
+
+    letter-spacing:5px;
+
+    margin-bottom:15px;
+
+}
+
+.activityAccount{
+
+    color:#888;
+
+    margin-bottom:15px;
+
+    letter-spacing:2px;
+
+}
+
+/********************************
+MISSION NODE
+********************************/
+
+.weeklyProgress{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+    font-size:26px;
+
+}
+
+.missionOff{
+
+    color:#666;
+
+}
+
+.missionOn{
+
+    color:cyan;
+
+    text-shadow:
+    0 0 10px cyan,
+    0 0 20px cyan;
+
+}
+
+/********************************
+CORE DATA
+********************************/
+
+.dataProgress{
+
+    display:flex;
+
+    gap:15px;
+
+    font-size:30px;
+
+    color:cyan;
+
+    text-shadow:
+    0 0 15px cyan,
+    0 0 30px cyan;
+
+}
+
+/********************************
+ADMIN CONTROL
+********************************/
+
+.adminControl{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+.adminControl button{
+
+    width:40px;
+
+    height:40px;
+
+    background:#000;
+
+    border:
+    1px solid cyan;
+
+    color:#fff;
+
+    cursor:pointer;
+
+}
+
+.adminControl button:hover{
+
+    box-shadow:
+    0 0 15px cyan;
+
+}
+
+/********************************
+ADMIN ADD SONG BUTTON
+********************************/
+
+#adminAddSong{
+
+    position:fixed;
+
+    bottom:30px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    border:
+    1px solid cyan;
+
+    background:
+    rgba(0,0,0,.95);
+
+    color:cyan;
+
+    font-size:40px;
+
+    cursor:pointer;
+
+    z-index:800;
+
+    box-shadow:
+    0 0 20px rgba(0,255,255,.4);
+
+    transition:.3s;
+
+}
+
+#adminAddSong:hover{
+
+    transform:
+    translateX(-50%)
+    scale(1.1);
+
+    box-shadow:
+    0 0 30px cyan,
+    0 0 60px cyan;
+
+}
+
+/********************************
+LOADING SCREEN
+********************************/
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#000;
+
+    z-index:10000;
+
+}
+
+.loadingText{
+
+    font-size:28px;
+
+    letter-spacing:8px;
+
+    color:cyan;
+
+    text-shadow:
+    0 0 20px cyan,
+    0 0 50px cyan;
+
+    animation:
+    loadingPulse 1.5s infinite;
+
+}
+
+@keyframes loadingPulse{
+
+    0%{
+
+        opacity:.4;
+
+    }
+
+    50%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:.4;
+
+    }
+
+}
+
+/********************************
+ALERT BOX
+********************************/
+
+.alertBox{
+
+    padding:20px 40px;
+
+    border:
+    1px solid red;
+
+    background:
+    rgba(0,0,0,.95);
+
+    color:red;
+
+    letter-spacing:5px;
+
+    box-shadow:
+    0 0 30px red;
+
+}
+
+.alertBox.success{
+
+    border-color:cyan;
+
+    color:cyan;
+
+    box-shadow:
+    0 0 30px cyan;
+
+}
+
+/********************************
+WEEK ALERT
+********************************/
+
+#weekAlert,
+#weekSuccess{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+    rgba(0,0,0,.85);
+
+    z-index:9000;
+
+}
+
+#weekAlert.show,
+#weekSuccess.show{
+
+    display:flex;
+
+}
+
+/********************************
+SCROLLBAR
+********************************/
+
+::-webkit-scrollbar{
+
+    width:4px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#000;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:cyan;
+
+    box-shadow:
+    0 0 10px cyan;
+
+}
+
+/********************************
+POPUP ANIMATION
+********************************/
+
+.popupBox{
+
+    animation:
+    popupOpen .3s;
+
+}
+
+@keyframes popupOpen{
+
+    from{
+
+        transform:
+        scale(.8);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:
+        scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+/********************************
+BUTTON EFFECT
+********************************/
+
+button{
+
+    transition:.3s;
+
+}
+
+button:active{
+
+    transform:scale(.95);
+
+}
+
+/********************************
+MOBILE
+********************************/
+
+@media(max-width:700px){
+
+    .playerHeader{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        padding:20px;
+
+    }
+
+    .playlistCover{
+
+        width:150px;
+        height:150px;
+
+    }
+
+    #playlistName{
+
+        font-size:28px;
+
+        letter-spacing:5px;
+
+    }
+
+    #playlistDescription{
+
+        font-size:13px;
+
+        line-height:24px;
+
+    }
+
+    .playingTrack{
+
+        font-size:16px;
+
+        text-align:center;
+
+    }
+
+    .tab{
+
+        font-size:12px;
+
+        letter-spacing:2px;
+
+        padding:15px 5px;
+
+    }
+
+    .songCard,
+    .memberSongCard,
+    .requestCard{
+
+        gap:12px;
+
+        padding:15px;
+
+    }
+
+    .songCover{
+
+        width:60px;
+        height:60px;
+
+    }
+
+    .replaceSong{
+
+        width:85px;
+
+        font-size:11px;
+
+    }
+
+    .requestButton button{
+
+        width:80px;
+
+        font-size:11px;
+
+    }
+
+    .activityName{
+
+        font-size:16px;
+
+    }
+
+    .weeklyProgress{
+
+        font-size:22px;
+
+        gap:6px;
+
+    }
+
+    .dataProgress{
+
+        font-size:24px;
+
+    }
+
+    #adminAddSong{
+
+        width:60px;
+        height:60px;
+
+        font-size:34px;
+
+        bottom:20px;
+
+    }
+
+    .popupBox{
+
+        width:90%;
+
+        padding:25px;
+
+    }
+
+    .popupBox h1,
+    .popupBox h2{
+
+        font-size:22px;
+
+        letter-spacing:4px;
+
+    }
+
+    .loadingText{
+
+        font-size:20px;
+
+        text-align:center;
+
+        padding:20px;
+
+    }
+
+}
