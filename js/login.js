@@ -6,17 +6,26 @@ import {
 
     db,
     ref,
-    set
+    update,
+    get
 
 }
 
 from "./firebase.js";
+
+/********************************
+GOOGLE BUTTON
+********************************/
 
 const btn =
 
 document.getElementById(
     "googleBtn"
 );
+
+/********************************
+LOGIN GOOGLE
+********************************/
 
 btn.onclick =
 async ()=>{
@@ -26,20 +35,37 @@ async ()=>{
         const result =
 
         await signInWithPopup(
+
             auth,
             provider
+
         );
 
         const user =
         result.user;
 
-        await set(
+        /************************
+        USER REF
+        ************************/
 
-            ref(
-                db,
-                "users/" +
-                user.uid
-            ),
+        const userRef =
+
+        ref(
+
+            db,
+
+            "users/" +
+            user.uid
+
+        );
+
+        /************************
+        UPDATE USER
+        ************************/
+
+        await update(
+
+            userRef,
 
             {
 
@@ -61,6 +87,57 @@ async ()=>{
             }
 
         );
+
+        /************************
+        GET USER DATA
+        ************************/
+
+        const snapshot =
+
+        await get(
+            userRef
+        );
+
+        const data =
+
+        snapshot.val();
+
+        /************************
+        ADMIN CHECK
+        ************************/
+
+        if(
+
+            data &&
+            data.admin === true
+
+        ){
+
+            localStorage.setItem(
+
+                "premium_admin",
+
+                "true"
+
+            );
+
+        }
+
+        else{
+
+            localStorage.setItem(
+
+                "premium_admin",
+
+                "false"
+
+            );
+
+        }
+
+        /************************
+        SAVE USER
+        ************************/
 
         localStorage.setItem(
 
@@ -84,6 +161,34 @@ async ()=>{
 
         );
 
+        /************************
+        SAVE PHOTO
+        ************************/
+
+        localStorage.setItem(
+
+            "premium_photo",
+
+            user.photoURL
+
+        );
+
+        /************************
+        SAVE NAME
+        ************************/
+
+        localStorage.setItem(
+
+            "premium_name",
+
+            user.displayName
+
+        );
+
+        /************************
+        REDIRECT
+        ************************/
+
         location.href =
         "dashboard.html";
 
@@ -92,7 +197,9 @@ async ()=>{
     catch(error){
 
         alert(
+
             error.message
+
         );
 
     }
