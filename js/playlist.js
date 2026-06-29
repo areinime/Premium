@@ -1061,8 +1061,6 @@ setInterval(()=>{
 START SYSTEM
 ******************************************/
 
-if(!IS_ADMIN){
-
 window.onload = ()=>{
 
     if(IS_ADMIN){
@@ -1070,6 +1068,10 @@ window.onload = ()=>{
         joinPopup?.classList.remove(
         "show"
         );
+
+    }else{
+
+        checkJoinStatus();
 
     }
 
@@ -1096,5 +1098,3 @@ window.onload = ()=>{
     }
 
 };
-
-}
