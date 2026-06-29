@@ -27,50 +27,6 @@ true  = admin
 const IS_ADMIN =
 localStorage.getItem("is_admin") === "true";
 
-/************************************************
-ADMIN BYPASS
-************************************************/
-
-if(IS_ADMIN){
-
-    window.onload = ()=>{
-
-        const loading =
-        document.getElementById(
-        "loadingScreen"
-        );
-
-        if(loading){
-
-            loading.style.display =
-            "none";
-
-        }
-
-        const popup =
-        document.getElementById(
-        "joinListenerPopup"
-        );
-
-        if(popup){
-
-            popup.style.display =
-            "none";
-
-        }
-
-        if(addSongBtn){
-
-            addSongBtn.style.display =
-            "flex";
-
-        }
-
-        loadRequests();
-
-    };
-
-}
 
 /************************************************
 LIMIT
