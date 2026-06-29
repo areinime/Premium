@@ -988,19 +988,18 @@ function joinPlaylist(name){
 ADMIN CHECK
 ********************************/
 
-const isAdmin =
+const IS_ADMIN =
 localStorage.getItem(
 "is_admin"
-);
+) === "true";
 
-if(isAdmin === "true"){
+if(IS_ADMIN){
 
     console.log(
     "ADMIN MODE ENABLED"
     );
 
 }
-
 
 /********************************
 LOGOUT
