@@ -989,14 +989,11 @@ ADMIN CHECK
 ********************************/
 
 const isAdmin =
-
 localStorage.getItem(
-"premium_admin"
+"is_admin"
 );
 
-if(
-isAdmin === "true"
-){
+if(isAdmin === "true"){
 
     console.log(
     "ADMIN MODE ENABLED"
