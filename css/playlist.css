@@ -404,33 +404,26 @@ PLAYER HEADER
 
     margin-top:90px;
 
-    padding:30px;
+    padding:25px;
 
     display:flex;
 
-    gap:30px;
+    align-items:flex-start;
 
-    align-items:center;
+    gap:20px;
 
 }
 
 .playlistCover{
 
-    width:170px;
+    width:130px;
 
-    height:170px;
+    height:130px;
 
-    padding:4px;
+    flex-shrink:0;
 
-    background:
+    padding:3px;
 
-    linear-gradient(
-    45deg,
-    cyan,
-    magenta,
-    gold);
-
-}
 
 .playlistCover img{
 
@@ -448,28 +441,37 @@ PLAYER HEADER
 
     flex:1;
 
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
 }
 
 #playlistName{
 
-    font-size:42px;
+    font-size:28px;
 
-    letter-spacing:10px;
+    letter-spacing:4px;
 
-    margin-bottom:20px;
-
-    text-shadow:
-    0 0 20px cyan;
+    margin-bottom:10px;
 
 }
 
 #playlistDescription{
 
-    color:#888;
+    color:#999;
 
-    line-height:30px;
+    font-size:13px;
 
-    letter-spacing:2px;
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    position:relative;
+
+    animation:marquee 10s linear infinite;
 
 }
 
