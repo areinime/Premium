@@ -57,33 +57,6 @@ href="../css/playlist.css">
 <!-- SPOTIFY REQUIRED -->
 <!-- ===================================== -->
 
-<div id="spotifyRequired">
-
-    <div class="popupBox">
-
-        <h1>
-
-            CONNECT SPOTIFY
-
-        </h1>
-
-        <p>
-
-            Please connect your Spotify
-            account first.
-
-        </p>
-
-        <button id="connectSpotifyBtn">
-
-            CONNECT SPOTIFY
-
-        </button>
-
-    </div>
-
-</div>
-
 <!-- ===================================== -->
 <!-- JOIN LISTENER -->
 <!-- ===================================== -->
@@ -92,22 +65,27 @@ href="../css/playlist.css">
 
     <div class="popupBox">
 
-        <h1>
+        <h1 id="joinTitle">
 
-            JOIN AS LISTENER
+            CONNECT SPOTIFY
 
         </h1>
 
-        <p>
+        <p id="joinDescription">
 
-            Join this playlist to unlock
-            activity, rewards and songs.
+            Please connect Spotify.
 
         </p>
 
-        <button id="joinListenerBtn">
+        <button id="connectSpotify">
 
-            JOIN NOW
+            CONNECT
+
+        </button>
+
+        <button id="joinListener">
+
+            JOIN
 
         </button>
 
@@ -218,7 +196,7 @@ href="../css/playlist.css">
 
     <!-- MEMBER -->
 
-    <div class="tab active memberTab"
+    <div class="tab active commonTab"
     data-tab="songs">
 
         SONGS
@@ -232,7 +210,7 @@ href="../css/playlist.css">
 
     </div>
 
-    <div class="tab memberTab"
+    <div class="tab commonTab"
     data-tab="activity">
 
         ACTIVITY
