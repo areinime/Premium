@@ -1030,7 +1030,11 @@ window.onload = ()=>{
 
     loadMySongs();
 
+    if(IS_ADMIN){
+
     loadRequests();
+
+}
 
     loadPlayingNow();
 
