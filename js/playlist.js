@@ -430,7 +430,11 @@ if(IS_ADMIN){
 START
 ************************************************/
 
-checkJoinStatus();
+if(!IS_ADMIN){
+
+    checkJoinStatus();
+
+}
 
 /******************************************
 CHECKIN SYSTEM
@@ -1067,6 +1071,8 @@ setInterval(()=>{
 START SYSTEM
 ******************************************/
 
+if(!IS_ADMIN){
+
 window.onload = ()=>{
 
     if(IS_ADMIN){
@@ -1100,3 +1106,5 @@ window.onload = ()=>{
     }
 
 };
+
+}
