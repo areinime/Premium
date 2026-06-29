@@ -301,10 +301,6 @@ JOIN CHECK
 
 function checkJoinStatus(){
 
-    /************************
-    ADMIN BYPASS
-    ************************/
-
     if(IS_ADMIN){
 
         joinPopup.classList.remove(
@@ -313,10 +309,6 @@ function checkJoinStatus(){
 
         return;
     }
-
-    /************************
-    MEMBER CHECK
-    ************************/
 
     if(userSpotify.length === 0){
 
@@ -347,12 +339,6 @@ function checkJoinStatus(){
 
         return;
     }
-
-    joinPopup.classList.remove(
-    "show"
-    );
-
-}
 
     joinPopup.classList.remove(
     "show"
