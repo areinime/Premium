@@ -35,8 +35,9 @@ btn.addEventListener(
                 })
             );
 
-            alert(
-                "Login berhasil!"
+            localStorage.setItem(
+              "login_success",
+              "true"
             );
 
             location.href =
