@@ -428,7 +428,7 @@ CHECKIN SYSTEM
 
 function checkinToday(){
 
-    if(!mySpotifyAccount){
+    if(userSpotify.length === 0){
 
         showAlert(
         "CONNECT SPOTIFY FIRST"
@@ -437,7 +437,7 @@ function checkinToday(){
         return;
     }
 
-    if(!joinedListener){
+    if(!joinedPlaylist){
 
         showAlert(
         "JOIN AS LISTENER FIRST"
@@ -553,9 +553,13 @@ function updateMyStatus(){
 
         <div class="memberAccount">
 
-            ${mySpotifyAccount}
+    ${
+        userSpotify.length > 0
+        ? userSpotify[0].name
+        : "NO SPOTIFY"
+    }
 
-        </div>
+</div>
 
         <div class="memberDots">
 
