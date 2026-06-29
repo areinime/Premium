@@ -105,11 +105,16 @@ localStorage.getItem(
 ) || [];
 
 const joinedPlaylist =
-JSON.parse(
 localStorage.getItem(
 "joined_prime"
+) === "true";
+
+const premiumUser =
+JSON.parse(
+localStorage.getItem(
+"premium_user"
 )
-) || false;
+) || {};
 
 const mySongs =
 JSON.parse(
@@ -312,7 +317,7 @@ if(joinBtn){
 
         localStorage.setItem(
         "joined_prime",
-        true
+        "true"
         );
 
         showAlert(
@@ -365,16 +370,6 @@ if(IS_ADMIN){
         "none";
 
     }
-
-}
-
-/************************************************
-START
-************************************************/
-
-if(!IS_ADMIN){
-
-    checkJoinStatus();
 
 }
 
@@ -503,7 +498,7 @@ function updateMyStatus(){
 
         <div class="memberName">
 
-            ${displayName.value || "USER"}
+            ${premiumUser.name || "USER"}
 
         </div>
 
