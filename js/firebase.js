@@ -11,7 +11,9 @@ from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 import {
     getDatabase,
     ref,
-    set
+    set,
+    get,
+    child
 }
 from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
 
@@ -60,6 +62,8 @@ export {
 
     db,
     ref,
-    set
+    set,
+    get,
+    child
 
 };
