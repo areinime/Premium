@@ -1,7 +1,7 @@
 /************************************************
 PLAYLIST.JS
 PART 1
-CONFIG + ELEMENT + SIDEBAR + SPOTIFY LOGIN
+CONFIG + ELEMENT + SIDEBAR + BASIC UI
 ************************************************/
 
 
@@ -9,65 +9,22 @@ CONFIG + ELEMENT + SIDEBAR + SPOTIFY LOGIN
 CONFIG
 ************************************************/
 
-const CLIENT_ID = "";
-const CLIENT_SECRET = "";
-const REDIRECT_URI = "";
+const WORKER_URL = "";
+
+const PLAYLIST_ID = "";
+
+const PLAYLIST_NAME = "PRIME ZONE";
+
 
 /************************************************
 MODE
 ************************************************/
 
 const IS_ADMIN =
-localStorage.getItem("is_admin") === "true";
+localStorage.getItem(
+"is_admin"
+)==="true";
 
-/************************************************
-PLAYLIST
-************************************************/
-
-let PLAYLIST_ID = "";
-
-/************************************************
-ELEMENT
-************************************************/
-
-const overlay =
-document.getElementById("overlay");
-
-const sidebar =
-document.getElementById("sidebar");
-
-const menuBtn =
-document.getElementById("menuBtn");
-
-const spotifyButton =
-document.getElementById("spotifyButton");
-
-const cyberAlert =
-document.getElementById("cyberAlert");
-
-const joinPopup =
-document.getElementById("joinPopup");
-
-const connectSpotify =
-document.getElementById("connectSpotify");
-
-const joinListener =
-document.getElementById("joinListener");
-
-const playlistTitle =
-document.getElementById("playlistTitle");
-
-const playlistDescription =
-document.getElementById("playlistDescription");
-
-const playlistCover =
-document.getElementById("playlistCover");
-
-const playlistLink =
-document.getElementById("playlistLink");
-
-const joinedPlaylist =
-document.getElementById("joinedPlaylist");
 
 /************************************************
 LOCAL STORAGE
@@ -82,13 +39,136 @@ localStorage.getItem(
 
 )
 
-) || [];
+)||[];
 
-let joined =
+
+let joinedPlaylist =
+
+JSON.parse(
 
 localStorage.getItem(
-"joined_prime"
-) === "true";
+"joined_playlist"
+
+)
+
+)||[];
+
+
+/************************************************
+ELEMENT
+************************************************/
+
+/* Overlay */
+
+const overlay =
+document.getElementById(
+"overlay");
+
+
+/* Sidebar */
+
+const sidebar =
+document.getElementById(
+"sidebar");
+
+const menuBtn =
+document.getElementById(
+"menuBtn");
+
+const joinedPlaylistBox =
+document.getElementById(
+"joinedPlaylist");
+
+
+/* Alert */
+
+const cyberAlert =
+document.getElementById(
+"cyberAlert");
+
+
+/* Loading */
+
+const loadingScreen =
+document.getElementById(
+"loadingScreen");
+
+
+/* Spotify */
+
+const spotifyButton =
+document.getElementById(
+"spotifyButton");
+
+
+/* Join */
+
+const joinPopup =
+document.getElementById(
+"joinPopup");
+
+const connectSpotify =
+document.getElementById(
+"connectSpotify");
+
+const joinListener =
+document.getElementById(
+"joinListener");
+
+
+/* Header */
+
+const playlistCover =
+document.getElementById(
+"playlistCover");
+
+const playlistTitle =
+document.getElementById(
+"playlistTitle");
+
+const playlistDescription =
+document.getElementById(
+"playlistDescription");
+
+const playlistLink =
+document.getElementById(
+"playlistLink");
+
+
+/* Progress */
+
+const progressFill =
+document.getElementById(
+"progressFill");
+
+const progressValue =
+document.getElementById(
+"progressValue");
+
+const playedSong =
+document.getElementById(
+"playedSong");
+
+const totalSong =
+document.getElementById(
+"totalSong");
+
+const checkinBtn =
+document.getElementById(
+"checkinBtn");
+
+
+/* Tab */
+
+const tabs =
+document.querySelectorAll(
+".tab"
+);
+
+const tabContents =
+document.querySelectorAll(
+".tabContent");
+
 
 /************************************************
 CYBER ALERT
@@ -113,11 +193,31 @@ cyberAlert.classList.remove(
 
 }
 
+
+/************************************************
+LOADING
+************************************************/
+
+function showLoading(){
+
+loadingScreen.style.display=
+"flex";
+
+}
+
+function hideLoading(){
+
+loadingScreen.style.display=
+"none";
+
+}
+
+
 /************************************************
 SIDEBAR
 ************************************************/
 
-menuBtn.onclick = ()=>{
+menuBtn.onclick=()=>{
 
 sidebar.classList.add(
 "show"
@@ -129,7 +229,8 @@ overlay.classList.add(
 
 };
 
-overlay.onclick = ()=>{
+
+overlay.onclick=()=>{
 
 sidebar.classList.remove(
 "show"
@@ -140,6 +241,7 @@ overlay.classList.remove(
 );
 
 };
+
 
 document.addEventListener(
 
@@ -163,29 +265,20 @@ overlay.classList.remove(
 
 );
 
+
 /************************************************
 PLAYLIST SIDEBAR
 ************************************************/
 
 function renderJoinedPlaylist(){
 
-if(!joinedPlaylist) return;
+if(!joinedPlaylistBox) return;
 
-joinedPlaylist.innerHTML="";
+joinedPlaylistBox.innerHTML="";
 
-const list =
+if(joinedPlaylist.length===0){
 
-JSON.parse(
-
-localStorage.getItem(
-"joined_playlist"
-)
-
-)||[];
-
-if(list.length===0){
-
-joinedPlaylist.innerHTML=
+joinedPlaylistBox.innerHTML=
 
 `
 <div class="joinedItem">
@@ -199,7 +292,7 @@ return;
 
 }
 
-list.forEach(name=>{
+joinedPlaylist.forEach(name=>{
 
 const div=
 document.createElement("div");
@@ -210,13 +303,12 @@ div.className=
 div.innerText=
 name;
 
-joinedPlaylist.appendChild(div);
+joinedPlaylistBox.appendChild(div);
 
 });
 
 }
 
-renderJoinedPlaylist();
 
 /************************************************
 COMING SOON
@@ -246,6 +338,7 @@ showAlert(
 
 }
 
+
 /************************************************
 LOGOUT
 ************************************************/
@@ -254,12 +347,262 @@ function logout(){
 
 localStorage.clear();
 
-location.href="../index.html";
+location.href=
+"../index.html";
 
 }
 
+
 /************************************************
+SPOTIFY BUTTON
+************************************************/
+
+spotifyButton.onclick=()=>{
+
+/*
+
+PART 2
+
+Switch Account
+
+*/
+
+showAlert(
+
+"SPOTIFY"
+
+);
+
+};
+
+
+/************************************************
+TAB SYSTEM
+************************************************/
+
+tabs.forEach(tab=>{
+
+tab.onclick=()=>{
+
+tabs.forEach(x=>
+
+x.classList.remove(
+"active"
+)
+
+);
+
+tabContents.forEach(x=>
+
+x.classList.remove(
+"active"
+)
+
+);
+
+tab.classList.add(
+"active"
+);
+
+const page=
+
+document.getElementById(
+
+tab.dataset.tab+
+
+"Tab"
+
+);
+
+if(page){
+
+page.classList.add(
+"active"
+);
+
+}
+
+};
+
+});
+
+
+/************************************************
+INIT
+************************************************/
+
+window.onload=()=>{
+
+renderJoinedPlaylist();
+
+hideLoading();
+
+showAlert(
+
+PLAYLIST_NAME
+
+);
+
+};
+
+/************************************************
+PLAYLIST.JS
+PART 2
 SPOTIFY ACCOUNT
+JOIN SYSTEM
+WORKER CONNECT
+************************************************/
+
+
+/************************************************
+WORKER API
+************************************************/
+
+async function worker(path,data={}){
+
+try{
+
+const result=
+
+await fetch(
+
+WORKER_URL+path,
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":
+"application/json"
+
+},
+
+body:
+
+JSON.stringify(data)
+
+}
+
+);
+
+return await result.json();
+
+}
+
+catch(e){
+
+console.log(e);
+
+showAlert(
+"WORKER OFFLINE"
+);
+
+return null;
+
+}
+
+}
+
+
+/************************************************
+CONNECT SPOTIFY
+************************************************/
+
+connectSpotify.onclick=()=>{
+
+location.href=
+
+WORKER_URL+
+
+"/spotify/login";
+
+};
+
+
+/************************************************
+LOAD ACCOUNT
+************************************************/
+
+async function loadSpotifyAccount(){
+
+const token=
+
+localStorage.getItem(
+
+"spotify_token"
+
+);
+
+if(!token){
+
+spotifyButton.style.opacity=".4";
+
+return;
+
+}
+
+const account=
+
+await worker(
+
+"/spotify/account",
+
+{
+
+token:token
+
+}
+
+);
+
+if(!account) return;
+
+spotifyAccounts=
+
+account.accounts;
+
+localStorage.setItem(
+
+"spotify_accounts",
+
+JSON.stringify(
+
+spotifyAccounts
+
+)
+
+);
+
+renderSpotifyButton();
+
+}
+
+
+/************************************************
+PRIMARY ACCOUNT
+************************************************/
+
+function getPrimarySpotify(){
+
+if(
+
+spotifyAccounts.length===0
+
+)return null;
+
+return spotifyAccounts.find(
+
+x=>x.primary
+
+);
+
+}
+
+
+/************************************************
+RENDER BUTTON
 ************************************************/
 
 function renderSpotifyButton(){
@@ -279,6 +622,7 @@ return;
 spotifyButton.style.opacity="1";
 
 }
+
 
 /************************************************
 SWITCH ACCOUNT
@@ -318,38 +662,43 @@ return;
 
 }
 
-/*
-PART 2
+const names=
 
-ACCOUNT SWITCH POPUP
+spotifyAccounts.map(
 
-*/
+x=>x.name
 
-showAlert(
+).join("\n");
 
-"ACCOUNT LIST"
+const choose=
+
+prompt(
+
+"ACCOUNT\n\n"+names+
+
+"\n\nTYPE NAME"
 
 );
 
-};
+if(!choose) return;
 
-renderSpotifyButton();
+const found=
 
-/************************************************
-SPOTIFY LOGIN
-************************************************/
+spotifyAccounts.find(
 
-function spotifyLogin(){
+x=>
 
-if(
+x.name.toLowerCase()==
 
-CLIENT_ID===""
+choose.toLowerCase()
 
-){
+);
+
+if(!found){
 
 showAlert(
 
-"CLIENT ID EMPTY"
+"ACCOUNT NOT FOUND"
 
 );
 
@@ -357,29 +706,171 @@ return;
 
 }
 
-/*
+spotifyAccounts.forEach(
 
-OAuth Spotify
+x=>x.primary=false
 
-*/
+);
+
+found.primary=true;
+
+localStorage.setItem(
+
+"spotify_accounts",
+
+JSON.stringify(
+
+spotifyAccounts
+
+)
+
+);
+
+showAlert(
+
+found.name
+
+);
+
+};
+
+
+/************************************************
+JOIN STATUS
+************************************************/
+
+function checkJoinStatus(){
+
+if(IS_ADMIN){
+
+joinPopup.style.display=
+"none";
+
+return;
 
 }
 
-/************************************************
-CONNECT BUTTON
-************************************************/
+const account=
 
-connectSpotify.onclick=()=>{
+getPrimarySpotify();
 
-spotifyLogin();
+if(!account){
 
-};
+joinPopup.style.display=
+"flex";
+
+connectSpotify.style.display=
+"block";
+
+joinListener.style.display=
+"none";
+
+return;
+
+}
+
+const joined=
+
+localStorage.getItem(
+
+"joined_prime"
+
+)==="true";
+
+if(!joined){
+
+joinPopup.style.display=
+"flex";
+
+connectSpotify.style.display=
+"none";
+
+joinListener.style.display=
+"block";
+
+return;
+
+}
+
+joinPopup.style.display=
+"none";
+
+}
+
 
 /************************************************
 JOIN LISTENER
 ************************************************/
 
 joinListener.onclick=()=>{
+
+const account=
+
+getPrimarySpotify();
+
+if(!account){
+
+showAlert(
+
+"CONNECT FIRST"
+
+);
+
+return;
+
+}
+
+let memberList=
+
+JSON.parse(
+
+localStorage.getItem(
+
+"prime_member_list"
+
+)
+
+)||[];
+
+const exist=
+
+memberList.find(
+
+x=>x.name===account.name
+
+);
+
+if(!exist){
+
+memberList.push({
+
+uid:account.id,
+
+name:account.name,
+
+photo:account.photo,
+
+target:5,
+
+crystal:0,
+
+energy:0
+
+});
+
+localStorage.setItem(
+
+"prime_member_list",
+
+JSON.stringify(
+
+memberList
+
+)
+
+);
+
+}
 
 localStorage.setItem(
 
@@ -389,180 +880,411 @@ localStorage.setItem(
 
 );
 
+joinPopup.style.display=
+"none";
+
 showAlert(
 
 "JOIN SUCCESS"
 
 );
 
-setTimeout(()=>{
-
-location.reload();
-
-},1000);
-
 };
 
+
 /************************************************
-JOIN CHECK
+AUTO
 ************************************************/
 
-function checkJoinStatus(){
+loadSpotifyAccount();
 
-if(IS_ADMIN){
-
-joinPopup.classList.remove(
-"show"
-);
-
-return;
-
-}
-
-if(
-
-spotifyAccounts.length===0
-
-){
-
-joinPopup.classList.add(
-"show"
-);
-
-connectSpotify.style.display=
-"block";
-
-joinListener.style.display=
-"none";
-
-return;
-
-}
-
-if(
-
-joined===false
-
-){
-
-joinPopup.classList.add(
-"show"
-);
-
-connectSpotify.style.display=
-"none";
-
-joinListener.style.display=
-"block";
-
-return;
-
-}
-
-joinPopup.classList.remove(
-"show"
-);
-
-}
+renderSpotifyButton();
 
 checkJoinStatus();
 
 /************************************************
+PLAYLIST.JS
+PART 3
+PLAYLIST HEADER
 LOAD PLAYLIST
+ADMIN EDIT PLAYLIST
+************************************************/
+
+
+/************************************************
+PLAYLIST STORAGE
+************************************************/
+
+let playlistData =
+
+JSON.parse(
+
+localStorage.getItem(
+
+"prime_playlist"
+
+)
+
+)||{
+
+id:PLAYLIST_ID,
+
+title:"PRIME ZONE",
+
+description:"PRIME PLAYLIST",
+
+cover:"../img/default_cover.png",
+
+link:""
+
+};
+
+
+/************************************************
+RENDER HEADER
+************************************************/
+
+function renderPlaylistHeader(){
+
+playlistTitle.innerText=
+
+playlistData.title;
+
+playlistDescription.innerText=
+
+playlistData.description;
+
+playlistCover.src=
+
+playlistData.cover;
+
+playlistLink.href=
+
+playlistData.link;
+
+playlistLink.innerText=
+
+playlistData.link===""
+?
+
+"OPEN SPOTIFY PLAYLIST"
+
+:
+
+playlistData.link;
+
+}
+
+
+/************************************************
+LOAD PLAYLIST
+WORKER
 ************************************************/
 
 async function loadPlaylist(){
 
 if(
 
+playlistData.link===""
+
+&&
+
 PLAYLIST_ID===""
 
-)return;
+){
 
-/*
+renderPlaylistHeader();
 
-Spotify API
-
-GET PLAYLIST
-
-↓
-
-playlistTitle
-
-playlistDescription
-
-playlistCover
-
-playlistLink
-
-*/
+return;
 
 }
 
-/************************************************
-START
-************************************************/
+showLoading();
 
-window.onload=()=>{
+const data=
 
-renderSpotifyButton();
+await worker(
 
-renderJoinedPlaylist();
+"/spotify/playlist",
 
-checkJoinStatus();
+{
 
-loadPlaylist();
+playlist:
+
+playlistData.link===""
+?
+
+PLAYLIST_ID
+
+:
+
+playlistData.link
+
+}
+
+);
+
+hideLoading();
+
+if(!data){
+
+renderPlaylistHeader();
+
+return;
+
+}
+
+playlistData={
+
+id:data.id,
+
+title:data.title,
+
+description:
+
+data.description ||
+
+"NO DESCRIPTION",
+
+cover:
+
+data.cover ||
+
+"../img/default_cover.png",
+
+link:data.link
 
 };
 
+localStorage.setItem(
+
+"prime_playlist",
+
+JSON.stringify(
+
+playlistData
+
+)
+
+);
+
+renderPlaylistHeader();
+
+}
+
+
+/************************************************
+ADMIN ONLY
+************************************************/
+
+if(
+
+!IS_ADMIN
+
+){
+
+editPlaylistPopup.style.display=
+"none";
+
+}
+
+
+/************************************************
+OPEN EDIT
+************************************************/
+
+playlistHeader.onclick=()=>{
+
+if(
+
+!IS_ADMIN
+
+)return;
+
+playlistSpotifyLink.value=
+
+playlistData.link;
+
+editPlaylistPopup.style.display=
+"flex";
+
+};
+
+
+/************************************************
+CANCEL
+************************************************/
+
+cancelPlaylistEdit.onclick=()=>{
+
+editPlaylistPopup.style.display=
+"none";
+
+};
+
+
+/************************************************
+SAVE PLAYLIST
+************************************************/
+
+savePlaylistEdit.onclick=
+
+async()=>{
+
+const link=
+
+playlistSpotifyLink.value.trim();
+
+if(
+
+link===""
+
+){
+
+showAlert(
+
+"EMPTY LINK"
+
+);
+
+return;
+
+}
+
+showLoading();
+
+const data=
+
+await worker(
+
+"/spotify/playlist",
+
+{
+
+playlist:link
+
+}
+
+);
+
+hideLoading();
+
+if(!data){
+
+showAlert(
+
+"INVALID PLAYLIST"
+
+);
+
+return;
+
+}
+
+playlistData={
+
+id:data.id,
+
+title:data.title,
+
+description:
+
+data.description ||
+
+"NO DESCRIPTION",
+
+cover:
+
+data.cover ||
+
+"../img/default_cover.png",
+
+link:data.link
+
+};
+
+localStorage.setItem(
+
+"prime_playlist",
+
+JSON.stringify(
+
+playlistData
+
+)
+
+);
+
+renderPlaylistHeader();
+
+editPlaylistPopup.style.display=
+"none";
+
+showAlert(
+
+"PLAYLIST UPDATED"
+
+);
+
+};
+
+
+/************************************************
+AUTO
+************************************************/
+
+renderPlaylistHeader();
+
+loadPlaylist();
+
 /************************************************
 PLAYLIST.JS
-PART 2
-HEADER + TAB + SONG STORAGE
+PART 4
+SONG TAB
+LOAD SONG
+NOW PLAYING
+RECENT TRACK
+PROGRESS
 ************************************************/
+
 
 /************************************************
 ELEMENT
 ************************************************/
 
-const progressBar =
-document.getElementById("progressBar");
+const songList =
+document.getElementById(
+"songList"
+);
 
-const progressText =
-document.getElementById("progressText");
+const addSongBtn =
+document.getElementById(
+"addSongBtn"
+);
 
-const checkinButton =
-document.getElementById("checkinButton");
+const addSongPopup =
+document.getElementById(
+"addSongPopup"
+);
 
-const tabSong =
-document.getElementById("tabSong");
+const spotifyTrackLink =
+document.getElementById(
+"spotifyTrackLink"
+);
 
-const tabYourSong =
-document.getElementById("tabYourSong");
+const cancelAddSong =
+document.getElementById(
+"cancelAddSong"
+);
 
-const tabActivity =
-document.getElementById("tabActivity");
+const submitAddSong =
+document.getElementById(
+"submitAddSong"
+);
 
-const tabRequest =
-document.getElementById("tabRequest");
-
-const songPage =
-document.getElementById("songPage");
-
-const yourSongPage =
-document.getElementById("yourSongPage");
-
-const activityPage =
-document.getElementById("activityPage");
-
-const requestPage =
-document.getElementById("requestPage");
-
-const songContainer =
-document.getElementById("songContainer");
 
 /************************************************
-LOCAL STORAGE
+STORAGE
 ************************************************/
 
 let playlistSongs =
@@ -570,8 +1292,7 @@ let playlistSongs =
 JSON.parse(
 
 localStorage.getItem(
-"playlist_song_list"
-
+"prime_playlist_song"
 )
 
 )||[];
@@ -581,125 +1302,83 @@ let playHistory =
 JSON.parse(
 
 localStorage.getItem(
-"playlist_play_history"
-
+"prime_play_history"
 )
 
 )||[];
 
-/************************************************
-TAB SYSTEM
-************************************************/
-
-function closeAllTab(){
-
-songPage.style.display="none";
-
-yourSongPage.style.display="none";
-
-activityPage.style.display="none";
-
-if(requestPage){
-
-requestPage.style.display="none";
-
-}
-
-}
-
-function openSong(){
-
-closeAllTab();
-
-songPage.style.display="block";
-
-}
-
-function openYourSong(){
-
-closeAllTab();
-
-yourSongPage.style.display="block";
-
-}
-
-function openActivity(){
-
-closeAllTab();
-
-activityPage.style.display="block";
-
-}
-
-function openRequest(){
-
-if(!IS_ADMIN) return;
-
-closeAllTab();
-
-requestPage.style.display="block";
-
-}
-
-tabSong.onclick =
-openSong;
-
-tabYourSong.onclick =
-openYourSong;
-
-tabActivity.onclick =
-openActivity;
-
-if(tabRequest){
-
-tabRequest.onclick=
-openRequest;
-
-}
 
 /************************************************
-SONG STATUS
+SAVE
 ************************************************/
 
-function getSongStatus(id){
+function saveSongStorage(){
 
-const found =
+localStorage.setItem(
 
-playHistory.find(
+"prime_playlist_song",
 
-song=>song.id===id
+JSON.stringify(
+playlistSongs
+)
 
 );
 
-if(!found){
+}
 
-return false;
+function saveHistory(){
+
+localStorage.setItem(
+
+"prime_play_history",
+
+JSON.stringify(
+playHistory
+)
+
+);
 
 }
 
-return found.playing;
-
-}
 
 /************************************************
-CREATE SONG
+TRUE CHECK
 ************************************************/
 
-function renderSongs(){
+function isSongTrue(id){
 
-if(!songContainer) return;
+return playHistory.some(
 
-songContainer.innerHTML="";
+x=>
+
+x.id===id
+
+&&
+
+x.true===true
+
+);
+
+}
+
+
+/************************************************
+RENDER SONG
+************************************************/
+
+function renderSong(){
+
+songList.innerHTML="";
 
 playlistSongs.forEach(song=>{
 
 const green =
 
-getSongStatus(
+isSongTrue(
 song.id
 );
 
-songContainer.innerHTML+=
+songList.innerHTML+=
 
 `
 
@@ -713,19 +1392,23 @@ songContainer.innerHTML+=
 
 <div class="songInfo">
 
-<div class="songTitle ${green?"played":""}">
+<div class="songTitle
+
+${green?"played":""}">
 
 ${song.title}
 
 </div>
 
-<div class="songArtist ${green?"played":""}">
+<div class="songArtist
+
+${green?"played":""}">
 
 ${song.artist}
 
 </div>
 
-<div class="songDuration">
+<div class="songTime">
 
 ${song.duration}
 
@@ -734,7 +1417,9 @@ ${song.duration}
 </div>
 
 ${
-IS_ADMIN ?
+IS_ADMIN
+
+?
 
 `
 
@@ -762,109 +1447,26 @@ EDIT
 
 });
 
-}
-
-/************************************************
-ADD SONG
-************************************************/
-
-function addSong(data){
-
-playlistSongs.push({
-
-id:data.id,
-
-title:data.title,
-
-artist:data.artist,
-
-cover:data.cover,
-
-duration:data.duration,
-
-track:data.track
-
-});
-
-localStorage.setItem(
-
-"playlist_song_list",
-
-JSON.stringify(
-playlistSongs
-)
-
-);
-
-renderSongs();
+calculateProgress();
 
 }
 
-/************************************************
-EDIT SONG
-************************************************/
-
-function editSong(id){
-
-if(!IS_ADMIN) return;
-
-showAlert(
-
-"EDIT SONG"
-
-);
-
-/*
-
-PART 4
-
-*/
-
-}
-
-/************************************************
-DELETE SONG
-************************************************/
-
-function deleteSong(id){
-
-playlistSongs =
-
-playlistSongs.filter(
-
-song=>song.id!==id
-
-);
-
-localStorage.setItem(
-
-"playlist_song_list",
-
-JSON.stringify(
-playlistSongs
-)
-
-);
-
-renderSongs();
-
-}
 
 /************************************************
 PROGRESS
 ************************************************/
 
-function updateProgress(){
+function calculateProgress(){
 
 const total =
 
 playlistSongs.length;
 
-const valid =
+const done =
 
 playHistory.filter(
 
-song=>song.playing
+x=>x.true
 
 ).length;
 
@@ -876,362 +1478,202 @@ percent=
 
 Math.floor(
 
-(valid/total)*100
+(done/total)*100
 
 );
 
 }
 
-progressBar.style.width=
+progressFill.style.width=
 
 percent+"%";
 
-progressText.innerText=
+progressValue.innerText=
 
-valid+
+percent+"%";
 
-" / "+
+playedSong.innerText=
 
-total+
+done;
 
-" SONG";
+totalSong.innerText=
+
+total;
+
+checkinBtn.disabled=
+
+percent!==100;
 
 }
 
-/************************************************
-AUTO LOAD
-************************************************/
-
-renderSongs();
-
-updateProgress();
-
-openSong();
-
-/************************************************
-PLAYLIST.JS
-PART 3
-NOW PLAYING + RECENT TRACK + HISTORY
-************************************************/
-
-/************************************************
-SPOTIFY TOKEN
-************************************************/
-
-let accessToken =
-
-localStorage.getItem(
-"spotify_access_token"
-) || "";
 
 /************************************************
 NOW PLAYING
 ************************************************/
 
-let currentSongId = "";
+async function loadNowPlaying(){
 
-let currentPlaying = false;
+const token=
 
-/************************************************
-PLAY HISTORY
+localStorage.getItem(
+"spotify_token"
+);
 
-FORMAT
+if(!token) return;
+
+const data=
+
+await worker(
+
+"/spotify/nowplaying",
 
 {
-id,
-title,
-artist,
-cover,
-track,
-time,
-playing
+
+token:token
+
 }
 
-************************************************/
+);
 
-function saveHistory(song){
+if(!data) return;
 
-const index =
+const index=
 
-playHistory.findIndex(
+playlistSongs.findIndex(
 
-x=>x.id===song.id
+x=>x.id===data.id
 
 );
 
 if(index===-1){
 
-playHistory.push(song);
-
-}
-
-else{
-
-playHistory[index]=song;
-
-}
-
-localStorage.setItem(
-
-"playlist_play_history",
-
-JSON.stringify(
-playHistory
-)
-
-);
-
-}
-
-/************************************************
-SET SONG TRUE
-************************************************/
-
-function songTrue(song){
-
-saveHistory({
-
-id:song.id,
-
-title:song.title,
-
-artist:song.artist,
-
-cover:song.cover,
-
-track:song.track,
-
-time:new Date().toLocaleTimeString(),
-
-playing:true
-
-});
-
-renderSongs();
-
-updateProgress();
-
-}
-
-/************************************************
-SET SONG FALSE
-************************************************/
-
-function songFalse(id){
-
-const index=
-
-playHistory.findIndex(
-
-x=>x.id===id
-
-);
-
-if(index===-1) return;
-
-playHistory[index].playing=false;
-
-localStorage.setItem(
-
-"playlist_play_history",
-
-JSON.stringify(
-playHistory
-)
-
-);
-
-renderSongs();
-
-}
-
-/************************************************
-LOAD NOW PLAYING
-************************************************/
-
-async function loadNowPlaying(){
-
-if(accessToken==="") return;
-
-try{
-
-const result=
-
-await fetch(
-
-"https://api.spotify.com/v1/me/player/currently-playing",
-
-{
-
-headers:{
-
-Authorization:
-
-"Bearer "+accessToken
-
-}
-
-}
-
-);
-
-if(result.status===204){
-
-currentPlaying=false;
-
-if(currentSongId!==""){
-
-songFalse(currentSongId);
-
-}
+renderSong();
 
 return;
 
 }
 
-const data=
+/*
 
-await result.json();
+Kalau play
 
-if(!data.item) return;
+↓
 
-const track={
+Hijau
 
-id:data.item.id,
+Belum TRUE
 
-title:data.item.name,
+*/
 
-artist:data.item.artists[0].name,
+document.querySelectorAll(
 
-cover:data.item.album.images[0].url,
+".songTitle"
 
-track:data.item.external_urls.spotify
+)[index]
 
-};
+.classList.add(
 
-currentSongId=
+"played"
 
-track.id;
+);
 
-currentPlaying=
+document.querySelectorAll(
 
-data.is_playing;
+".songArtist"
 
-if(currentPlaying){
+)[index]
 
-songTrue(track);
+.classList.add(
 
-}
+"played"
 
-else{
-
-songFalse(track.id);
+);
 
 }
 
-}
-
-catch(e){
-
-console.log(e);
-
-}
-
-}
 
 /************************************************
-LOAD RECENT TRACK
-HANYA TRACK PALING ATAS
+RECENT TRACK
 ************************************************/
 
 async function loadRecentTrack(){
 
-if(accessToken==="") return;
+const token=
 
-try{
+localStorage.getItem(
+"spotify_token"
+);
 
-const result=
+if(!token) return;
 
-await fetch(
+const data=
 
-"https://api.spotify.com/v1/me/player/recently-played?limit=1",
+await worker(
+
+"/spotify/recent",
 
 {
 
-headers:{
-
-Authorization:
-
-"Bearer "+accessToken
-
-}
+token:token
 
 }
 
 );
 
-const data=
+if(!data) return;
 
-await result.json();
+const index=
 
-if(!data.items) return;
+playlistSongs.findIndex(
 
-if(data.items.length===0) return;
+x=>x.id===data.id
 
-const item=
+);
 
-data.items[0];
+if(index===-1) return;
 
-const track={
+const exist=
 
-id:item.track.id,
+playHistory.find(
 
-title:item.track.name,
+x=>x.id===data.id
 
-artist:item.track.artists[0].name,
+);
 
-cover:item.track.album.images[0].url,
+if(exist){
 
-track:item.track.external_urls.spotify,
+exist.true=true;
 
-time:item.played_at,
-
-playing:true
-
-};
-
-/*
-
-Kalau sudah masuk
-recent track,
-
-langsung dicatat.
-
-Tetap TRUE.
-
-*/
-
-saveHistory(track);
-
-renderSongs();
-
-updateProgress();
+exist.time=data.time;
 
 }
 
-catch(e){
+else{
 
-console.log(e);
+playHistory.push({
+
+id:data.id,
+
+time:data.time,
+
+true:true
+
+});
 
 }
 
+saveHistory();
+
+renderSong();
+
 }
+
 
 /************************************************
 SYNC
 ************************************************/
 
-async function spotifyWorker(){
+async function spotifySync(){
 
 await loadNowPlaying();
 
@@ -1239,512 +1681,263 @@ await loadRecentTrack();
 
 }
 
-/************************************************
-AUTO REFRESH
-************************************************/
-
-setInterval(()=>{
-
-spotifyWorker();
-
-},5000);
 
 /************************************************
-START
+ADMIN
+ADD SONG
 ************************************************/
 
-spotifyWorker();
+if(IS_ADMIN){
 
-/************************************************
-PLAYLIST.JS
-PART 4
-CHECKIN + PROGRESS + CRYSTAL + ENERGY
-************************************************/
+addSongBtn.style.display=
+"block";
 
-/************************************************
-ELEMENT
-************************************************/
+}else{
 
-const crystalBox =
-document.getElementById(
-"crystalBox"
-);
+addSongBtn.style.display=
+"none";
 
-const energyBox =
-document.getElementById(
-"energyBox"
-);
+}
 
-const progressFill =
-document.getElementById(
-"progressFill"
-);
+addSongBtn.onclick=()=>{
 
-const progressValue =
-document.getElementById(
-"progressValue"
-);
-
-const playedSong =
-document.getElementById(
-"playedSong"
-);
-
-const totalSong =
-document.getElementById(
-"totalSong"
-);
-
-/************************************************
-MEMBER DATA
-************************************************/
-
-let memberStatus =
-
-JSON.parse(
-
-localStorage.getItem(
-"prime_member_status"
-)
-
-)||{
-
-target:5,
-
-crystal:0,
-
-energy:0,
-
-checkinToday:0
+addSongPopup.style.display=
+"flex";
 
 };
 
-/************************************************
-PROGRESS
-************************************************/
+cancelAddSong.onclick=()=>{
 
-function calculateProgress(){
-
-const total =
-playlistSongs.length;
-
-let valid = 0;
-
-playHistory.forEach(song=>{
-
-if(song.playing){
-
-valid++;
-
-}
-
-});
-
-playedSong.innerText =
-valid;
-
-totalSong.innerText =
-total;
-
-let percent = 0;
-
-if(total>0){
-
-percent =
-
-Math.floor(
-
-(valid/total)*100
-
-);
-
-}
-
-progressFill.style.width =
-percent+"%";
-
-progressValue.innerText =
-percent+"%";
-
-if(percent===100){
-
-checkinButton.disabled =
-false;
-
-}
-
-else{
-
-checkinButton.disabled =
-true;
-
-}
-
-}
-
-/************************************************
-RENDER CRYSTAL
-************************************************/
-
-function renderCrystal(){
-
-crystalBox.innerHTML="";
-
-for(
-
-let i=0;
-
-i<memberStatus.target;
-
-i++
-
-){
-
-const div=
-
-document.createElement(
-"div"
-);
-
-div.className="crystal";
-
-if(
-
-i<memberStatus.crystal
-
-){
-
-div.classList.add(
-"active"
-);
-
-}
-
-crystalBox.appendChild(
-div
-);
-
-}
-
-}
-
-/************************************************
-RENDER ENERGY
-************************************************/
-
-function renderEnergy(){
-
-energyBox.innerHTML="";
-
-if(
-
-memberStatus.energy>=4
-
-){
-
-energyBox.innerHTML=
-
-`
-
-<div class="reachMax">
-
-REACH MAX
-
-</div>
-
-`;
-
-return;
-
-}
-
-for(
-
-let i=0;
-
-i<4;
-
-i++
-
-){
-
-const div=
-
-document.createElement(
-"div"
-);
-
-div.className=
-"energy";
-
-if(
-
-i<memberStatus.energy
-
-){
-
-div.classList.add(
-"active"
-);
-
-}
-
-energyBox.appendChild(
-div
-);
-
-}
-
-}
-
-/************************************************
-RESET PLAY HISTORY
-************************************************/
-
-function resetSongStatus(){
-
-playHistory.forEach(song=>{
-
-song.playing=false;
-
-});
-
-localStorage.setItem(
-
-"playlist_play_history",
-
-JSON.stringify(
-playHistory
-)
-
-);
-
-renderSongs();
-
-calculateProgress();
-
-}
-
-/************************************************
-CHECKIN
-************************************************/
-
-function checkin(){
-
-if(
-
-memberStatus.checkinToday>=2
-
-){
-
-showAlert(
-
-"CHECKIN LIMIT"
-
-);
-
-return;
-
-}
-
-const total =
-playlistSongs.length;
-
-const valid =
-
-playHistory.filter(
-
-song=>song.playing
-
-).length;
-
-if(
-
-valid<total
-
-){
-
-showAlert(
-
-"MISSION NOT COMPLETE"
-
-);
-
-return;
-
-}
-
-/*
-
-RESET
-
-*/
-
-resetSongStatus();
-
-memberStatus.crystal++;
-
-memberStatus.checkinToday++;
-
-if(
-
-memberStatus.crystal>=
-
-memberStatus.target
-
-){
-
-memberStatus.crystal=0;
-
-if(
-
-memberStatus.energy<4
-
-){
-
-memberStatus.energy++;
-
-}
-
-}
-
-localStorage.setItem(
-
-"prime_member_status",
-
-JSON.stringify(
-memberStatus
-)
-
-);
-
-renderCrystal();
-
-renderEnergy();
-
-showAlert(
-
-"CHECKIN SUCCESS"
-
-);
-
-}
-
-/************************************************
-BUTTON
-************************************************/
-
-checkinButton.onclick=()=>{
-
-checkin();
+addSongPopup.style.display=
+"none";
 
 };
 
-/************************************************
-RESET HARIAN
-************************************************/
+submitAddSong.onclick=
 
-function resetDaily(){
+async()=>{
 
-memberStatus.checkinToday=0;
+const link=
 
-localStorage.setItem(
+spotifyTrackLink.value.trim();
 
-"prime_member_status",
+if(link===""){
 
-JSON.stringify(
-memberStatus
-)
-
+showAlert(
+"EMPTY LINK"
 );
+
+return;
 
 }
 
+showLoading();
+
+const data=
+
+await worker(
+
+"/spotify/track",
+
+{
+
+track:link
+
+}
+
+);
+
+hideLoading();
+
+if(!data){
+
+showAlert(
+
+"INVALID TRACK"
+
+);
+
+return;
+
+}
+
+playlistSongs.push({
+
+id:data.id,
+
+cover:data.cover,
+
+title:data.title,
+
+artist:data.artist,
+
+duration:data.duration,
+
+link:data.link
+
+});
+
+saveSongStorage();
+
+spotifyTrackLink.value="";
+
+addSongPopup.style.display=
+"none";
+
+renderSong();
+
+showAlert(
+
+"SONG ADDED"
+
+);
+
+};
+
+
 /************************************************
-START
+AUTO
 ************************************************/
 
-renderCrystal();
+renderSong();
 
-renderEnergy();
+spotifySync();
 
-calculateProgress();
+setInterval(
+
+spotifySync,
+
+5000
+
+);
 
 /************************************************
 PLAYLIST.JS
 PART 5
-YOUR SONG + REQUEST SYSTEM
+YOUR SONG
+REQUEST SYSTEM
+MEMBER
 ************************************************/
+
 
 /************************************************
 ELEMENT
 ************************************************/
 
-const yourSongContainer =
+const mySongList =
 document.getElementById(
-"yourSongContainer"
+"mySongList"
 );
 
-const requestContainer =
+const addMySongBtn =
 document.getElementById(
-"requestContainer"
+"addMySongBtn"
 );
 
-const addYourSong =
+const replaceSongPopup =
 document.getElementById(
-"addYourSong");
+"replaceSongPopup"
+);
+
+const replaceTrackLink =
+document.getElementById(
+"replaceTrackLink"
+);
+
+const cancelReplaceSong =
+document.getElementById(
+"cancelReplaceSong"
+);
+
+const submitReplaceSong =
+document.getElementById(
+"submitReplaceSong"
+);
+
 
 /************************************************
 STORAGE
 ************************************************/
 
-let mySong =
+let mySongs =
 
 JSON.parse(
 
 localStorage.getItem(
 "prime_my_song"
-
 )
 
 )||[];
 
-let requestSong =
+let requestSongs =
 
 JSON.parse(
 
 localStorage.getItem(
-"prime_request"
-
+"prime_request_song"
 )
 
 )||[];
 
+let replaceIndex = -1;
+
+
 /************************************************
-RENDER MY SONG
+SAVE
+************************************************/
+
+function saveMySong(){
+
+localStorage.setItem(
+
+"prime_my_song",
+
+JSON.stringify(
+mySongs
+)
+
+);
+
+}
+
+function saveRequest(){
+
+localStorage.setItem(
+
+"prime_request_song",
+
+JSON.stringify(
+requestSongs
+)
+
+);
+
+}
+
+
+/************************************************
+RENDER
 ************************************************/
 
 function renderMySong(){
 
-if(!yourSongContainer) return;
+if(!mySongList) return;
 
-yourSongContainer.innerHTML="";
+mySongList.innerHTML="";
 
-mySong.forEach((song,index)=>{
+mySongs.forEach((song,index)=>{
 
-yourSongContainer.innerHTML+=
+mySongList.innerHTML+=
 
 `
 
-<div class="yourSongCard">
+<div class="mySongCard">
 
-<div class="songCover">
+<div class="mySongOld">
 
 <img src="${song.cover}">
 
-</div>
-
-<div class="songInfo">
+<div>
 
 <div class="songTitle">
 
@@ -1760,17 +1953,68 @@ ${song.artist}
 
 </div>
 
-<div class="songWaiting">
+<div class="waiting">
 
 WAITING
 
 </div>
 
+</div>
+
+<div class="changeIcon">
+
+⇅
+
+</div>
+
+${
+song.newSong
+
+?
+
+`
+
+<div class="mySongNew">
+
+<img src="${song.newSong.cover}">
+
+<div>
+
+<div class="songTitle">
+
+${song.newSong.title}
+
+</div>
+
+<div class="songArtist">
+
+${song.newSong.artist}
+
+</div>
+
+</div>
+
+<div class="waiting">
+
+WAITING
+
+</div>
+
+</div>
+
+`
+
+:
+
+""
+
+}
+
 <button
 
 class="replaceSong"
 
-onclick="replaceSong(${index})">
+onclick="openReplace(${index})">
 
 CHANGE
 
@@ -1784,21 +2028,22 @@ CHANGE
 
 }
 
+
 /************************************************
 ADD SONG
 ************************************************/
 
-function addMemberSong(){
+async function addMySong(){
 
 if(
 
-mySong.length>=8
+mySongs.length>=8
 
 ){
 
 showAlert(
 
-"MAX 8 SONG"
+"MAXIMUM 8 SONG"
 
 );
 
@@ -1810,75 +2055,77 @@ const link =
 
 prompt(
 
-"SPOTIFY TRACK LINK"
+"SPOTIFY TRACK URL"
 
 );
 
 if(!link) return;
 
-/*
+showLoading();
 
-PART 7
+const data=
 
-Spotify API
+await worker(
 
-↓
+"/spotify/track",
 
-cover
+{
 
-title
+track:link
 
-artist
-
-*/
-
-mySong.push({
-
-cover:"",
-
-title:"Loading",
-
-artist:"Loading",
-
-link:link
-
-});
-
-localStorage.setItem(
-
-"prime_my_song",
-
-JSON.stringify(
-mySong
-)
+}
 
 );
 
-requestSong.push({
+hideLoading();
+
+if(!data){
+
+showAlert(
+
+"INVALID TRACK"
+
+);
+
+return;
+
+}
+
+mySongs.push({
+
+cover:data.cover,
+
+title:data.title,
+
+artist:data.artist,
+
+track:data.id,
+
+link:data.link,
+
+newSong:null
+
+});
+
+saveMySong();
+
+requestSongs.push({
 
 member:
 
-spotifyAccounts[0]?.name ||
+getPrimarySpotify().name,
 
-"UNKNOWN",
+type:"add",
 
 oldSong:null,
 
-newSong:link,
+newSong:data,
 
 status:"waiting"
 
 });
 
-localStorage.setItem(
-
-"prime_request",
-
-JSON.stringify(
-requestSong
-)
-
-);
+saveRequest();
 
 renderMySong();
 
@@ -1890,51 +2137,155 @@ showAlert(
 
 }
 
+
 /************************************************
-CHANGE SONG
+BUTTON
 ************************************************/
 
-function replaceSong(index){
+if(
+
+!IS_ADMIN
+
+){
+
+addMySongBtn.onclick=()=>{
+
+addMySong();
+
+};
+
+}else{
+
+addMySongBtn.style.display=
+"none";
+
+}
+
+
+/************************************************
+OPEN REPLACE
+************************************************/
+
+function openReplace(index){
+
+replaceIndex=index;
+
+replaceSongPopup.style.display=
+"flex";
+
+replaceTrackLink.value="";
+
+}
+
+
+/************************************************
+CANCEL
+************************************************/
+
+cancelReplaceSong.onclick=()=>{
+
+replaceSongPopup.style.display=
+"none";
+
+};
+
+
+/************************************************
+SUBMIT
+************************************************/
+
+submitReplaceSong.onclick=
+
+async()=>{
 
 const link=
 
-prompt(
+replaceTrackLink.value.trim();
 
-"NEW TRACK"
+if(link===""){
+
+showAlert(
+
+"EMPTY LINK"
 
 );
 
-if(!link) return;
+return;
 
-requestSong.push({
+}
+
+showLoading();
+
+const data=
+
+await worker(
+
+"/spotify/track",
+
+{
+
+track:link
+
+}
+
+);
+
+hideLoading();
+
+if(!data){
+
+showAlert(
+
+"INVALID TRACK"
+
+);
+
+return;
+
+}
+
+mySongs[replaceIndex]
+
+.newSong={
+
+cover:data.cover,
+
+title:data.title,
+
+artist:data.artist,
+
+track:data.id,
+
+link:data.link
+
+};
+
+saveMySong();
+
+requestSongs.push({
 
 member:
 
-spotifyAccounts[0]?.name ||
+getPrimarySpotify().name,
 
-"UNKNOWN",
+type:"replace",
 
 oldSong:
 
-mySong[index],
+mySongs[replaceIndex],
 
-newSong:
-
-link,
+newSong:data,
 
 status:"waiting"
 
 });
 
-localStorage.setItem(
+saveRequest();
 
-"prime_request",
+replaceSongPopup.style.display=
+"none";
 
-JSON.stringify(
-requestSong
-)
-
-);
+renderMySong();
 
 showAlert(
 
@@ -1942,58 +2293,195 @@ showAlert(
 
 );
 
-}
-
-/************************************************
-BUTTON
-************************************************/
-
-if(addYourSong){
-
-addYourSong.onclick=()=>{
-
-addMemberSong();
-
 };
 
+
+/************************************************
+AUTO
+************************************************/
+
+renderMySong();
+
+/************************************************
+PLAYLIST.JS
+PART 6
+REQUEST TAB
+ADMIN
+ACTIVITY
+CRYSTAL
+ENERGY
+************************************************/
+
+
+/************************************************
+ELEMENT
+************************************************/
+
+const requestSongs =
+document.getElementById(
+"requestSongs"
+);
+
+const memberActivity =
+document.getElementById(
+"memberActivity"
+);
+
+
+/************************************************
+STORAGE
+************************************************/
+
+let memberList =
+
+JSON.parse(
+
+localStorage.getItem(
+"prime_member_list"
+
+)
+
+)||[];
+
+
+/************************************************
+SYNC MEMBER
+************************************************/
+
+function syncMember(){
+
+const account =
+getPrimarySpotify();
+
+if(!account) return;
+
+const exist =
+
+memberList.find(
+
+x=>x.name===account.name
+
+);
+
+if(exist) return;
+
+memberList.push({
+
+name:account.name,
+
+photo:account.photo,
+
+target:5,
+
+crystal:0,
+
+energy:0
+
+});
+
+localStorage.setItem(
+
+"prime_member_list",
+
+JSON.stringify(
+memberList
+)
+
+);
+
 }
+
 
 /************************************************
 REQUEST
-ADMIN
 ************************************************/
 
 function renderRequest(){
 
 if(
 
-!requestContainer
+!requestSongs
 
 )return;
 
-requestContainer.innerHTML="";
+requestSongs.innerHTML="";
 
-requestSong.forEach((item,index)=>{
+requestSongs.forEach(
 
-requestContainer.innerHTML+=
+(item,index)=>{
+
+requestSongs.innerHTML+=
 
 `
 
 <div class="requestCard">
 
-<div class="memberName">
+<div class="requestMember">
 
 ${item.member}
 
 </div>
 
-<div class="requestLink">
+${
+item.oldSong
 
-${item.newSong}
+?
+
+`
+
+<div class="requestOld">
+
+<img src="${item.oldSong.cover}">
+
+<div>
+
+${item.oldSong.title}
+
+<br>
+
+${item.oldSong.artist}
 
 </div>
 
-<div class="requestButton">
+</div>
+
+`
+
+:
+
+""
+
+}
+
+<div class="requestArrow">
+
+↓
+
+</div>
+
+<div class="requestNew">
+
+<img src="${item.newSong.cover}">
+
+<div>
+
+${item.newSong.title}
+
+<br>
+
+${item.newSong.artist}
+
+</div>
+
+</div>
+
+<div class="requestLink">
+
+${item.newSong.link}
+
+</div>
+
+<div class="requestAction">
 
 <button
 
@@ -2021,11 +2509,17 @@ REJECT
 
 }
 
+
 /************************************************
 ACCEPT
 ************************************************/
 
 function acceptRequest(index){
+
+requestSongs[index].status=
+"accepted";
+
+saveRequest();
 
 showAlert(
 
@@ -2037,15 +2531,12 @@ showAlert(
 
 PART 7
 
-langsung ganti
-
+langsung update
 playlist
-
-spotify
 
 */
 
-requestSong.splice(
+requestSongs.splice(
 
 index,
 
@@ -2053,19 +2544,12 @@ index,
 
 );
 
-localStorage.setItem(
-
-"prime_request",
-
-JSON.stringify(
-requestSong
-)
-
-);
+saveRequest();
 
 renderRequest();
 
 }
+
 
 /************************************************
 REJECT
@@ -2073,7 +2557,7 @@ REJECT
 
 function rejectRequest(index){
 
-requestSong.splice(
+requestSongs.splice(
 
 index,
 
@@ -2081,15 +2565,7 @@ index,
 
 );
 
-localStorage.setItem(
-
-"prime_request",
-
-JSON.stringify(
-requestSong
-)
-
-);
+saveRequest();
 
 renderRequest();
 
@@ -2101,115 +2577,16 @@ showAlert(
 
 }
 
-/************************************************
-AUTO
-************************************************/
-
-renderMySong();
-
-if(IS_ADMIN){
-
-renderRequest();
-
-}
 
 /************************************************
-PLAYLIST.JS
-PART 6
-ACTIVITY MEMBER + ADMIN EDIT
-************************************************/
-
-/************************************************
-ELEMENT
-************************************************/
-
-const activityContainer =
-document.getElementById(
-"activityContainer"
-);
-
-/************************************************
-STORAGE
-************************************************/
-
-let memberList =
-
-JSON.parse(
-
-localStorage.getItem(
-"prime_member_list"
-
-)
-
-)||[];
-
-/************************************************
-SYNC MEMBER
-************************************************/
-
-function syncMember(){
-
-if(
-
-spotifyAccounts.length===0
-
-)return;
-
-const primary=
-
-spotifyAccounts.find(
-
-x=>x.primary
-
-);
-
-if(!primary) return;
-
-const exist=
-
-memberList.find(
-
-x=>x.name===primary.name
-
-);
-
-if(exist) return;
-
-memberList.push({
-
-name:primary.name,
-
-photo:primary.photo,
-
-target:5,
-
-crystal:0,
-
-energy:0
-
-});
-
-localStorage.setItem(
-
-"prime_member_list",
-
-JSON.stringify(
-memberList
-)
-
-);
-
-}
-
-/************************************************
-RENDER
+ACTIVITY
 ************************************************/
 
 function renderActivity(){
 
-if(!activityContainer) return;
+if(!memberActivity) return;
 
-activityContainer.innerHTML="";
+memberActivity.innerHTML="";
 
 memberList.forEach(
 
@@ -2247,6 +2624,8 @@ i<member.crystal
 
 }">
 
+◇
+
 </div>
 
 `;
@@ -2254,28 +2633,6 @@ i<member.crystal
 }
 
 let energy="";
-
-if(
-
-member.energy>=4
-
-){
-
-energy=
-
-`
-
-<div class="reachMax">
-
-REACH MAX
-
-</div>
-
-`;
-
-}
-
-else{
 
 for(
 
@@ -2307,33 +2664,29 @@ i<member.energy
 
 }">
 
+▣
+
 </div>
 
 `;
 
 }
 
-}
-
-activityContainer.innerHTML+=
+memberActivity.innerHTML+=
 
 `
 
 <div class="memberCard">
 
-<div class="memberTop">
-
-<div class="memberAvatar">
+<div class="memberHead">
 
 <img src="${member.photo}">
 
-</div>
-
-<div class="memberName">
+<span>
 
 ${member.name}
 
-</div>
+</span>
 
 </div>
 
@@ -2356,9 +2709,11 @@ IS_ADMIN
 
 `
 
-<div class="adminEdit">
+<div class="adminControl">
 
 <div>
+
+Crystal
 
 <button
 
@@ -2380,6 +2735,8 @@ onclick="crystalMinus(${index})">
 
 <div>
 
+Energy
+
 <button
 
 onclick="energyPlus(${index})">
@@ -2399,6 +2756,8 @@ onclick="energyMinus(${index})">
 </div>
 
 <div>
+
+Target
 
 <button
 
@@ -2432,14 +2791,13 @@ onclick="targetMinus(${index})">
 
 `;
 
-}
-
-);
+});
 
 }
+
 
 /************************************************
-SAVE
+SAVE MEMBER
 ************************************************/
 
 function saveMember(){
@@ -2457,6 +2815,7 @@ memberList
 renderActivity();
 
 }
+
 
 /************************************************
 TARGET
@@ -2498,6 +2857,7 @@ saveMember();
 
 }
 
+
 /************************************************
 CRYSTAL
 ************************************************/
@@ -2524,97 +2884,24 @@ function crystalMinus(index){
 
 if(
 
-memberList[index].crystal<=0
+memberList[index].crystal>0
 
-)return;
+){
 
 memberList[index].crystal--;
+
+}
 
 saveMember();
 
 }
+
 
 /************************************************
 ENERGY
 ************************************************/
 
 function energyPlus(index){
-
-if(
-
-memberList[index].energy>=4
-
-)return;
-
-memberList[index].energy++;
-
-saveMember();
-
-}
-
-function energyMinus(index){
-
-if(
-
-memberList[index].energy<=0
-
-)return;
-
-memberList[index].energy--;
-
-saveMember();
-
-}
-
-/************************************************
-CHECKIN MEMBER
-************************************************/
-
-function memberCheckin(){
-
-if(
-
-spotifyAccounts.length===0
-
-)return;
-
-const primary=
-
-spotifyAccounts.find(
-
-x=>x.primary
-
-);
-
-if(!primary) return;
-
-const index=
-
-memberList.findIndex(
-
-x=>x.name===primary.name
-
-);
-
-if(index===-1) return;
-
-/*
-
-Crystal +
-
-*/
-
-memberList[index].crystal++;
-
-if(
-
-memberList[index].crystal>=
-
-memberList[index].target
-
-){
-
-memberList[index].crystal=0;
 
 if(
 
@@ -2626,17 +2913,1671 @@ memberList[index].energy++;
 
 }
 
+saveMember();
+
+}
+
+function energyMinus(index){
+
+if(
+
+memberList[index].energy>0
+
+){
+
+memberList[index].energy--;
+
 }
 
 saveMember();
 
 }
 
+
 /************************************************
-START
+AUTO
 ************************************************/
 
 syncMember();
 
 renderActivity();
 
+if(IS_ADMIN){
+
+renderRequest();
+
+}
+
+/************************************************
+PLAYLIST.JS
+PART 7
+SPOTIFY API
+NOW PLAYING
+RECENT TRACK
+CHECKIN
+PLAYLIST EDIT
+WORKER READY
+************************************************/
+
+
+/************************************************
+WORKER
+************************************************/
+
+/*
+Semua Spotify API
+menggunakan Worker.
+
+Tidak ada
+
+CLIENT ID
+
+CLIENT SECRET
+
+di file ini.
+
+Endpoint contoh
+
+/api/spotify
+
+*/
+
+const WORKER = "";
+
+
+/************************************************
+CALL WORKER
+************************************************/
+
+async function spotifyAPI(action,data={}){
+
+const result =
+
+await fetch(
+
+WORKER,
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":
+
+"application/json"
+
+},
+
+body:JSON.stringify({
+
+action,
+
+data
+
+})
+
+}
+
+);
+
+return await result.json();
+
+}
+
+
+/************************************************
+LOAD PLAYLIST
+************************************************/
+
+async function loadPlaylist(){
+
+if(!PLAYLIST_ID) return;
+
+const playlist =
+
+await spotifyAPI(
+
+"playlist",
+
+{
+
+playlist:PLAYLIST_ID
+
+}
+
+);
+
+if(!playlist.success) return;
+
+playlistCover.src =
+playlist.cover;
+
+playlistTitle.innerText =
+playlist.title;
+
+playlistDescription.innerText =
+playlist.description;
+
+playlistLink.href =
+playlist.link;
+
+playlistSongs =
+playlist.tracks;
+
+saveSong();
+
+renderSong();
+
+calculateProgress();
+
+}
+
+
+/************************************************
+NOW PLAYING
+************************************************/
+
+async function loadNowPlaying(){
+
+const account =
+getPrimarySpotify();
+
+if(!account) return;
+
+const data =
+
+await spotifyAPI(
+
+"nowPlaying",
+
+{
+
+spotifyId:
+account.id
+
+}
+
+);
+
+if(!data.success) return;
+
+if(!data.playing){
+
+if(currentSongId){
+
+songFalse(
+currentSongId
+);
+
+}
+
+return;
+
+}
+
+currentSongId=
+data.track.id;
+
+songPlaying(
+
+data.track.id
+
+);
+
+}
+
+
+/************************************************
+RECENT TRACK
+************************************************/
+
+async function loadRecentTrack(){
+
+const account =
+getPrimarySpotify();
+
+if(!account) return;
+
+const data =
+
+await spotifyAPI(
+
+"recentTrack",
+
+{
+
+spotifyId:
+account.id
+
+}
+
+);
+
+if(!data.success) return;
+
+if(!data.track) return;
+
+/*
+
+Recent
+langsung TRUE
+
+*/
+
+songTrue(
+
+data.track
+
+);
+
+}
+
+
+/************************************************
+CHECKIN
+************************************************/
+
+function checkinMission(){
+
+const total =
+playlistSongs.length;
+
+const valid =
+
+playHistory.filter(
+
+x=>x.playing
+
+).length;
+
+if(valid<total){
+
+showAlert(
+
+"MISSION NOT COMPLETE"
+
+);
+
+return;
+
+}
+
+/*
+
+reset song
+
+*/
+
+playHistory.forEach(
+
+song=>{
+
+song.playing=false;
+
+}
+
+);
+
+saveHistory();
+
+renderSong();
+
+calculateProgress();
+
+/*
+
+crystal
+
+*/
+
+const account=
+getPrimarySpotify();
+
+if(account){
+
+const member=
+
+memberList.find(
+
+x=>x.name===account.name
+
+);
+
+if(member){
+
+member.crystal++;
+
+if(
+
+member.crystal>=
+
+member.target
+
+){
+
+member.crystal=0;
+
+if(
+
+member.energy<4
+
+){
+
+member.energy++;
+
+}
+
+}
+
+saveMember();
+
+}
+
+}
+
+showAlert(
+
+"CHECK IN SUCCESS"
+
+);
+
+}
+
+
+/************************************************
+BUTTON
+************************************************/
+
+checkinBtn.onclick=()=>{
+
+checkinMission();
+
+};
+
+
+/************************************************
+PLAYLIST EDIT
+ADMIN
+************************************************/
+
+async function savePlaylistURL(){
+
+if(!IS_ADMIN) return;
+
+const url =
+
+playlistSpotifyLink.value;
+
+const result =
+
+await spotifyAPI(
+
+"changePlaylist",
+
+{
+
+url
+
+}
+
+);
+
+if(!result.success){
+
+showAlert(
+
+"INVALID PLAYLIST"
+
+);
+
+return;
+
+}
+
+PLAYLIST_ID=
+result.playlistId;
+
+loadPlaylist();
+
+showAlert(
+
+"PLAYLIST UPDATED"
+
+);
+
+}
+
+
+/************************************************
+AUTO SYNC
+************************************************/
+
+setInterval(()=>{
+
+loadNowPlaying();
+
+loadRecentTrack();
+
+},5000);
+
+
+/************************************************
+START
+************************************************/
+
+window.onload=()=>{
+
+renderSpotifyButton();
+
+renderJoinedPlaylist();
+
+syncMember();
+
+renderActivity();
+
+renderSong();
+
+renderMySong();
+
+calculateProgress();
+
+checkJoinStatus();
+
+loadPlaylist();
+
+loadNowPlaying();
+
+loadRecentTrack();
+
+};
+
+/************************************************
+PLAYLIST.JS
+PART 8
+REQUEST SYSTEM + ADMIN ACCEPT / REJECT
+************************************************/
+
+/************************************************
+REQUEST STORAGE
+************************************************/
+
+let requestQueue =
+
+JSON.parse(
+
+localStorage.getItem(
+"prime_request_queue"
+
+)
+
+)||[];
+
+/************************************************
+RENDER REQUEST
+************************************************/
+
+function renderRequest(){
+
+if(!IS_ADMIN) return;
+
+if(!requestSongs) return;
+
+requestSongs.innerHTML="";
+
+if(requestQueue.length===0){
+
+requestSongs.innerHTML=
+
+`
+<div class="emptyRequest">
+
+NO REQUEST
+
+</div>
+`;
+
+return;
+
+}
+
+requestQueue.forEach((item,index)=>{
+
+requestSongs.innerHTML+=
+
+`
+
+<div class="requestCard">
+
+<div class="requestMember">
+
+${item.member}
+
+</div>
+
+<div class="requestOld">
+
+${
+
+item.oldSong ?
+
+item.oldSong.title :
+
+"NEW SONG"
+
+}
+
+</div>
+
+<div class="requestArrow">
+
+↓
+
+</div>
+
+<div class="requestNew">
+
+${item.newSong.title}
+
+</div>
+
+<div class="requestArtist">
+
+${item.newSong.artist}
+
+</div>
+
+<div class="requestLink">
+
+<a
+href="${item.newSong.track}"
+target="_blank">
+
+OPEN TRACK
+
+</a>
+
+</div>
+
+<div class="requestButtonArea">
+
+<button
+onclick="acceptRequest(${index})">
+
+ACCEPT
+
+</button>
+
+<button
+onclick="rejectRequest(${index})">
+
+REJECT
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+/************************************************
+SAVE REQUEST
+************************************************/
+
+function saveRequest(){
+
+localStorage.setItem(
+
+"prime_request_queue",
+
+JSON.stringify(
+requestQueue
+)
+
+);
+
+renderRequest();
+
+}
+
+/************************************************
+ADD REQUEST
+************************************************/
+
+function addRequest(data){
+
+requestQueue.push(data);
+
+saveRequest();
+
+}
+
+/************************************************
+ACCEPT
+************************************************/
+
+function acceptRequest(index){
+
+const req=
+
+requestQueue[index];
+
+if(!req) return;
+
+/*
+
+REPLACE SONG
+
+*/
+
+if(req.type==="replace"){
+
+let mySong=
+
+JSON.parse(
+
+localStorage.getItem(
+"prime_my_song"
+)
+
+)||[];
+
+mySong[req.songIndex]=
+
+req.newSong;
+
+localStorage.setItem(
+
+"prime_my_song",
+
+JSON.stringify(
+mySong
+)
+
+);
+
+}
+
+/*
+
+ADD SONG
+
+*/
+
+if(req.type==="add"){
+
+let mySong=
+
+JSON.parse(
+
+localStorage.getItem(
+"prime_my_song"
+)
+
+)||[];
+
+mySong.push(
+
+req.newSong
+
+);
+
+localStorage.setItem(
+
+"prime_my_song",
+
+JSON.stringify(
+mySong
+)
+
+);
+
+}
+
+requestQueue.splice(
+
+index,
+
+1
+
+);
+
+saveRequest();
+
+showAlert(
+
+"REQUEST ACCEPTED"
+
+);
+
+}
+
+/************************************************
+REJECT
+************************************************/
+
+function rejectRequest(index){
+
+requestQueue.splice(
+
+index,
+
+1
+
+);
+
+saveRequest();
+
+showAlert(
+
+"REQUEST REJECTED"
+
+);
+
+}
+
+/************************************************
+AUTO
+************************************************/
+
+if(IS_ADMIN){
+
+renderRequest();
+
+}
+
+/************************************************
+PLAYLIST.JS
+PART 9
+ACTIVITY
+CRYSTAL
+ENERGY
+CHECKIN
+************************************************/
+
+
+/************************************************
+ELEMENT
+************************************************/
+
+const memberActivity =
+document.getElementById(
+"memberActivity"
+);
+
+
+/************************************************
+MEMBER STORAGE
+************************************************/
+
+let memberList =
+
+JSON.parse(
+
+localStorage.getItem(
+"prime_member_list"
+
+)
+
+)||[];
+
+
+/************************************************
+SAVE MEMBER
+************************************************/
+
+function saveMember(){
+
+localStorage.setItem(
+
+"prime_member_list",
+
+JSON.stringify(
+memberList
+)
+
+);
+
+renderActivity();
+
+}
+
+
+/************************************************
+SYNC MEMBER
+************************************************/
+
+function syncMember(){
+
+const account =
+getPrimarySpotify();
+
+if(!account) return;
+
+const exist =
+
+memberList.find(
+
+x=>x.uid===account.id
+
+);
+
+if(exist) return;
+
+memberList.push({
+
+uid:account.id,
+
+name:account.name,
+
+photo:account.photo,
+
+targetCrystal:5,
+
+crystal:0,
+
+energy:0
+
+});
+
+saveMember();
+
+}
+
+
+/************************************************
+CHECKIN REWARD
+************************************************/
+
+function rewardCheckin(){
+
+const account =
+getPrimarySpotify();
+
+if(!account) return;
+
+const member =
+
+memberList.find(
+
+x=>x.uid===account.id
+
+);
+
+if(!member) return;
+
+member.crystal++;
+
+if(
+
+member.crystal>=
+
+member.targetCrystal
+
+){
+
+member.crystal=0;
+
+if(
+
+member.energy<4
+
+){
+
+member.energy++;
+
+}
+
+}
+
+saveMember();
+
+}
+
+
+/************************************************
+RENDER
+************************************************/
+
+function renderActivity(){
+
+if(!memberActivity) return;
+
+memberActivity.innerHTML="";
+
+memberList.forEach(
+
+(member,index)=>{
+
+let crystalHTML="";
+
+for(
+
+let i=0;
+
+i<member.targetCrystal;
+
+i++
+
+){
+
+crystalHTML+=
+
+`
+
+<div class="crystal
+
+${
+
+i<member.crystal
+
+?
+
+"active"
+
+:
+
+""
+
+}">
+
+◇
+
+</div>
+
+`;
+
+}
+
+let energyHTML="";
+
+for(
+
+let i=0;
+
+i<4;
+
+i++
+
+){
+
+energyHTML+=
+
+`
+
+<div class="energy
+
+${
+
+i<member.energy
+
+?
+
+"active"
+
+:
+
+""
+
+}">
+
+▣
+
+</div>
+
+`;
+
+}
+
+memberActivity.innerHTML+=
+
+`
+
+<div class="memberCard">
+
+<div class="memberHeader">
+
+<img
+
+src="${member.photo}"
+
+class="memberPhoto">
+
+<div class="memberName">
+
+${member.name}
+
+</div>
+
+</div>
+
+<div class="memberCrystal">
+
+${crystalHTML}
+
+</div>
+
+<div class="memberEnergy">
+
+${energyHTML}
+
+</div>
+
+${
+IS_ADMIN
+
+?
+
+`
+
+<div class="adminPanel">
+
+<div>
+
+CRYSTAL
+
+<button
+
+onclick="crystalPlus(${index})">
+
++
+
+</button>
+
+<button
+
+onclick="crystalMinus(${index})">
+
+-
+
+</button>
+
+</div>
+
+<div>
+
+TARGET
+
+<button
+
+onclick="targetPlus(${index})">
+
++
+
+</button>
+
+<button
+
+onclick="targetMinus(${index})">
+
+-
+
+</button>
+
+</div>
+
+<div>
+
+ENERGY
+
+<button
+
+onclick="energyPlus(${index})">
+
++
+
+</button>
+
+<button
+
+onclick="energyMinus(${index})">
+
+-
+
+</button>
+
+</div>
+
+</div>
+
+`
+
+:
+
+""
+
+}
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/************************************************
+CRYSTAL
+************************************************/
+
+function crystalPlus(index){
+
+const member=
+
+memberList[index];
+
+if(
+
+member.crystal<
+
+member.targetCrystal
+
+){
+
+member.crystal++;
+
+}
+
+saveMember();
+
+}
+
+function crystalMinus(index){
+
+const member=
+
+memberList[index];
+
+if(
+
+member.crystal>0
+
+){
+
+member.crystal--;
+
+}
+
+saveMember();
+
+}
+
+
+/************************************************
+TARGET
+************************************************/
+
+function targetPlus(index){
+
+memberList[index]
+
+.targetCrystal++;
+
+saveMember();
+
+}
+
+function targetMinus(index){
+
+const member=
+
+memberList[index];
+
+if(
+
+member.targetCrystal<=1
+
+)return;
+
+member.targetCrystal--;
+
+if(
+
+member.crystal>
+
+member.targetCrystal
+
+){
+
+member.crystal=
+
+member.targetCrystal;
+
+}
+
+saveMember();
+
+}
+
+
+/************************************************
+ENERGY
+************************************************/
+
+function energyPlus(index){
+
+if(
+
+memberList[index]
+
+.energy<4
+
+){
+
+memberList[index]
+
+.energy++;
+
+}
+
+saveMember();
+
+}
+
+function energyMinus(index){
+
+if(
+
+memberList[index]
+
+.energy>0
+
+){
+
+memberList[index]
+
+.energy--;
+
+}
+
+saveMember();
+
+}
+
+
+/************************************************
+AUTO
+************************************************/
+
+syncMember();
+
+renderActivity();
+
+/************************************************
+PLAYLIST.JS
+PART 10
+FINAL
+HELPER
+EDIT SONG
+WINDOW LOAD
+************************************************/
+
+
+/************************************************
+LOADING
+************************************************/
+
+function showLoading(){
+
+loadingScreen.style.display="flex";
+
+}
+
+function hideLoading(){
+
+loadingScreen.style.display="none";
+
+}
+
+
+/************************************************
+EDIT SONG
+ADMIN
+************************************************/
+
+let editSongId = "";
+
+function editSong(id){
+
+if(!IS_ADMIN) return;
+
+editSongId=id;
+
+addSongPopup.style.display="flex";
+
+spotifyTrackLink.value="";
+
+submitAddSong.innerText="SAVE";
+
+}
+
+submitAddSong.onclick=
+
+async()=>{
+
+const link=
+
+spotifyTrackLink.value.trim();
+
+if(link===""){
+
+showAlert(
+
+"EMPTY LINK"
+
+);
+
+return;
+
+}
+
+showLoading();
+
+const data=
+
+await spotifyAPI(
+
+"track",
+
+{
+
+url:link
+
+}
+
+);
+
+hideLoading();
+
+if(!data.success){
+
+showAlert(
+
+"INVALID TRACK"
+
+);
+
+return;
+
+}
+
+/*
+
+EDIT
+
+*/
+
+if(editSongId!==""){
+
+const index=
+
+playlistSongs.findIndex(
+
+x=>x.id===editSongId
+
+);
+
+if(index!==-1){
+
+playlistSongs[index]={
+
+id:data.id,
+
+cover:data.cover,
+
+title:data.title,
+
+artist:data.artist,
+
+duration:data.duration,
+
+track:data.track
+
+};
+
+saveSongStorage();
+
+renderSong();
+
+showAlert(
+
+"SONG UPDATED"
+
+);
+
+}
+
+editSongId="";
+
+submitAddSong.innerText="ADD";
+
+spotifyTrackLink.value="";
+
+addSongPopup.style.display="none";
+
+return;
+
+}
+
+/*
+
+ADD
+
+*/
+
+playlistSongs.push({
+
+id:data.id,
+
+cover:data.cover,
+
+title:data.title,
+
+artist:data.artist,
+
+duration:data.duration,
+
+track:data.track
+
+});
+
+saveSongStorage();
+
+renderSong();
+
+showAlert(
+
+"SONG ADDED"
+
+);
+
+spotifyTrackLink.value="";
+
+addSongPopup.style.display="none";
+
+};
+
+
+/************************************************
+ACCEPT REQUEST
+UPDATE MEMBER SONG
+************************************************/
+
+function replaceMemberSong(req){
+
+let memberSong=
+
+JSON.parse(
+
+localStorage.getItem(
+"prime_my_song"
+
+)
+
+)||[];
+
+if(req.type==="replace"){
+
+memberSong[req.songIndex]=
+
+req.newSong;
+
+}
+
+if(req.type==="add"){
+
+memberSong.push(
+
+req.newSong
+
+);
+
+}
+
+localStorage.setItem(
+
+"prime_my_song",
+
+JSON.stringify(
+memberSong
+)
+
+);
+
+}
+
+
+/************************************************
+CHECKIN
+************************************************/
+
+checkinBtn.onclick=()=>{
+
+checkinMission();
+
+rewardCheckin();
+
+renderActivity();
+
+};
+
+
+/************************************************
+AUTO SYNC
+************************************************/
+
+setInterval(()=>{
+
+loadNowPlaying();
+
+loadRecentTrack();
+
+},5000);
+
+
+/************************************************
+WINDOW LOAD
+************************************************/
+
+window.onload=()=>{
+
+showLoading();
+
+/*
+
+HEADER
+
+*/
+
+renderPlaylistHeader();
+
+loadPlaylist();
+
+/*
+
+SIDEBAR
+
+*/
+
+renderJoinedPlaylist();
+
+/*
+
+SPOTIFY
+
+*/
+
+renderSpotifyButton();
+
+checkJoinStatus();
+
+/*
+
+SONG
+
+*/
+
+renderSong();
+
+/*
+
+YOUR SONG
+
+*/
+
+renderMySong();
+
+/*
+
+REQUEST
+
+*/
+
+if(IS_ADMIN){
+
+renderRequest();
+
+}
+
+/*
+
+ACTIVITY
+
+*/
+
+syncMember();
+
+renderActivity();
+
+/*
+
+PROGRESS
+
+*/
+
+calculateProgress();
+
+/*
+
+SPOTIFY
+
+*/
+
+loadNowPlaying();
+
+loadRecentTrack();
+
+hideLoading();
+
+};
+
+
+/************************************************
+END OF PLAYLIST.JS
+************************************************/
