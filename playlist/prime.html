@@ -1,209 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- ===================================================== -->
+<!-- HEAD -->
+<!-- ===================================================== -->
 <head>
 
-    <!-- ===================================== -->
-    <!-- META -->
-    <!-- ===================================== -->
+<meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
 
-    <meta name="viewport"
-    content="width=device-width,initial-scale=1.0">
+<title>PRIME ZONE</title>
 
-    <title>
-
-        PRIME ZONE
-
-    </title>
-
-    <!-- ===================================== -->
-    <!-- CSS -->
-    <!-- ===================================== -->
-
-    <link rel="stylesheet"
-    href="../css/playlist.css">
+<link rel="stylesheet"
+href="../css/prime.css">
 
 </head>
 
 <body>
 
-<!-- ===================================== -->
-<!-- BACKGROUND -->
-<!-- ===================================== -->
+<!-- ===================================================== -->
+<!-- BACKGROUND EFFECT -->
+<!-- ===================================================== -->
 
 <div class="background"></div>
 <div class="grid"></div>
 <div class="scanline"></div>
 
-<!-- ===================================== -->
-<!-- CYBER ALERT -->
-<!-- ===================================== -->
-
-<div id="cyberAlert">
-
-    CHECKIN SUCCESS
-
-</div>
-
-<!-- ===================================== -->
+<!-- ===================================================== -->
 <!-- OVERLAY -->
-<!-- ===================================== -->
+<!-- ===================================================== -->
 
 <div id="overlay"></div>
 
-<!-- ===================================== -->
-<!-- SIDEBAR DASHBOARD -->
-<!-- ===================================== -->
+<!-- ===================================================== -->
+<!-- CYBER ALERT -->
+<!-- ===================================================== -->
+
+<div id="cyberAlert">
+
+PROFILE SAVED
+
+</div>
+
+<!-- ===================================================== -->
+<!-- ADMIN MODE -->
+<!-- ===================================================== -->
+
+<!--
+JS ONLY
+
+const IS_ADMIN =
+localStorage.getItem("is_admin") === "true";
+
+Tidak perlu HTML tambahan.
+-->
+
+<!-- ===================================================== -->
+<!-- SIDEBAR -->
+<!-- ===================================================== -->
 
 <div id="sidebar">
 
-    <div class="sideTitle">
+    <!-- ===================== -->
+    <!-- FIX TOP -->
+    <!-- ===================== -->
 
-        PREMIUM
+    <div class="sidebarTop">
 
-    </div>
+        <div class="sideTitle">
 
-    <div class="sideItem"
-    onclick="location.href='../dashboard.html'">
-
-        DASHBOARD
-
-    </div>
-
-    <div class="sideItem"
-    onclick="location.href='../dashboard.html'">
-
-        PROFILE
-
-    </div>
-
-    <div class="sideItem"
-    onclick="logout()">
-
-        LOGOUT
-
-    </div>
-
-</div>
-
-<!-- ===================================== -->
-<!-- JOIN / CONNECT -->
-<!-- ===================================== -->
-
-<div id="joinListenerPopup">
-
-    <div class="popupBox">
-
-        <h1 id="joinTitle">
-
-            CONNECT SPOTIFY
-
-        </h1>
-
-        <p id="joinDescription">
-
-            Please connect Spotify.
-
-        </p>
-
-        <button id="connectSpotify">
-
-            CONNECT SPOTIFY
-
-        </button>
-
-        <button id="joinListener">
-
-            JOIN LISTENER
-
-        </button>
-
-    </div>
-
-</div>
-
-<!-- ===================================== -->
-<!-- TOP BAR DASHBOARD -->
-<!-- ===================================== -->
-
-<div class="topBar">
-
-    <div id="menuBtn">
-
-        ☰
-
-    </div>
-
-    <div class="profileBox">
-
-        <img id="avatar"
-        src="">
-
-    </div>
-
-</div>
-
-<!-- ===================================== -->
-<!-- PLAYER PANEL -->
-<!-- ===================================== -->
-
-<div class="playerPanel">
-
-    <!-- COVER -->
-
-    <div class="playlistCoverBox">
-
-        <img id="playlistCover"
-        src="">
-
-    </div>
-
-    <!-- RIGHT -->
-
-    <div class="playlistDetail">
-
-        <h1 id="playlistName">
-
-            PRIME ZONE
-
-        </h1>
-
-        <div class="descriptionWrapper">
-
-            <div id="playlistDescription">
-
-                Premium exclusive playlist.
-
-            </div>
+            PREMIUM
 
         </div>
 
-        <a id="playlistLink"
-        target="_blank">
+        <div
+        class="sideItem"
+        onclick="myArtist()">
 
-            OPEN SPOTIFY PLAYLIST
+            MY ARTIST
 
-        </a>
+        </div>
 
-        <!-- MEMBER ONLY -->
+        <div
+        class="sideItem"
+        onclick="myPopularity()">
 
-        <div id="memberPanel">
+            MY POPULARITY
 
-            <div class="memberProgress">
+        </div>
 
-                <div class="progressFill">
+        <div
+        class="sideItem"
+        onclick="mySong()">
+
+            MY SONG
+
+        </div>
+
+        <div class="sideLine"></div>
+
+    </div>
+
+    <!-- ===================== -->
+    <!-- SCROLL PLAYLIST -->
+    <!-- ===================== -->
+
+    <div class="sidebarPlaylist">
+
+        <div class="sideSubTitle">
+
+            MY PLAYLIST
+
+        </div>
+
+        <div class="playlistScroll">
+
+            <div id="joinedPlaylist">
+
+                <div class="joinedItem">
+
+                    NO PLAYLIST JOINED
 
                 </div>
 
             </div>
 
-            <button id="checkinBtn">
+        </div>
 
-                CHECK IN
+    </div>
 
-            </button>
+    <!-- ===================== -->
+    <!-- FIX BOTTOM -->
+    <!-- ===================== -->
+
+    <div class="sidebarBottom">
+
+        <div class="sideLine"></div>
+
+        <div
+        class="sideItem logoutBtn"
+        onclick="logout()">
+
+            LOGOUT
 
         </div>
 
@@ -211,794 +151,6 @@
 
 </div>
 
-<!-- ===================================== -->
-<!-- PLAYING NOW -->
-<!-- ===================================== -->
-
-<div class="nowPlayingBox">
-
-    <div class="playingLabel">
-
-        NOW PLAYING
-
-    </div>
-
-    <div class="playingTrack">
-
-        Waiting for Spotify...
-
-    </div>
-
-</div>
-
-<!-- ===================================== -->
-<!-- TABS -->
-<!-- ===================================== -->
-
-<div class="playlistTabs">
-
-    <!-- COMMON -->
-
-    <div class="tab active"
-    data-tab="songs">
-
-        SONG
-
-    </div>
-
-    <!-- MEMBER -->
-
-    <div class="tab memberTab"
-    data-tab="yoursong">
-
-        YOUR SONG
-
-    </div>
-
-    <!-- COMMON -->
-
-    <div class="tab"
-    data-tab="activity">
-
-        ACTIVITY
-
-    </div>
-
-    <!-- ADMIN -->
-
-    <div class="tab adminTab"
-    data-tab="request">
-
-        REQUEST
-
-    </div>
-
-</div>
-
-<!-- ===================================== -->
-<!-- CONTENT -->
-<!-- ===================================== -->
-
-<div class="playlistContent">
-
-    <!-- ===================================== -->
-    <!-- SONG TAB -->
-    <!-- ===================================== -->
-
-    <div class="tabContent active"
-    id="songsTab">
-
-        <div id="playlistSongs">
-
-        </div>
-
-        <button id="adminAddSong">
-
-            +
-
-        </button>
-
-    </div>
-
-    <!-- ===================================== -->
-    <!-- YOUR SONG -->
-    <!-- ===================================== -->
-
-    <div class="tabContent"
-    id="yourSongTab">
-
-        <button id="addMemberSong">
-
-            + ADD SONG
-
-        </button>
-
-        <div class="songLimit">
-
-            MAXIMUM 8 SONGS
-
-        </div>
-
-        <div id="memberSongs">
-
-        </div>
-
-    </div>
-
-    <!-- ===================================== -->
-    <!-- ACTIVITY -->
-    <!-- ===================================== -->
-
-    <div class="tabContent"
-    id="activityTab">
-
-        <div id="memberActivity">
-
-        </div>
-
-    </div>
-
-    <!-- ===================================== -->
-    <!-- REQUEST -->
-    <!-- ===================================== -->
-
-    <div class="tabContent"
-    id="requestTab">
-
-        <div id="requestList">
-
-        </div>
-
-    </div>
-
-        <!-- ===================================== -->
-    <!-- ADD SONG POPUP -->
-    <!-- ===================================== -->
-
-    <div id="addSongPopup">
-
-        <div class="popupBox">
-
-            <h2>
-
-                ADD SONG
-
-            </h2>
-
-            <input
-            id="songLink"
-            placeholder="Spotify Track Link">
-
-            <button id="submitSong">
-
-                SEND
-
-            </button>
-
-            <button class="closePopup">
-
-                CLOSE
-
-            </button>
-
-        </div>
-
-    </div>
-
-    <!-- ===================================== -->
-    <!-- REPLACE SONG POPUP -->
-    <!-- ===================================== -->
-
-    <div id="replaceSongPopup">
-
-        <div class="popupBox">
-
-            <h2>
-
-                REPLACE SONG
-
-            </h2>
-
-            <input
-            id="replaceLink"
-            placeholder="Spotify Track Link">
-
-            <button id="sendReplace">
-
-                SEND REQUEST
-
-            </button>
-
-            <button class="closePopup">
-
-                CLOSE
-
-            </button>
-
-        </div>
-
-    </div>
-
-    <!-- ===================================== -->
-    <!-- ADMIN ADD SONG -->
-    <!-- ===================================== -->
-
-    <div id="adminSongPopup">
-
-        <div class="popupBox">
-
-            <h2>
-
-                ADD PLAYLIST SONG
-
-            </h2>
-
-            <input
-            id="adminTrackLink"
-            placeholder="Spotify Track Link">
-
-            <button id="adminAddTrack">
-
-                ADD SONG
-
-            </button>
-
-            <button class="closePopup">
-
-                CLOSE
-
-            </button>
-
-        </div>
-
-    </div>
-
-    <!-- ===================================== -->
-    <!-- ADMIN EDIT SONG -->
-    <!-- ===================================== -->
-
-    <div id="editSongPopup">
-
-        <div class="popupBox">
-
-            <h2>
-
-                EDIT SONG
-
-            </h2>
-
-            <input
-            id="editTrackLink"
-            placeholder="Spotify Track Link">
-
-            <button id="saveEditSong">
-
-                SAVE
-
-            </button>
-
-            <button id="deleteSong">
-
-                DELETE
-
-            </button>
-
-            <button class="closePopup">
-
-                CLOSE
-
-            </button>
-
-        </div>
-
-    </div>
-
-    <!-- ===================================== -->
-    <!-- REQUEST CARD TEMPLATE -->
-    <!-- ===================================== -->
-
-    <!--
-
-    <div class="requestCard">
-
-        <div class="requestUser">
-
-            <img class="requestAvatar">
-
-            <div class="requestMember">
-
-                ASHVATH
-
-            </div>
-
-        </div>
-
-        <div class="requestSong">
-
-            <img class="songCover">
-
-            <div class="songInfo">
-
-                <div class="songTitle">
-
-                    Glimpse Of Us
-
-                </div>
-
-                <div class="songArtist">
-
-                    Joji
-
-                </div>
-
-                <div class="spotifyLink">
-
-                    spotify.com/track/...
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="requestChange">
-
-            ⇄
-
-        </div>
-
-        <div class="requestSong">
-
-            <img class="songCover">
-
-            <div class="songInfo">
-
-                <div class="songTitle">
-
-                    Understand
-
-                </div>
-
-                <div class="songArtist">
-
-                    Keshi
-
-                </div>
-
-                <div class="spotifyLink">
-
-                    spotify.com/track/...
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    -->
-
-    <!-- ===================================== -->
-    <!-- ACTIVITY TEMPLATE -->
-    <!-- ===================================== -->
-
-    <!--
-
-    <div class="activityCard">
-
-        <div class="activityTop">
-
-            <img class="activityAvatar">
-
-            <div>
-
-                <div class="activityName">
-
-                    ASHVATH
-
-                </div>
-
-                <div class="activityAccount">
-
-                    Spotify Premium
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="weeklyProgress">
-
-            ◆ ◆ ◆ ◇ ◇
-
-        </div>
-
-        <div class="dataProgress">
-
-            █ █
-
-        </div>
-
-    </div>
-
-    -->
-
-    <!-- ===================================== -->
-    <!-- SONG TEMPLATE -->
-    <!-- ===================================== -->
-
-    <!--
-
-    <div class="songCard">
-
-        <img class="songCover">
-
-        <div class="songInfo">
-
-            <div class="songTitle">
-
-                Understand
-
-            </div>
-
-            <div class="songArtist">
-
-                Keshi
-
-            </div>
-
-        </div>
-
-        <button class="songEdit">
-
-            EDIT
-
-        </button>
-
-    </div>
-
-    -->
-
-    <!-- ===================================== -->
-    <!-- YOUR SONG TEMPLATE -->
-    <!-- ===================================== -->
-
-    <!--
-
-    <div class="memberSongCard">
-
-        <img class="songCover">
-
-        <div class="memberSongInfo">
-
-            <div class="memberSongTitle">
-
-                Glimpse Of Us
-
-            </div>
-
-            <div class="memberSongArtist">
-
-                Joji
-
-            </div>
-
-        </div>
-
-        <button class="replaceSong">
-
-            REPLACE
-
-        </button>
-
-    </div>
-
-    -->
-
-    <!-- ===================================== -->
-    <!-- WEEK FAILED -->
-    <!-- ===================================== -->
-
-    <div id="weekAlert">
-
-        <div class="alertBox">
-
-            WEEK FAILED
-
-        </div>
-
-    </div>
-
-    <!-- ===================================== -->
-    <!-- WEEK SUCCESS -->
-    <!-- ===================================== -->
-
-    <div id="weekSuccess">
-
-        <div class="alertBox success">
-
-            MISSION COMPLETE
-
-        </div>
-
-    </div>
-
-    <!-- ===================================== -->
-    <!-- LOADING -->
-    <!-- ===================================== -->
-
-    <div id="loadingScreen">
-
-        <div class="loadingText">
-
-            LOADING PRIME...
-
-        </div>
-
-    </div>
-
-        <!-- ===================================== -->
-    <!-- JAVASCRIPT -->
-    <!-- ===================================== -->
-
-    <script type="module"
-    src="../js/playlist.js">
-    </script>
-
-    <!-- ===================================== -->
-    <!-- TAB SYSTEM -->
-    <!-- ===================================== -->
-
-    <script>
-
-    document
-    .querySelectorAll(".tab")
-    .forEach(tab=>{
-
-        tab.onclick = ()=>{
-
-            document
-            .querySelectorAll(".tab")
-            .forEach(t=>{
-
-                t.classList.remove(
-                "active"
-                );
-
-            });
-
-            document
-            .querySelectorAll(
-            ".tabContent"
-            )
-            .forEach(c=>{
-
-                c.classList.remove(
-                "active"
-                );
-
-            });
-
-            tab.classList.add(
-            "active"
-            );
-
-            const target =
-            tab.dataset.tab;
-
-            if(target === "songs"){
-
-                document
-                .getElementById(
-                "songsTab"
-                )
-                .classList.add(
-                "active"
-                );
-
-            }
-
-            if(target === "yoursong"){
-
-                document
-                .getElementById(
-                "yourSongTab"
-                )
-                .classList.add(
-                "active"
-                );
-
-            }
-
-            if(target === "activity"){
-
-                document
-                .getElementById(
-                "activityTab"
-                )
-                .classList.add(
-                "active"
-                );
-
-            }
-
-            if(target === "request"){
-
-                document
-                .getElementById(
-                "requestTab"
-                )
-                .classList.add(
-                "active"
-                );
-
-            }
-
-        };
-
-    });
-
-    </script>
-
-    <!-- ===================================== -->
-    <!-- SIDEBAR -->
-    <!-- ===================================== -->
-
-    <script>
-
-    const menuBtn =
-    document.getElementById(
-    "menuBtn"
-    );
-
-    const sidebar =
-    document.getElementById(
-    "sidebar"
-    );
-
-    const overlay =
-    document.getElementById(
-    "overlay"
-    );
-
-    if(menuBtn){
-
-        menuBtn.onclick = ()=>{
-
-            sidebar.classList.add(
-            "show"
-            );
-
-            overlay.classList.add(
-            "show"
-            );
-
-        };
-
-    }
-
-    if(overlay){
-
-        overlay.onclick = ()=>{
-
-            sidebar.classList.remove(
-            "show"
-            );
-
-            overlay.classList.remove(
-            "show"
-            );
-
-        };
-
-    }
-
-    </script>
-
-    <!-- ===================================== -->
-    <!-- ADMIN / MEMBER MODE -->
-    <!-- ===================================== -->
-
-    <script>
-
-    const IS_ADMIN =
-    localStorage.getItem(
-    "is_admin"
-    ) === "true";
-
-    if(IS_ADMIN){
-
-        document
-        .getElementById(
-        "memberPanel"
-        )
-        ?.remove();
-
-        document
-        .querySelectorAll(
-        ".memberTab"
-        )
-        .forEach(tab=>{
-
-            tab.remove();
-
-        });
-
-    }
-
-    else{
-
-        document
-        .querySelectorAll(
-        ".adminTab"
-        )
-        .forEach(tab=>{
-
-            tab.remove();
-
-        });
-
-    }
-
-    </script>
-
-    <!-- ===================================== -->
-    <!-- PROFILE AVATAR -->
-    <!-- ===================================== -->
-
-    <script>
-
-    const avatar =
-    document.getElementById(
-    "avatar"
-    );
-
-    const premiumUser =
-    JSON.parse(
-
-        localStorage.getItem(
-        "premium_user"
-        )
-
-    ) || {};
-
-    if(
-        avatar &&
-        premiumUser.photo
-    ){
-
-        avatar.src =
-        premiumUser.photo;
-
-    }
-
-    </script>
-
-    <!-- ===================================== -->
-    <!-- LOADING -->
-    <!-- ===================================== -->
-
-    <script>
-
-    window.onload = ()=>{
-
-        const loading =
-        document.getElementById(
-        "loadingScreen"
-        );
-
-        setTimeout(()=>{
-
-            loading.style.display =
-            "none";
-
-        },600);
-
-    };
-
-    </script>
-
-</body>
-</html>
+<!-- ===================================================== -->
+<!-- TOP BAR -->
+<!-- ===================================================== -->
