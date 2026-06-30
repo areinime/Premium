@@ -4,6 +4,7 @@
 <!-- ===================================================== -->
 <!-- HEAD -->
 <!-- ===================================================== -->
+
 <head>
 
 <meta charset="UTF-8">
@@ -14,14 +15,14 @@ content="width=device-width,initial-scale=1.0">
 <title>PRIME ZONE</title>
 
 <link rel="stylesheet"
-href="../css/prime.css">
+href="../css/playlist.css">
 
 </head>
 
 <body>
 
 <!-- ===================================================== -->
-<!-- BACKGROUND EFFECT -->
+<!-- BACKGROUND -->
 <!-- ===================================================== -->
 
 <div class="background"></div>
@@ -40,117 +41,627 @@ href="../css/prime.css">
 
 <div id="cyberAlert">
 
-PROFILE SAVED
+SYSTEM READY
 
 </div>
 
 <!-- ===================================================== -->
-<!-- ADMIN MODE -->
+<!-- JOIN POPUP -->
 <!-- ===================================================== -->
 
-<!--
-JS ONLY
+<div id="joinPopup">
 
-const IS_ADMIN =
-localStorage.getItem("is_admin") === "true";
+<h1>
 
-Tidak perlu HTML tambahan.
--->
+CONNECT SPOTIFY
+
+</h1>
+
+<p>
+
+CONNECT YOUR SPOTIFY ACCOUNT
+BEFORE JOINING THIS PLAYLIST
+
+</p>
+
+<button
+id="connectSpotify">
+
+CONNECT SPOTIFY
+
+</button>
+
+<button
+id="joinListener">
+
+JOIN AS LISTENER
+
+</button>
+
+</div>
 
 <!-- ===================================================== -->
 <!-- SIDEBAR -->
+<!-- COPY DASHBOARD -->
 <!-- ===================================================== -->
 
 <div id="sidebar">
 
-    <!-- ===================== -->
-    <!-- FIX TOP -->
-    <!-- ===================== -->
+<div class="sidebarTop">
 
-    <div class="sidebarTop">
+<div class="sideTitle">
 
-        <div class="sideTitle">
+PREMIUM
 
-            PREMIUM
+</div>
 
-        </div>
+<div class="sideItem"
+onclick="myArtist()">
 
-        <div
-        class="sideItem"
-        onclick="myArtist()">
+MY ARTIST
 
-            MY ARTIST
+</div>
 
-        </div>
+<div class="sideItem"
+onclick="myPopularity()">
 
-        <div
-        class="sideItem"
-        onclick="myPopularity()">
+MY POPULARITY
 
-            MY POPULARITY
+</div>
 
-        </div>
+<div class="sideItem"
+onclick="mySong()">
 
-        <div
-        class="sideItem"
-        onclick="mySong()">
+MY SONG
 
-            MY SONG
+</div>
 
-        </div>
+<div class="sideLine"></div>
 
-        <div class="sideLine"></div>
+</div>
 
-    </div>
+<div class="sidebarPlaylist">
 
-    <!-- ===================== -->
-    <!-- SCROLL PLAYLIST -->
-    <!-- ===================== -->
+<div class="sideSubTitle">
 
-    <div class="sidebarPlaylist">
+MY PLAYLIST
 
-        <div class="sideSubTitle">
+</div>
 
-            MY PLAYLIST
+<div class="playlistScroll">
 
-        </div>
+<div id="joinedPlaylist">
 
-        <div class="playlistScroll">
+<div class="joinedItem">
 
-            <div id="joinedPlaylist">
+NO PLAYLIST
 
-                <div class="joinedItem">
+</div>
 
-                    NO PLAYLIST JOINED
+</div>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
-        </div>
+<div class="sidebarBottom">
 
-    </div>
+<div class="sideLine"></div>
 
-    <!-- ===================== -->
-    <!-- FIX BOTTOM -->
-    <!-- ===================== -->
+<div
+class="sideItem logoutBtn"
+onclick="logout()">
 
-    <div class="sidebarBottom">
+LOGOUT
 
-        <div class="sideLine"></div>
+</div>
 
-        <div
-        class="sideItem logoutBtn"
-        onclick="logout()">
-
-            LOGOUT
-
-        </div>
-
-    </div>
+</div>
 
 </div>
 
 <!-- ===================================================== -->
 <!-- TOP BAR -->
 <!-- ===================================================== -->
+
+<div class="topBar">
+
+<div id="menuBtn">
+
+☰
+
+</div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- SPOTIFY SWITCH -->
+<!-- ===================================================== -->
+
+<div id="spotifySwitch">
+
+<img
+src="../img/spotify.png"
+id="spotifyButton">
+
+</div>
+
+<!-- ===================================================== -->
+<!-- MAIN -->
+<!-- ===================================================== -->
+
+<div class="mainPlayer">
+
+<!-- =============================================== -->
+<!-- PLAYLIST HEADER -->
+<!-- =============================================== -->
+
+<div class="playlistHeader">
+
+<div class="playlistCoverArea">
+
+<img
+id="playlistCover"
+src="../img/default_cover.png">
+
+</div>
+
+<div class="playlistInfo">
+
+<h1
+id="playlistTitle">
+
+PRIME ZONE
+
+</h1>
+
+<marquee
+id="playlistDescription"
+scrollamount="3">
+
+PLAYLIST DESCRIPTION
+
+</marquee>
+
+<a
+id="playlistLink"
+target="_blank">
+
+OPEN SPOTIFY PLAYLIST
+
+</a>
+
+</div>
+
+</div>
+
+<!-- =============================================== -->
+<!-- PROGRESS -->
+<!-- =============================================== -->
+
+<div
+id="missionProgress">
+
+<div
+class="progressTitle">
+
+MISSION PROGRESS
+
+</div>
+
+<div
+class="progressBar">
+
+<div
+id="progressFill">
+
+</div>
+
+</div>
+
+<div
+class="progressPercent">
+
+<span
+id="progressValue">
+
+0%
+
+</span>
+
+</div>
+
+<div
+class="progressSong">
+
+<span
+id="playedSong">
+
+0
+
+</span>
+
+/
+
+<span
+id="totalSong">
+
+0
+
+</span>
+
+SONG
+
+</div>
+
+<button
+id="checkinBtn">
+
+CHECK IN
+
+</button>
+
+</div>
+
+<!-- =============================================== -->
+<!-- FIX TAB -->
+<!-- =============================================== -->
+
+<div
+class="playlistTabBar">
+
+<div
+class="tab active"
+data-tab="song">
+
+SONG
+
+</div>
+
+<div
+class="tab"
+data-tab="yourSong">
+
+YOUR SONG
+
+</div>
+
+<div
+class="tab"
+data-tab="activity">
+
+ACTIVITY
+
+</div>
+
+</div>
+
+<!-- =============================================== -->
+<!-- TAB CONTAINER -->
+<!-- =============================================== -->
+
+<div
+class="playlistBody">
+
+<!-- SONG -->
+
+<div
+id="songTab"
+class="tabContent active">
+
+<div
+id="songList">
+
+<!-- AUTO SONG -->
+
+</div>
+
+<button
+id="addSongBtn">
+
++
+
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- YOUR SONG -->
+<!-- ===================================================== -->
+
+<div
+id="yourSongTab"
+class="tabContent">
+
+<div
+id="mySongList">
+
+<!-- AUTO MY SONG -->
+
+</div>
+
+<button
+id="addMySongBtn">
+
+ADD SONG
+
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- REQUEST -->
+<!-- ADMIN ONLY -->
+<!-- ===================================================== -->
+
+<div
+id="requestTab"
+class="tabContent">
+
+<div
+id="requestSongs">
+
+<!-- AUTO REQUEST -->
+
+</div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- ACTIVITY -->
+<!-- ===================================================== -->
+
+<div
+id="activityTab"
+class="tabContent">
+
+<div
+id="memberActivity">
+
+<!-- AUTO MEMBER -->
+
+<!--
+
+<div class="memberCard">
+
+<div class="memberName">
+
+ASHVATH
+
+</div>
+
+<div class="memberCrystal">
+
+◇◇◇◇◇
+
+</div>
+
+<div class="memberEnergy">
+
+▣▣▣▣
+
+</div>
+
+</div>
+
+-->
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- POPUP ADD SONG -->
+<!-- ===================================================== -->
+
+<div
+id="addSongPopup"
+class="popup">
+
+<div class="popupBox">
+
+<h2>
+
+ADD SONG
+
+</h2>
+
+<input
+id="spotifyTrackLink"
+placeholder="Spotify Track URL">
+
+<div
+class="popupButton">
+
+<button
+id="cancelAddSong">
+
+CANCEL
+
+</button>
+
+<button
+id="submitAddSong">
+
+ADD
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- POPUP REPLACE SONG -->
+<!-- ===================================================== -->
+
+<div
+id="replaceSongPopup"
+class="popup">
+
+<div class="popupBox">
+
+<h2>
+
+REPLACE SONG
+
+</h2>
+
+<input
+id="replaceTrackLink"
+placeholder="Spotify Track URL">
+
+<div
+class="popupButton">
+
+<button
+id="cancelReplaceSong">
+
+CANCEL
+
+</button>
+
+<button
+id="submitReplaceSong">
+
+REPLACE
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- POPUP EDIT PLAYLIST -->
+<!-- ADMIN -->
+<!-- ===================================================== -->
+
+<div
+id="editPlaylistPopup"
+class="popup">
+
+<div class="popupBox">
+
+<h2>
+
+EDIT PLAYLIST
+
+</h2>
+
+<input
+id="playlistSpotifyLink"
+placeholder="Spotify Playlist URL">
+
+<div
+class="popupButton">
+
+<button
+id="cancelPlaylistEdit">
+
+CANCEL
+
+</button>
+
+<button
+id="savePlaylistEdit">
+
+SAVE
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- POPUP REQUEST -->
+<!-- ===================================================== -->
+
+<div
+id="requestPopup"
+class="popup">
+
+<div class="popupBox">
+
+<h2>
+
+REQUEST
+
+</h2>
+
+<div
+id="requestDetail">
+
+<!-- AUTO -->
+
+</div>
+
+<div
+class="popupButton">
+
+<button
+id="rejectRequest">
+
+REJECT
+
+</button>
+
+<button
+id="acceptRequest">
+
+ACCEPT
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- LOADING -->
+<!-- ===================================================== -->
+
+<div
+id="loadingScreen">
+
+<div
+class="loaderRing">
+
+</div>
+
+<div
+class="loaderText">
+
+SYNCING PLAYLIST...
+
+</div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- JAVASCRIPT -->
+<!-- ===================================================== -->
+
+<script
+type="module"
+src="../js/playlist.js">
+
+</script>
+
+</body>
+
+</html>
+
